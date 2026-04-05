@@ -1,0 +1,14 @@
+@keyframes sweeping_light_animate {
+  0% {
+    left: -500px;
+  }
+  100% {
+    left: calc(100vw + 300px);
+  }
+}
+
+.sweeping_light {
+  left: -500px;
+  filter: blur(90px);
+  animation: sweeping_light_animate infinite linear 8s;
+}

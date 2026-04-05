@@ -1,0 +1,15 @@
+@keyframes mouse_scale_animate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mouse_overlay {
+  animation: mouse_scale_animate 3s infinite;
+}
