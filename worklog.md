@@ -185,3 +185,32 @@ Stage Summary:
 - Tech Stack section restored.
 - New "Why Automation / From challenge to solution" section built — 6 premium challenge→solution pairs with animated flow arrows, orange-highlighted solutions, dark background.
 - Section order now: Hero → Projects → Tech Stack → Challenge→Solution → AI Chat → Contact (→ Footer), alternating white/black throughout. All verified.
+
+---
+Task ID: 13
+Agent: orchestrator
+Task: Remove Tech Stack, remove header logo/profile, smaller project cards, redesign Challenge→Solution as clean ✕/✓ premium cards. Re-alternate sections.
+
+Work Log:
+- page.tsx: removed TechStack. New order: Hero → Projects → ChallengeSolution → AIChat → Contact.
+- Deleted tech-stack.tsx. Removed "Tech Stack" from header NAV and footer LINKS.
+- header.tsx: removed the logo/brand button entirely. Bar now = nav links (left) + "Let's talk" CTA (right) + mobile trigger. Max-width tightened to max-w-5xl. Nav reduced to 5 items: Home / Projects / Automation / AI Chat / Contact.
+- projects.tsx: smaller cards — grid changed from lg:grid-cols-3 to lg:grid-cols-4 with tighter gap-3. Card swiper aspect 16/10 → 4/3 (taller but narrower). Body padding px-3.5/py-3 → px-3/py-2.5, title font 13.5px → 12.5px, category 10.5px → 9.5px.
+- challenge-solution.tsx: COMPLETE REDESIGN per spec. Now a white section with a responsive grid (1/2/3 cols) of premium cards. Each card = ✕ Problem (red-50 badge, red-500 X icon) + thin gradient divider + ✓ Solution (brand/10 badge, brand Check icon). Tiny "PROBLEM"/"SOLUTION" eyebrow labels + short label text only (no descriptions/paragraphs). Subtle hover: -translate-y-1 + border-brand/30 + soft orange shadow + icon scale/rotate. 6 pairs: Manual Data Entry→Automated Data Processing, Repetitive Customer Support→AI Assistant, Multiple Disconnected Tools→Unified System Integration, Manual Business Flow→Automated Flow, Human Errors→Reliable Automated Processes, Manual Reporting→Real-time Dashboard.
+- Re-alternated section colors after removing Tech Stack: Hero(white) → Projects(black) → Flow(white) → Chat(black) → Contact(white) → Footer(white).
+  - challenge-solution.tsx: section-dark → section-light (white), cards white with border.
+  - ai-chat.tsx: section-light → section-dark (charcoal) — converted chat card to glass-dark-strong, dark input/bubbles/quick-replies/typing dots, stone text.
+  - contact.tsx: section-dark → section-light (white) — white card, dark text, light input.
+- Verified with Agent Browser + VLM:
+  - Section colors: hero=#FFF, projects=#111827, flow=#FFF, chat=#111827, contact=#FFF, footer=#FFF. Correct alternating.
+  - Tech Stack REMOVED.
+  - Header: NO logo/brand (VLM-confirmed: just nav links + button); 5 nav items.
+  - Projects grid: computed 4 columns (279px each), cards smaller (279×263px); 3 cards render in automation tab.
+  - Challenge→Solution: 6 premium cards, each ✕ Problem (red) / thin divider / ✓ Solution (orange), short labels only, white bg (VLM-confirmed all points).
+  - AI chat on dark section: sent message → LLM replied (POST /api/chat 200).
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Tech Stack section removed; header logo/profile removed (nav + CTA only).
+- Project cards made smaller (4-col grid, tighter aspect/padding/typography).
+- Challenge→Solution completely redesigned as clean minimal premium cards with ✕ Problem + ✓ Solution in the same card, thin divider, short labels, subtle hover. Re-alternated all section colors. All interactions verified.

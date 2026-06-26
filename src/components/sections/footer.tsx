@@ -15,7 +15,6 @@ function scrollToId(id: string) {
 const LINKS = [
   { id: "hero", label: "Home" },
   { id: "projects", label: "Projects" },
-  { id: "stack", label: "Tech Stack" },
   { id: "flow", label: "Automation" },
   { id: "chat", label: "AI Chat" },
   { id: "contact", label: "Contact" },

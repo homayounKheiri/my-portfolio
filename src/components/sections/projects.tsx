@@ -120,7 +120,7 @@ export function Projects() {
             )}
 
             {/* 3-column multi-row grid (no one-line slider) */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {list.map((p, i) => (
                 <ProjectCard
                   key={p.id}
@@ -178,12 +178,12 @@ function ProjectCard({
         <CardSwiper project={project} />
 
         {/* Body — minimal: just title + category */}
-        <div className="flex items-center justify-between gap-2 px-3.5 py-3">
+        <div className="flex items-center justify-between gap-2 px-3 py-2.5">
           <div className="min-w-0">
-            <p className="truncate text-[13.5px] font-semibold tracking-tight text-white">
+            <p className="truncate text-[12.5px] font-semibold tracking-tight text-white">
               {project.title}
             </p>
-            <p className="text-[10.5px] uppercase tracking-wider text-stone-500">
+            <p className="text-[9.5px] uppercase tracking-wider text-stone-500">
               {project.category}
             </p>
           </div>
@@ -204,7 +204,7 @@ function CardSwiper({ project }: { project: Project }) {
 
   return (
     <div
-      className="relative aspect-[16/10] w-full overflow-hidden"
+      className="relative aspect-[4/3] w-full overflow-hidden"
       onPointerDown={(e) => e.stopPropagation()}
     >
       <Swiper

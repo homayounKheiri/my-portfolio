@@ -1,62 +1,25 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import {
-  Keyboard,
-  Database,
-  MessagesSquare,
-  Bot,
-  Unlink,
-  Network,
-  Workflow,
-  Zap,
-  AlertTriangle,
-  ShieldCheck,
-  FileText,
-  LineChart,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { X, Check } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Pair = {
-  challenge: { label: string; icon: React.ElementType };
-  solution: { label: string; icon: React.ElementType };
-};
+type Pair = { problem: string; solution: string };
 
 const PAIRS: Pair[] = [
-  {
-    challenge: { label: "Manual Data Entry", icon: Keyboard },
-    solution: { label: "Automated Data Processing", icon: Database },
-  },
-  {
-    challenge: { label: "Repetitive Support", icon: MessagesSquare },
-    solution: { label: "AI Assistant", icon: Bot },
-  },
-  {
-    challenge: { label: "Disconnected Tools", icon: Unlink },
-    solution: { label: "Unified Integration", icon: Network },
-  },
-  {
-    challenge: { label: "Manual Business Flow", icon: Workflow },
-    solution: { label: "Automated Flow", icon: Zap },
-  },
-  {
-    challenge: { label: "Human Errors", icon: AlertTriangle },
-    solution: { label: "Reliable Processes", icon: ShieldCheck },
-  },
-  {
-    challenge: { label: "Manual Reporting", icon: FileText },
-    solution: { label: "Real-time Dashboard", icon: LineChart },
-  },
+  { problem: "Manual Data Entry", solution: "Automated Data Processing" },
+  { problem: "Repetitive Customer Support", solution: "AI Assistant" },
+  { problem: "Multiple Disconnected Tools", solution: "Unified System Integration" },
+  { problem: "Manual Business Flow", solution: "Automated Flow" },
+  { problem: "Human Errors", solution: "Reliable Automated Processes" },
+  { problem: "Manual Reporting", solution: "Real-time Dashboard" },
 ];
 
 export function ChallengeSolution() {
-  const reduce = useReducedMotion();
-
   return (
-    <section id="flow" className="section-dark relative px-4 py-24 sm:px-6 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
-      <div className="relative mx-auto w-full max-w-6xl">
+    <section id="flow" className="section-light relative px-4 py-24 sm:px-6 sm:py-32">
+      <div className="mx-auto w-full max-w-6xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <motion.span
@@ -75,32 +38,28 @@ export function ChallengeSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-            className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
+            className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-[44px]"
           >
-            From challenge to solution
+            From problem to solution
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-            className="mt-3 max-w-md text-[14.5px] text-stone-400"
-          >
-            Every manual bottleneck, paired with its intelligent fix.
-          </motion.p>
         </div>
 
-        {/* Pairs grid */}
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        {/* Cards grid */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PAIRS.map((pair, i) => (
             <motion.div
-              key={pair.challenge.label}
-              initial={{ opacity: 0, y: 24 }}
+              key={pair.problem}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease: EASE, delay: (i % 2) * 0.08 }}
+              transition={{
+                duration: 0.55,
+                ease: EASE,
+                delay: (i % 3) * 0.08,
+              }}
+              className="group"
             >
-              <PairRow pair={pair} index={i} reduce={!!reduce} />
+              <PremiumCard pair={pair} />
             </motion.div>
           ))}
         </div>
@@ -109,127 +68,43 @@ export function ChallengeSolution() {
   );
 }
 
-/* ---------- One challenge → solution pair ---------- */
+/* ---------- Premium card: ✕ Problem · divider · ✓ Solution ---------- */
 
-function PairRow({
-  pair,
-  index,
-  reduce,
-}: {
-  pair: Pair;
-  index: number;
-  reduce: boolean;
-}) {
+function PremiumCard({ pair }: { pair: Pair }) {
   return (
-    <div className="group/pair relative flex items-stretch gap-3">
-      {/* Challenge card */}
-      <ChallengeCard
-        icon={pair.challenge.icon}
-        label={pair.challenge.label}
-      />
+    <div className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-5 shadow-[0_4px_24px_-14px_rgba(17,24,39,0.12)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-brand/30 group-hover:shadow-[0_18px_44px_-20px_rgba(249,115,22,0.28)]">
+      {/* Problem row */}
+      <div className="flex items-center gap-3">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-500 transition-transform duration-500 group-hover:scale-110">
+          <X className="h-4 w-4" strokeWidth={2.6} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-muted/70">
+            Problem
+          </p>
+          <p className="truncate text-[14px] font-semibold leading-tight text-ink">
+            {pair.problem}
+          </p>
+        </div>
+      </div>
 
-      {/* Animated flow connector */}
-      <FlowConnector delay={index * 0.3} reduce={reduce} />
+      {/* Thin divider */}
+      <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
 
-      {/* Solution card */}
-      <SolutionCard icon={pair.solution.icon} label={pair.solution.label} />
-    </div>
-  );
-}
-
-/* ---------- Challenge card (muted) ---------- */
-
-function ChallengeCard({
-  icon: Icon,
-  label,
-}: {
-  icon: React.ElementType;
-  label: string;
-}) {
-  return (
-    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 transition-all duration-500 group-hover/pair:border-white/20 group-hover/pair:bg-white/[0.05]">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 text-stone-400 transition-all duration-500 group-hover/pair:scale-110">
-        <Icon className="h-4.5 w-4.5" />
-      </span>
-      <span className="text-[13px] font-semibold leading-tight text-stone-300">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* ---------- Solution card (highlighted orange) ---------- */
-
-function SolutionCard({
-  icon: Icon,
-  label,
-}: {
-  icon: React.ElementType;
-  label: string;
-}) {
-  return (
-    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-brand/30 bg-brand/[0.08] px-4 py-4 shadow-[0_8px_30px_-12px_rgba(249,115,22,0.4)] transition-all duration-500 group-hover/pair:border-brand/50 group-hover/pair:bg-brand/[0.12] group-hover/pair:shadow-[0_14px_40px_-12px_rgba(249,115,22,0.55)]">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand text-white shadow-[0_8px_20px_-8px_rgba(249,115,22,0.7)] transition-all duration-500 group-hover/pair:scale-110 group-hover/pair:rotate-[6deg]">
-        <Icon className="h-4.5 w-4.5" />
-      </span>
-      <span className="text-[13px] font-semibold leading-tight text-white">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* ---------- Animated flow connector (arrow + traveling dot) ---------- */
-
-function FlowConnector({ delay, reduce }: { delay: number; reduce: boolean }) {
-  return (
-    <div className="relative flex w-8 shrink-0 items-center justify-center sm:w-10">
-      <svg
-        viewBox="0 0 40 24"
-        fill="none"
-        className="h-6 w-full"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id={`flow-${delay}`} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
-            <stop offset="100%" stopColor="#F97316" />
-          </linearGradient>
-        </defs>
-        {/* base line */}
-        <line
-          x1="2"
-          y1="12"
-          x2="30"
-          y2="12"
-          stroke="rgba(255,255,255,0.15)"
-          strokeWidth="1.5"
-          strokeDasharray="3 3"
-        />
-        {/* arrow head */}
-        <path
-          d="M28 6 L36 12 L28 18"
-          stroke="#F97316"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
-      {/* traveling dot */}
-      {!reduce && (
-        <motion.span
-          className="pointer-events-none absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand shadow-[0_0_8px_rgba(249,115,22,0.9)]"
-          initial={{ left: "4%", opacity: 0 }}
-          animate={{ left: ["4%", "72%"], opacity: [0, 1, 1, 0] }}
-          transition={{
-            duration: 1.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay,
-          }}
-        />
-      )}
+      {/* Solution row */}
+      <div className="flex items-center gap-3">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[6deg]">
+          <Check className="h-4 w-4" strokeWidth={2.8} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+            Solution
+          </p>
+          <p className="truncate text-[14px] font-semibold leading-tight text-ink">
+            {pair.solution}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
