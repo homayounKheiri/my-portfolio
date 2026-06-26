@@ -161,3 +161,27 @@ Work Log:
 Stage Summary:
 - Hero completely redesigned: minimal copy on the left + interactive glassmorphism workflow dashboard on the right (nodes, flows, execution status, flowing data, live log, stats) + soft orange cursor-follow glow.
 - Projects converted from a one-line slider to a 3-column multi-row grid with smaller cards; per-card image/matt swipe now powered by Swiper React. All interactions verified working.
+
+---
+Task ID: 12
+Agent: orchestrator
+Task: Remove infographic from hero, re-add Tech Stack, build new "Challenge → Solution" section. New order: Hero → Projects → Tech Stack → Challenge→Solution → AI Chat → Contact.
+
+Work Log:
+- hero.tsx: removed WorkflowPreview import + render. Restored centered minimal layout (eyebrow pill, title, subtitle, 2 CTAs). Kept the active animated grid bg + soft orange cursor glow (useCursorGlow) as subtle depth touches. Deleted unused workflow-preview.tsx.
+- tech-stack.tsx: re-created the logo-only grid section (16 logos via simple-icons: React, Next.js, TypeScript, Node.js, Python, LangChain, n8n, Anthropic, Tailwind, Vercel, PostgreSQL, Prisma, Docker, Git, Figma, GitHub Actions). White section, subtle charcoal→orange hover glow.
+- challenge-solution.tsx (NEW): "Why Automation — From challenge to solution" section on charcoal bg. 6 pairs in a 2-col grid: each pair = muted Challenge card (icon + short label) → animated flow connector (dashed SVG line + orange arrow head + a traveling orange dot that loops) → highlighted Solution card (orange icon badge, white text). Icons via lucide: Keyboard/Database, MessagesSquare/Bot, Unlink/Network, Workflow/Zap, AlertTriangle/ShieldCheck, FileText/LineChart. Hover: cards elevate border + icon scale, solution icon rotates. Respects prefers-reduced-motion.
+- page.tsx: new order Hero → Projects → TechStack → ChallengeSolution → AIChat → Contact.
+- header.tsx + footer.tsx: NAV/LINKS updated to Home / Projects / Tech Stack / Automation / AI Chat / Contact (6 items).
+- Verified with Agent Browser + VLM:
+  - Section colors/order: hero=#FFF, projects=#111827, stack=#FFF, flow=#111827, chat=#FFF, contact=#111827, footer=#FFF. Clean alternating white/black/white/black/white/black/white.
+  - Hero: infographic REMOVED, centered minimal (VLM-confirmed: eyebrow pill + title + subtitle + 2 buttons + subtle grid, no dashboard on right).
+  - Flow section: 6 challenge→solution pairs with correct mappings (Manual Data Entry → Automated Data Processing, etc.); 18 SVG elements + 12 brand dots; VLM-confirmed: 6 rows, animated arrow connectors, orange solutions + muted challenges, dark bg.
+  - Header: 6 nav items present.
+  - AI chat input present; lint clean; no runtime errors.
+
+Stage Summary:
+- Hero stripped back to minimal centered (infographic removed, cursor glow retained).
+- Tech Stack section restored.
+- New "Why Automation / From challenge to solution" section built — 6 premium challenge→solution pairs with animated flow arrows, orange-highlighted solutions, dark background.
+- Section order now: Hero → Projects → Tech Stack → Challenge→Solution → AI Chat → Contact (→ Footer), alternating white/black throughout. All verified.
