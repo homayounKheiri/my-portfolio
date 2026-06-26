@@ -1,16 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-  Target,
-  Lightbulb,
-  X,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Target, Lightbulb, X } from "lucide-react";
 import projectsData from "@/data/projects.json";
 
 type Project = {
@@ -162,7 +155,6 @@ function Slider({
     };
     embla.on("select", sync);
     embla.on("reInit", sync);
-    // Defer the initial sync out of the synchronous effect body.
     queueMicrotask(sync);
     return () => {
       embla.off("select", sync);
@@ -173,7 +165,7 @@ function Slider({
   return (
     <div className="relative">
       <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex gap-5">
+        <div className="flex gap-4">
           {items.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} onSelect={onSelect} />
           ))}
@@ -201,7 +193,7 @@ function Slider({
           </button>
         </div>
         <span className="text-[12.5px] font-medium text-stone-500">
-          Drag or use arrows to explore
+          Drag · tap a card to explore
         </span>
       </div>
     </div>
@@ -209,6 +201,9 @@ function Slider({
 }
 
 /* ---------- Card ---------- */
+/* Smaller, minimal card. Swiping slide area uses the image + matt color
+   panels (charcoal + orange) — no extra images needed. Card body shows
+   only the title. */
 
 function ProjectCard({
   project,
@@ -225,59 +220,135 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease: EASE, delay: index * 0.08 }}
-      className="flex-[0_0_88%] sm:flex-[0_0_46%] lg:flex-[0_0_31.5%]"
+      className="flex-[0_0_84%] sm:flex-[0_0_44%] lg:flex-[0_0_30%]"
     >
-      <button
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => onSelect(project)}
-        className="lift group block w-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] text-left shadow-[0_4px_24px_-12px_rgba(0,0,0,0.4)] hover:border-white/20 hover:shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] focus-brand"
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onSelect(project);
+          }
+        }}
+        className="lift group block w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_4px_24px_-12px_rgba(0,0,0,0.4)] hover:border-white/20 hover:shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] focus-brand"
       >
-        {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent opacity-60" />
-          <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink backdrop-blur-sm">
-            {project.category}
-          </span>
-          <span className="absolute right-4 top-4 rounded-full bg-brand px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-            {project.metric}
-          </span>
-          {/* Hover explore chip */}
-          <span className="absolute bottom-4 right-4 flex translate-y-2 items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 text-[11.5px] font-semibold text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-            Explore
-            <ArrowUpRight className="h-3 w-3" strokeWidth={2.5} />
-          </span>
-        </div>
+        {/* Swiping slide area */}
+        <CardSwiper project={project} />
 
-        {/* Body */}
-        <div className="p-5">
-          <h3 className="text-[17px] font-semibold tracking-tight text-white">
+        {/* Body — minimal: just title */}
+        <div className="flex items-center justify-between gap-2 px-4 py-3.5">
+          <h3 className="truncate text-[14.5px] font-semibold tracking-tight text-white">
             {project.title}
           </h3>
-          <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-stone-400">
-            {project.summary}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {project.tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-md bg-white/8 px-2.5 py-1 text-[11px] font-medium text-stone-300"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+          <ArrowUpRight
+            className="h-4 w-4 shrink-0 text-stone-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
+            strokeWidth={2.2}
+          />
         </div>
-      </button>
+      </div>
     </motion.div>
   );
 }
 
-/* ---------- Dialog ---------- */
+/* ---------- Inner swiping slide (image + matt color panels) ---------- */
+
+function CardSwiper({ project }: { project: Project }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const count = 3; // [image, charcoal matte, orange matte]
+
+  const onScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    setActive(idx);
+  };
+
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative aspect-[16/11] w-full overflow-hidden">
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        onPointerDown={(e) => e.stopPropagation()}
+        className="no-scrollbar flex h-full w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain"
+      >
+        {/* Slide 1 — the image */}
+        <div className="relative h-full w-full shrink-0 snap-center">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover"
+            loading="lazy"
+            draggable={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
+          <span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink backdrop-blur-sm">
+            {project.category}
+          </span>
+        </div>
+
+        {/* Slide 2 — charcoal matt with the outcome metric */}
+        <div className="flex h-full w-full shrink-0 snap-center flex-col items-center justify-center bg-ink px-4 text-center">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-stone-500">
+            Outcome
+          </span>
+          <span className="mt-2 text-2xl font-semibold leading-tight tracking-tight text-white">
+            {project.metric}
+          </span>
+        </div>
+
+        {/* Slide 3 — orange matt with the stack */}
+        <div className="flex h-full w-full shrink-0 snap-center flex-col items-center justify-center bg-brand px-4 text-center">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
+            Stack
+          </span>
+          <span className="mt-2 text-sm font-semibold leading-tight text-white">
+            {project.tags.slice(0, 2).join(" · ")}
+          </span>
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-2.5 left-1/2 flex -translate-x-1/2 gap-1.5">
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => {
+              e.stopPropagation();
+              goTo(i);
+            }}
+            aria-label={`Slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              active === i ? "w-4 bg-white" : "w-1.5 bg-white/45"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Swipe hint (only on first slide, fades after interaction) */}
+      {active === 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="pointer-events-none absolute bottom-2.5 right-3 flex items-center gap-1 rounded-full bg-black/30 px-2 py-0.5 text-[9.5px] font-medium uppercase tracking-wider text-white/80 backdrop-blur-sm"
+        >
+          Swipe
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+/* ---------- Dialog (unchanged detail view) ---------- */
 
 function ProjectDialog({
   project,
@@ -304,7 +375,7 @@ function ProjectDialog({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-ink/50 p-0 backdrop-blur-md sm:items-center sm:p-6"
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 p-0 backdrop-blur-md sm:items-center sm:p-6"
       onClick={onClose}
     >
       <motion.div

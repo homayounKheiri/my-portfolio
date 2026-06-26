@@ -57,8 +57,8 @@
 
 :root {
   --radius: 0.875rem;
-  /* Light theme: warm off-white background, charcoal ink, orange accent */
-  --background: #FBFAF8;
+  /* Light theme: pure white background, charcoal ink, orange accent */
+  --background: #FFFFFF;
   --foreground: #111827;
   --card: #FFFFFF;
   --card-foreground: #111827;
@@ -212,7 +212,7 @@
 
 /* ===== Section colorize helpers ===== */
 .section-light {
-  background: #FBFAF8;
+  background: #FFFFFF;
   color: #111827;
 }
 .section-dark {
@@ -337,3 +337,5 @@
   100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
 }
 .pulse-ring { animation: pulse-ring 2.4s var(--ease-out-expo) infinite; }
+
+/* cache-bust */

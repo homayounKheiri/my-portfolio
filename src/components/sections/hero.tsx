@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Sparkles, MessageSquare } from "lucide-react";
+import { Sparkles, MessageSquare, ArrowUpRight } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -18,11 +18,11 @@ export function Hero() {
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: 0.1 },
+      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: 0.15 },
     },
   };
   const item = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 22 },
     show: {
       opacity: 1,
       y: 0,
@@ -35,43 +35,27 @@ export function Hero() {
       id="hero"
       className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-20 sm:px-6"
     >
-      {/* Hero-only grid background (masked so it fades before the edges) */}
+      {/* Active background: animated panning grid + slow breathing sheen.
+          No blurred orbs — just a living grid. */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan" />
-        {/* Subtle floating orbs confined to hero */}
         <motion.div
-          className="orb"
-          style={{
-            width: 420,
-            height: 420,
-            left: "-8%",
-            top: "6%",
-            background:
-              "radial-gradient(circle at 30% 30%, rgba(249,115,22,0.45), rgba(249,115,22,0.12) 60%, transparent 70%)",
-          }}
-          animate={reduce ? undefined : { y: [0, -30, 0], scale: [1, 1.06, 1] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan"
+          animate={reduce ? undefined : { opacity: [0.55, 0.9, 0.55] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
+        {/* very subtle slow radial highlight that drifts (a tint, not a blur orb) */}
         <motion.div
-          className="orb"
+          className="absolute inset-0"
           style={{
-            width: 480,
-            height: 480,
-            right: "-10%",
-            top: "26%",
             background:
-              "radial-gradient(circle at 60% 40%, rgba(17,24,39,0.14), rgba(17,24,39,0.05) 60%, transparent 70%)",
+              "radial-gradient(60% 50% at 50% 38%, rgba(249,115,22,0.06), transparent 70%)",
           }}
-          animate={
-            reduce ? undefined : { y: [0, 26, 0], x: [0, -16, 0], scale: [1, 0.96, 1] }
-          }
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          animate={reduce ? undefined : { opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Top sheen */}
-        <div className="absolute inset-x-0 top-0 h-[40vh] bg-[linear-gradient(180deg,rgba(249,115,22,0.05),transparent)]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-5xl">
+      <div className="relative mx-auto w-full max-w-4xl">
         <motion.div
           variants={container}
           initial="hidden"
@@ -80,7 +64,7 @@ export function Hero() {
         >
           {/* Eyebrow pill */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
@@ -92,12 +76,10 @@ export function Hero() {
           {/* Title */}
           <motion.h1
             variants={item}
-            className="mt-7 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[68px]"
+            className="mt-7 text-balance text-4xl font-semibold leading-[1.06] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[64px]"
           >
             Consultant &amp; Specialist in{" "}
-            <span className="relative whitespace-nowrap">
-              <span className="text-gradient-brand">AI Business</span>
-            </span>{" "}
+            <span className="text-gradient-brand">AI Business</span>{" "}
             Intelligence &amp; Automation
           </motion.h1>
 
@@ -125,7 +107,7 @@ export function Hero() {
             </button>
             <button
               onClick={() => scrollToId("chat")}
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/80 px-6 py-3.5 text-[14.5px] font-semibold text-ink backdrop-blur-sm transition-all duration-300 hover:border-ink/30 hover:bg-white active:scale-95 focus-brand sm:w-auto"
+              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-[14.5px] font-semibold text-ink transition-all duration-300 hover:border-ink/30 active:scale-95 focus-brand sm:w-auto"
             >
               <MessageSquare className="h-4 w-4 text-brand transition-transform duration-500 group-hover:-translate-y-0.5" />
               Start a Conversation
@@ -135,46 +117,8 @@ export function Hero() {
               />
             </button>
           </motion.div>
-
-          {/* Trust line */}
-          <motion.div
-            variants={item}
-            className="mt-10 flex items-center gap-3 text-[12.5px] text-ink-muted"
-          >
-            <div className="flex -space-x-2">
-              {["#F97316", "#111827", "#FB923C", "#374151"].map((c, i) => (
-                <span
-                  key={i}
-                  className="h-6 w-6 rounded-full border-2 border-background"
-                  style={{ background: c }}
-                />
-              ))}
-            </div>
-            <span>
-              Trusted across SaaS, commerce &amp; service teams — replies in
-              ~5&nbsp;minutes.
-            </span>
-          </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.button
-        onClick={() => scrollToId("projects")}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.18em] text-ink-muted transition-colors hover:text-ink sm:flex"
-        aria-label="Scroll to projects"
-      >
-        Scroll
-        <motion.span
-          animate={reduce ? undefined : { y: [0, 5, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-3.5 w-3.5" />
-        </motion.span>
-      </motion.button>
     </section>
   );
 }

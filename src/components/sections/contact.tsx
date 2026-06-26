@@ -39,18 +39,19 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section-light relative px-4 py-24 sm:px-6 sm:py-32">
-      <div className="mx-auto w-full max-w-3xl">
+    <section id="contact" className="section-dark relative px-4 py-24 sm:px-6 sm:py-32">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
+      <div className="relative mx-auto w-full max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="relative overflow-hidden rounded-[28px] border border-border bg-white/70 p-8 shadow-[0_40px_100px_-50px_rgba(17,24,39,0.4)] backdrop-blur-xl sm:p-12"
+          className="glass-dark-strong relative overflow-hidden rounded-[28px] p-8 shadow-[0_40px_100px_-50px_rgba(0,0,0,0.7)] sm:p-12"
         >
           {/* decorative glow */}
-          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-ink/5 blur-3xl" />
+          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/25 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
 
           <div className="relative">
             {/* Eyebrow */}
@@ -60,12 +61,12 @@ export function Contact() {
             </span>
 
             {/* Title */}
-            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px]">
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl md:text-[40px]">
               Leave your number and expect a reply within{" "}
               <span className="text-gradient-brand">5&nbsp;minutes</span> :)
             </h2>
 
-            <p className="mt-3 max-w-lg text-[14.5px] leading-relaxed text-ink-muted">
+            <p className="mt-3 max-w-lg text-[14.5px] leading-relaxed text-stone-400">
               No forms to fill, no back-and-forth. Just drop your number and
               I&apos;ll reach out personally — fast.
             </p>
@@ -80,16 +81,16 @@ export function Contact() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4, ease: EASE }}
-                    className="flex items-center gap-3 rounded-2xl border border-green-200 bg-green-50/60 px-5 py-4"
+                    className="flex items-center gap-3 rounded-2xl border border-green-500/30 bg-green-500/10 px-5 py-4"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
                       <Check className="h-4.5 w-4.5" strokeWidth={3} />
                     </span>
                     <div>
-                      <p className="text-[14.5px] font-semibold text-ink">
+                      <p className="text-[14.5px] font-semibold text-white">
                         Got it — talk soon.
                       </p>
-                      <p className="text-[13px] text-ink-muted">
+                      <p className="text-[13px] text-stone-400">
                         Your number is on its way. Expect a reply within 5
                         minutes.
                       </p>
@@ -105,7 +106,7 @@ export function Contact() {
                     className="flex flex-col gap-3 sm:flex-row"
                   >
                     <div className="relative flex-1">
-                      <Phone className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-ink-muted" />
+                      <Phone className="pointer-events-none absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-stone-400" />
                       <input
                         type="tel"
                         inputMode="tel"
@@ -114,7 +115,7 @@ export function Contact() {
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+1 (555) 123-4567"
                         disabled={status === "loading"}
-                        className="h-14 w-full rounded-2xl border border-border bg-white pl-12 pr-4 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-muted/70 focus:border-brand/50 focus-brand disabled:opacity-60"
+                        className="h-14 w-full rounded-2xl border border-white/15 bg-white/5 pl-12 pr-4 text-[15px] text-white outline-none transition-colors placeholder:text-stone-500 focus:border-brand/60 focus-brand disabled:opacity-60"
                       />
                     </div>
                     <button
@@ -144,7 +145,7 @@ export function Contact() {
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="mt-3 text-[13px] font-medium text-red-500"
+                    className="mt-3 text-[13px] font-medium text-red-400"
                   >
                     {error}
                   </motion.p>
@@ -152,7 +153,7 @@ export function Contact() {
               </AnimatePresence>
             </div>
 
-            <p className="mt-5 text-[12px] text-ink-muted">
+            <p className="mt-5 text-[12px] text-stone-500">
               Your number is used only to reply to you. Nothing else.
             </p>
           </div>
