@@ -14,6 +14,9 @@ const NAV = [
   { id: "contact", label: "Contact" },
 ];
 
+// Sections rendered on a charcoal background.
+const DARK_SECTIONS = new Set(["projects", "chat"]);
+
 function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -31,6 +34,28 @@ export function Header() {
     scrollToId(id);
   };
 
+  // Adapt header chrome to the section currently in view.
+  const overDark = DARK_SECTIONS.has(active);
+
+  // Bar background
+  const barClass = !scrolled
+    ? "bg-transparent"
+    : overDark
+      ? "glass-dark-strong shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)]"
+      : "glass-strong shadow-[0_10px_40px_-20px_rgba(17,24,39,0.25)]";
+
+  // Text palette
+  const logoText = overDark ? "text-white" : "text-ink";
+  const navActive = overDark ? "text-white" : "text-ink";
+  const navIdle = overDark ? "text-stone-400 hover:text-white" : "text-ink-muted hover:text-ink";
+  const menuIcon = overDark ? "text-white" : "text-ink";
+  const menuHover = overDark ? "hover:bg-white/10" : "hover:bg-secondary";
+
+  // Logo box: invert contrast depending on header tone
+  const logoBox = overDark
+    ? "bg-white text-ink shadow-[0_6px_20px_-6px_rgba(0,0,0,0.5)]"
+    : "bg-ink text-white shadow-[0_6px_20px_-6px_rgba(17,24,39,0.5)]";
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -39,11 +64,7 @@ export function Header() {
       className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 sm:pt-4"
     >
       <div
-        className={`flex w-full max-w-6xl items-center justify-between rounded-2xl px-3 py-2.5 transition-all duration-500 sm:px-5 ${
-          scrolled
-            ? "glass-strong shadow-[0_10px_40px_-20px_rgba(17,24,39,0.25)]"
-            : "bg-transparent"
-        }`}
+        className={`flex w-full max-w-6xl items-center justify-between rounded-2xl px-3 py-2.5 transition-all duration-500 sm:px-5 ${barClass}`}
       >
         {/* Logo */}
         <button
@@ -51,13 +72,17 @@ export function Header() {
           className="group flex items-center gap-2.5 focus-brand rounded-lg"
           aria-label="Go to top"
         >
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-white shadow-[0_6px_20px_-6px_rgba(17,24,39,0.5)] transition-transform duration-500 group-hover:rotate-[8deg]">
+          <span
+            className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-500 group-hover:rotate-[8deg] ${logoBox}`}
+          >
             <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-brand" />
             <span className="font-mono text-[15px] font-bold tracking-tight">
               A
             </span>
           </span>
-          <span className="hidden text-[15px] font-semibold tracking-tight text-ink sm:block">
+          <span
+            className={`hidden text-[15px] font-semibold tracking-tight transition-colors duration-500 sm:block ${logoText}`}
+          >
             Aria<span className="text-brand">.</span>
           </span>
         </button>
@@ -72,9 +97,7 @@ export function Header() {
                 onClick={() => handleNav(item.id)}
                 data-active={isActive}
                 className={`nav-underline rounded-lg px-3.5 py-2 text-[13.5px] font-medium transition-colors duration-300 focus-brand ${
-                  isActive
-                    ? "text-ink"
-                    : "text-ink-muted hover:text-ink"
+                  isActive ? navActive : navIdle
                 }`}
               >
                 {item.label}
@@ -95,7 +118,7 @@ export function Header() {
         {/* Mobile trigger */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-ink transition-colors hover:bg-secondary md:hidden focus-brand"
+          className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors md:hidden focus-brand ${menuIcon} ${menuHover}`}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -103,7 +126,7 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile dropdown — always light for consistency & readability */}
       <AnimatePresence>
         {open && (
           <motion.div

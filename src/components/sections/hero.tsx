@@ -33,9 +33,45 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100svh] items-center px-4 pt-28 pb-20 sm:px-6"
+      className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-20 sm:px-6"
     >
-      <div className="mx-auto w-full max-w-5xl">
+      {/* Hero-only grid background (masked so it fades before the edges) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan" />
+        {/* Subtle floating orbs confined to hero */}
+        <motion.div
+          className="orb"
+          style={{
+            width: 420,
+            height: 420,
+            left: "-8%",
+            top: "6%",
+            background:
+              "radial-gradient(circle at 30% 30%, rgba(249,115,22,0.45), rgba(249,115,22,0.12) 60%, transparent 70%)",
+          }}
+          animate={reduce ? undefined : { y: [0, -30, 0], scale: [1, 1.06, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="orb"
+          style={{
+            width: 480,
+            height: 480,
+            right: "-10%",
+            top: "26%",
+            background:
+              "radial-gradient(circle at 60% 40%, rgba(17,24,39,0.14), rgba(17,24,39,0.05) 60%, transparent 70%)",
+          }}
+          animate={
+            reduce ? undefined : { y: [0, 26, 0], x: [0, -16, 0], scale: [1, 0.96, 1] }
+          }
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Top sheen */}
+        <div className="absolute inset-x-0 top-0 h-[40vh] bg-[linear-gradient(180deg,rgba(249,115,22,0.05),transparent)]" />
+      </div>
+
+      <div className="relative mx-auto w-full max-w-5xl">
         <motion.div
           variants={container}
           initial="hidden"
@@ -44,7 +80,7 @@ export function Hero() {
         >
           {/* Eyebrow pill */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
@@ -89,7 +125,7 @@ export function Hero() {
             </button>
             <button
               onClick={() => scrollToId("chat")}
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/70 px-6 py-3.5 text-[14.5px] font-semibold text-ink backdrop-blur-sm transition-all duration-300 hover:border-ink/30 hover:bg-white active:scale-95 focus-brand sm:w-auto"
+              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/80 px-6 py-3.5 text-[14.5px] font-semibold text-ink backdrop-blur-sm transition-all duration-300 hover:border-ink/30 hover:bg-white active:scale-95 focus-brand sm:w-auto"
             >
               <MessageSquare className="h-4 w-4 text-brand transition-transform duration-500 group-hover:-translate-y-0.5" />
               Start a Conversation

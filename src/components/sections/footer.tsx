@@ -28,7 +28,7 @@ const SOCIAL = [
 
 export function Footer() {
   return (
-    <footer className="relative mt-auto border-t border-border bg-white/50 backdrop-blur-md">
+    <footer className="section-dark relative mt-auto border-t border-white/10">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           {/* Brand */}
@@ -40,11 +40,11 @@ export function Footer() {
             transition={{ duration: 0.5, ease: EASE }}
             className="group flex items-center gap-2.5"
           >
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-white">
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-white text-ink">
               <span className="absolute right-1 top-1 h-1 w-1 rounded-full bg-brand" />
               <span className="font-mono text-[13px] font-bold">A</span>
             </span>
-            <span className="text-[14px] font-semibold tracking-tight text-ink">
+            <span className="text-[14px] font-semibold tracking-tight text-white">
               Aria<span className="text-brand">.</span>
             </span>
           </motion.button>
@@ -55,7 +55,7 @@ export function Footer() {
               <button
                 key={l.id}
                 onClick={() => scrollToId(l.id)}
-                className="text-[13px] font-medium text-ink-muted transition-colors hover:text-ink"
+                className="text-[13px] font-medium text-stone-400 transition-colors hover:text-white"
               >
                 {l.label}
               </button>
@@ -69,7 +69,7 @@ export function Footer() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white/60 text-ink-muted transition-all hover:scale-105 hover:border-brand/40 hover:text-brand focus-brand"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-stone-400 transition-all hover:scale-105 hover:border-brand/40 hover:text-brand focus-brand"
               >
                 <s.icon className="h-4 w-4" />
               </a>
@@ -77,14 +77,14 @@ export function Footer() {
             <button
               onClick={() => scrollToId("hero")}
               aria-label="Back to top"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white/60 text-ink-muted transition-all hover:scale-105 hover:border-brand/40 hover:text-brand focus-brand"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-stone-400 transition-all hover:scale-105 hover:border-brand/40 hover:text-brand focus-brand"
             >
               <ArrowUp className="h-4 w-4" />
             </button>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-border pt-6 text-[12px] text-ink-muted sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 text-[12px] text-stone-500 sm:flex-row">
           <p>© {new Date().getFullYear()} Aria. Crafted with intent.</p>
           <p>AI Business Intelligence · Automation · Web</p>
         </div>

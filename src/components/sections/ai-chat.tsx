@@ -81,8 +81,9 @@ export function AIChat() {
   };
 
   return (
-    <section id="chat" className="relative px-4 py-24 sm:px-6 sm:py-32">
-      <div className="mx-auto w-full max-w-5xl">
+    <section id="chat" className="section-dark relative px-4 py-24 sm:px-6 sm:py-32">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
+      <div className="relative mx-auto w-full max-w-5xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <motion.span
@@ -101,7 +102,7 @@ export function AIChat() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-            className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-[44px]"
+            className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
           >
             Meet your lightweight assistant
           </motion.h2>
@@ -110,7 +111,7 @@ export function AIChat() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-            className="mt-3 max-w-md text-[14.5px] text-ink-muted"
+            className="mt-3 max-w-md text-[14.5px] text-stone-400"
           >
             A small, fast helper — no signup, no noise. Just answers.
           </motion.p>
@@ -122,17 +123,17 @@ export function AIChat() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-          className="mx-auto mt-10 w-full max-w-md overflow-hidden rounded-3xl border border-border bg-white/70 shadow-[0_30px_80px_-40px_rgba(17,24,39,0.35)] backdrop-blur-xl"
+          className="glass-dark-strong mx-auto mt-10 w-full max-w-md overflow-hidden rounded-3xl shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)]"
         >
           {/* Header bar */}
-          <div className="flex items-center justify-between border-b border-border bg-white/50 px-5 py-4">
+          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-5 py-4">
             <div className="flex items-center gap-3">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-ink text-white pulse-ring">
-                <Sparkles className="h-4.5 w-4.5 text-brand" />
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-white pulse-ring">
+                <Sparkles className="h-4.5 w-4.5 text-white" />
               </div>
               <div>
-                <p className="text-[14px] font-semibold text-ink">Aria</p>
-                <p className="flex items-center gap-1.5 text-[11.5px] text-ink-muted">
+                <p className="text-[14px] font-semibold text-white">Aria</p>
+                <p className="flex items-center gap-1.5 text-[11.5px] text-stone-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
                   Online · replies in seconds
                 </p>
@@ -141,7 +142,7 @@ export function AIChat() {
             <button
               onClick={reset}
               aria-label="Reset conversation"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-ink-muted transition-all hover:scale-105 hover:bg-secondary hover:text-ink focus-brand"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-stone-400 transition-all hover:scale-105 hover:bg-white/10 hover:text-white focus-brand"
             >
               <RotateCcw className="h-4 w-4" />
             </button>
@@ -169,7 +170,7 @@ export function AIChat() {
                 <button
                   key={q}
                   onClick={() => send(q)}
-                  className="rounded-full border border-border bg-white/70 px-3.5 py-1.5 text-[12px] font-medium text-ink-muted transition-all hover:scale-[1.03] hover:border-brand/40 hover:text-ink focus-brand"
+                  className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[12px] font-medium text-stone-300 transition-all hover:scale-[1.03] hover:border-brand/50 hover:text-white focus-brand"
                 >
                   {q}
                 </button>
@@ -183,7 +184,7 @@ export function AIChat() {
               e.preventDefault();
               send(input);
             }}
-            className="flex items-center gap-2 border-t border-border bg-white/50 p-3"
+            className="flex items-center gap-2 border-t border-white/10 bg-white/[0.03] p-3"
           >
             <input
               ref={inputRef}
@@ -191,7 +192,7 @@ export function AIChat() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your question…"
               maxLength={1000}
-              className="flex-1 rounded-xl border border-border bg-white px-4 py-2.5 text-[14px] text-ink outline-none transition-colors placeholder:text-ink-muted/70 focus:border-brand/50 focus-brand"
+              className="flex-1 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-[14px] text-white outline-none transition-colors placeholder:text-stone-500 focus:border-brand/60 focus-brand"
             />
             <button
               type="submit"
@@ -222,7 +223,7 @@ function Bubble({ msg }: { msg: Msg }) {
         className={`max-w-[82%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
           isUser
             ? "rounded-br-md bg-brand text-white shadow-[0_8px_20px_-10px_rgba(249,115,22,0.7)]"
-            : "rounded-bl-md border border-border bg-white text-ink"
+            : "rounded-bl-md border border-white/12 bg-white/[0.06] text-stone-100"
         }`}
       >
         {msg.content}
@@ -240,10 +241,10 @@ function Typing() {
       exit={{ opacity: 0 }}
       className="flex justify-start"
     >
-      <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-border bg-white px-4 py-3.5">
-        <span className="dot h-2 w-2 rounded-full bg-ink-muted" />
-        <span className="dot h-2 w-2 rounded-full bg-ink-muted" />
-        <span className="dot h-2 w-2 rounded-full bg-ink-muted" />
+      <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-white/12 bg-white/[0.06] px-4 py-3.5">
+        <span className="dot h-2 w-2 rounded-full bg-stone-400" />
+        <span className="dot h-2 w-2 rounded-full bg-stone-400" />
+        <span className="dot h-2 w-2 rounded-full bg-stone-400" />
       </div>
     </motion.div>
   );

@@ -45,7 +45,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function TechStack() {
   return (
-    <section id="stack" className="relative px-4 py-24 sm:px-6 sm:py-32">
+    <section id="stack" className="section-light relative px-4 py-24 sm:px-6 sm:py-32">
       <div className="mx-auto w-full max-w-6xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">

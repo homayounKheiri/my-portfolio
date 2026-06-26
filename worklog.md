@@ -76,3 +76,34 @@ Stage Summary:
 - All requested sections built; orange+charcoal-only palette enforced; light, minimal, premium aesthetic with multi-layered animated background and smooth micro-interactions.
 - Backend AI chat (z-ai-web-dev-sdk) and contact API both verified working end-to-end in the browser.
 - `bun run lint` passes with zero errors. Dev server runs clean on port 3000.
+
+---
+Task ID: 8
+Agent: orchestrator
+Task: Restructure backgrounds — grid only in Hero, alternating white/black/white/black/white sections.
+
+Work Log:
+- Diagnosed "empty landing" feedback: page rendered fine (2106 chars, no errors) but the full-page grid + floating orbs over a near-white bg made it look flat/empty.
+- Added CSS helpers in globals.css: .section-light (#FBFAF8 + dark text), .section-dark (#111827 + light text), .glass-dark / .glass-dark-strong (dark glass surfaces), .bg-grid-mask (radial mask so hero grid fades before edges).
+- Removed the global AnimatedBackground from page.tsx; each section now owns its solid background.
+- Hero: section-light (white) + grid (masked, hero-only) + 2 confined floating orbs + top sheen.
+- Projects: section-dark (charcoal) — inverted all text (white/stone-400), dark-glass tab pill (active = orange), dark-glass cards with white/10 borders, orange metric chips, stone-300 tags, dark slider controls.
+- Tech Stack: section-light (white), kept logo grid.
+- AI Chat: section-dark (charcoal) — dark-glass chat card, brand avatar, stone-400/white text, white/6% assistant bubbles, dark input + quick replies, dark typing dots.
+- Contact: section-light (white), kept card.
+- Footer: section-dark (charcoal) — light text, white logo box (was bg-ink, invisible on dark), stone-400 nav, white/10 borders.
+- Header: made ADAPTIVE — uses scroll-spy active id; over dark sections (projects, chat) it switches to glass-dark-strong with white text + white logo box; over light sections it uses glass-strong with dark text + ink logo box. Mobile dropdown kept light for readability.
+- Verified with Agent Browser + VLM:
+  - Computed backgrounds: hero=#FBFAF8, projects=#111827, stack=#FBFAF8, chat=#111827, contact=#FBFAF8, footer=#111827. Pattern = white, black, white, black, white + black footer.
+  - Grid present in hero (1 instance), 0 instances outside hero.
+  - Header over dark chat section: bg rgba(255,255,255,0.07) + backdrop blur (dark glass) — adaptive works.
+  - AI chat on dark section: sent message → LLM replied (POST /api/chat 200).
+  - Project dialog opens on dark section with THE CHALLENGE / THE SOLUTION.
+  - VLM analysis of full-page screenshot confirms: hero has grid; sections alternate light/dark/light/dark/light/dark top to bottom; clean modern layout.
+  - `bun run lint` passes with zero errors. Dev server clean.
+
+Stage Summary:
+- Grid background is now confined to the Hero only (masked so it fades at edges).
+- All 5 main sections + footer use alternating solid colors: white → black → white → black → white → (black footer).
+- Header chrome adapts to whichever section is in view (light glass over white sections, dark glass over charcoal sections).
+- Premium contrast restored — the page no longer reads as "empty". Both AI chat and project interactions verified working on the new dark sections.
