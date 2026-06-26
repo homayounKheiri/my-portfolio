@@ -136,3 +136,28 @@ Work Log:
 
 Stage Summary:
 - All requested refinements applied: pure white sections, Tech Stack removed, consistent blur header (transparent over hero, glass after), minimal active-grid hero without orbs/trust-line, smaller minimal project cards with swiping matt-color slides per card, modernized chat on white, re-alternated to white→black→white→black→white. Interactions (card swipe, dialog, AI chat, contact) all verified working.
+
+---
+Task ID: 11
+Agent: orchestrator
+Task: Hero complete redesign (interactive workflow preview + cursor glow), Swiper React for card slides, projects as 3-col multi-row grid with smaller cards.
+
+Work Log:
+- Installed `swiper` package.
+- Built src/components/sections/workflow-preview.tsx: a glassmorphism automation dashboard ("Lead Routing Workflow") with: panel header + Live badge, a canvas with grid bg + SVG dashed connectors (gradient flow) + 4 animated flowing data dots, 5 nodes (Trigger/Enrich/AI Score/Notify/CRM) each with status dots (done/running/queued), the AI Score node highlighted orange. 3 stat cards (Runs today / Avg latency / Auto-resolved), a live log feed with timestamped events, and 2 floating mini badges. Subtle entrance + continuous animations.
+- Built src/hooks/use-cursor-glow.ts: rAF-based mouse-follow with spring smoothing (0.12), large blur(60px) orange radial gradient div, low opacity (~0.55), fades in on mousemove and out on mouseleave. Respects prefers-reduced-motion.
+- Rewrote hero.tsx: two-column grid (text left, WorkflowPreview right) on lg+, single column stacked on mobile. Left keeps eyebrow pill + title + subtitle + 2 CTAs. Active animated grid bg retained. Cursor glow div positioned absolutely inside hero, pointer-events-none, z-0 below content.
+- Rewrote projects.tsx: removed embla one-line slider. Now a 3-column multi-row grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3, gap-4). Cards smaller (aspect 16/10, tighter body padding). Per-card swipe uses Swiper React (modules: Pagination, Mousewheel, Keyboard) with 3 slides: image / charcoal matt (outcome metric) / orange matt (stack). Custom bullet styling via swiper-bullet classes. onPointerDown stopPropagation so inner swipe doesn't trigger card click; card click still opens the challenge/solution dialog. Removed now-unused embla dependency usage.
+- Added Swiper bullet CSS to globals.css (.card-swiper, .swiper-bullet, .swiper-bullet-active).
+- Fixed a transient runtime error (leftover `guard` reference) by removing the dead span.
+- Verified with Agent Browser + VLM:
+  - Hero: two-column layout, workflow preview with connected nodes + automation flow + execution status badges, soft orange cursor glow visible, modern glassmorphism (VLM-confirmed all 4 points).
+  - Cursor glow: opacity 0.55 after mouse move, fades out on mouseleave.
+  - Projects: 3-column grid, 3 cards (automation tab), each with a Swiper container holding 3 slides; swiping first card to slide 2 shows "OUTCOME 4.2× faster response"; bullets update.
+  - Card click opens dialog with THE CHALLENGE / THE SOLUTION.
+  - AI chat: sent message → LLM replied (POST /api/chat 200).
+  - `bun run lint` passes with zero errors. Dev server clean.
+
+Stage Summary:
+- Hero completely redesigned: minimal copy on the left + interactive glassmorphism workflow dashboard on the right (nodes, flows, execution status, flowing data, live log, stats) + soft orange cursor-follow glow.
+- Projects converted from a one-line slider to a 3-column multi-row grid with smaller cards; per-card image/matt swipe now powered by Swiper React. All interactions verified working.

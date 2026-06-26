@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, MessageSquare, ArrowUpRight } from "lucide-react";
+import { WorkflowPreview } from "./workflow-preview";
+import { useCursorGlow } from "@/hooks/use-cursor-glow";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -14,11 +16,16 @@ function scrollToId(id: string) {
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const { ref, glowRef, size, opacity } = useCursorGlow<HTMLDivElement>({
+    size: 560,
+    opacity: 0.55,
+    smoothing: 0.12,
+  });
 
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: 0.15 },
+      transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: 0.1 },
     },
   };
   const item = {
@@ -33,38 +40,52 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-20 sm:px-6"
+      ref={ref}
+      className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-16 sm:px-6 sm:pt-32"
     >
-      {/* Active background: animated panning grid + slow breathing sheen.
-          No blurred orbs — just a living grid. */}
+      {/* Active background: animated panning grid */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <motion.div
           className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan"
-          animate={reduce ? undefined : { opacity: [0.55, 0.9, 0.55] }}
+          animate={reduce ? undefined : { opacity: [0.5, 0.85, 0.5] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* very subtle slow radial highlight that drifts (a tint, not a blur orb) */}
         <motion.div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 50% at 50% 38%, rgba(249,115,22,0.06), transparent 70%)",
+              "radial-gradient(60% 50% at 50% 30%, rgba(249,115,22,0.06), transparent 70%)",
           }}
           animate={reduce ? undefined : { opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="relative mx-auto w-full max-w-4xl">
+      {/* Soft orange cursor glow (follows mouse, low opacity, large blur) */}
+      <div
+        ref={glowRef}
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 z-0 rounded-full opacity-0 transition-opacity duration-700"
+        style={{
+          width: size,
+          height: size,
+          background:
+            "radial-gradient(circle at center, rgba(249,115,22,0.5), rgba(249,115,22,0.18) 35%, transparent 70%)",
+          filter: "blur(60px)",
+          willChange: "transform, opacity",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+        {/* Left: copy */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center"
+          className="flex flex-col items-start text-left"
         >
-          {/* Eyebrow pill */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
@@ -73,30 +94,27 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             variants={item}
-            className="mt-7 text-balance text-4xl font-semibold leading-[1.06] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[64px]"
+            className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[58px]"
           >
             Consultant &amp; Specialist in{" "}
             <span className="text-gradient-brand">AI Business</span>{" "}
             Intelligence &amp; Automation
           </motion.h1>
 
-          {/* Subtitle */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-2xl text-pretty text-[15px] leading-relaxed text-ink-muted sm:text-[17px]"
+            className="mt-5 max-w-xl text-pretty text-[15px] leading-relaxed text-ink-muted sm:text-[16.5px]"
           >
             Consultant and specialist in business automation and AI-driven
             optimization — and a web developer crafting premium, high-performance
             digital products.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             variants={item}
-            className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+            className="mt-8 flex w-full flex-col items-start gap-3 sm:w-auto sm:flex-row"
           >
             <button
               onClick={() => scrollToId("projects")}
@@ -117,6 +135,17 @@ export function Hero() {
               />
             </button>
           </motion.div>
+        </motion.div>
+
+        {/* Right: interactive workflow preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}
+          className="relative"
+          style={{ perspective: 1200 }}
+        >
+          <WorkflowPreview />
         </motion.div>
       </div>
     </section>

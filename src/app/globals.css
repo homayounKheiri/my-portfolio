@@ -299,6 +299,31 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ===== Swiper pagination bullets (project cards) ===== */
+.card-swiper {
+  --swiper-pagination-bottom: 8px;
+  --swiper-pagination-bullet-size: 6px;
+  --swiper-pagination-bullet-horizontal-gap: 4px;
+}
+.card-swiper .swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+  transition: all 0.35s var(--ease-out-expo);
+  cursor: pointer;
+}
+.swiper-bullet-active {
+  width: 16px;
+  background: #ffffff;
+}
+
 /* ===== Soft card hover lift ===== */
 .lift {
   transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.4s ease;
