@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Aria Nova — AI Business Intelligence & Automation Consultant",
+  description:
+    "Consultant and specialist in business automation and AI-driven optimization. Web developer crafting premium, high-performance digital products.",
+  keywords: [
+    "AI automation",
+    "business intelligence",
+    "automation consultant",
+    "web developer",
+    "AI optimization",
+  ],
+  authors: [{ name: "Aria Nova" }],
+  openGraph: {
+    title: "Aria Nova — AI Business Intelligence & Automation Consultant",
+    description:
+      "Consultant and specialist in business automation and AI-driven optimization.",
+    type: "website",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+      >
+        <div className="relative flex min-h-screen flex-col">
+          {children}
+        </div>
+        <Toaster />
+      </body>
+    </html>
+  );
+}
