@@ -8,6 +8,8 @@ import {
   Clock,
   CalendarClock,
   Users,
+  Network,
+  PackageCheck,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
@@ -57,6 +59,18 @@ const CARDS: Card[] = [
     question: "Your team spends hours on repetitive work?",
     answer: "They can focus on more valuable tasks.",
   },
+  {
+    key: "scattered",
+    icon: Network,
+    question: "Is your data scattered across multiple tools?",
+    answer: "Everything stays synchronized in one seamless workflow.",
+  },
+  {
+    key: "orders",
+    icon: PackageCheck,
+    question: "Are you processing orders manually?",
+    answer: "Orders are processed automatically.",
+  },
 ];
 
 export function ChallengeSolution() {
@@ -86,6 +100,14 @@ export function ChallengeSolution() {
     team: {
       en: { q: "Your team spends hours on repetitive work?", a: "They can focus on more valuable tasks." },
       fa: { q: "تیمتان ساعات‌ها روی کار تکراری می‌گذارد؟", a: "می‌توانند روی کارهای ارزشمندتر تمرکز کنند." },
+    },
+    scattered: {
+      en: { q: "Is your data scattered across multiple tools?", a: "Everything stays synchronized in one seamless workflow." },
+      fa: { q: "داده‌هایتان در چند ابزار مختلف پراکنده است؟", a: "همه‌چیز در یک گردشکار یکپارچه همگام می‌ماند." },
+    },
+    orders: {
+      en: { q: "Are you processing orders manually?", a: "Orders are processed automatically." },
+      fa: { q: "سفارش‌ها را به‌صورت دستی پردازش می‌کنید؟", a: "سفارش‌ها به‌صورت خودکار پردازش می‌شوند." },
     },
   };
   const CARDS_LOCAL = CARDS.map((c) => ({
@@ -141,7 +163,7 @@ export function ChallengeSolution() {
         <div className="mt-20 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14">
           {CARDS_LOCAL.map((card, i) => (
             <motion.div
-              key={card.question}
+              key={card.key}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -151,6 +173,19 @@ export function ChallengeSolution() {
             </motion.div>
           ))}
         </div>
+
+        {/* "etc." — two dots indicating more */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.1 }}
+          className="mt-12 flex items-center justify-center gap-2"
+          aria-label="etc"
+        >
+          <span className="h-2.5 w-2.5 rounded-full bg-brand/40" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand/40" />
+        </motion.div>
       </div>
     </section>
   );

@@ -825,3 +825,25 @@ Work Log:
 
 Stage Summary:
 - Vazirmatn (Persian font) loads with arabic-only subset and renders all Persian text; Geist (modern English font) renders all Latin/English text. The font stack order ensures each script uses the correct font. Verified visually for both languages.
+
+---
+Task ID: 43
+Agent: orchestrator
+Task: Add 2 new cards (scattered data, manual orders) to end of Why Automation + add "etc." two dots after the cards.
+
+Work Log:
+- challenge-solution.tsx: added 2 new cards to the CARDS array:
+  - "scattered" (Network icon): "Is your data scattered across multiple tools?" → "Everything stays synchronized in one seamless workflow."
+  - "orders" (PackageCheck icon): "Are you processing orders manually?" → "Orders are processed automatically."
+  - Added Persian translations for both in the CARD_CONTENT lookup.
+  - Imported Network + PackageCheck from lucide-react.
+- Added a "etc." indicator (two small orange dots) after the cards grid — a motion.div with two rounded-full spans (bg-brand/40), centered, mt-12. Fades in on scroll.
+- Changed the card map key from card.question to card.key (more stable).
+- Verified with Agent Browser + VLM:
+  - 8 cards total (was 6).
+  - Last two cards present in EN and FA: "Is your data scattered across multiple tools?" / "Are you processing orders manually?" and their Persian translations.
+  - Two orange dots after the last card (VLM-confirmed at the bottom of the section).
+  - `bun run lint` clean.
+
+Stage Summary:
+- Why Automation now has 8 cards (added scattered-data and manual-orders at the end) with full EN/FA translations, followed by two orange "etc." dots indicating there's more. Verified.
