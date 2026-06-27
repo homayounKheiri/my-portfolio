@@ -325,3 +325,24 @@ Work Log:
 
 Stage Summary:
 - Why Automation cards now arranged as a clean 2-column grid (3 rows × 2 cards) instead of the staggered zigzag. Verified.
+
+---
+Task ID: 19
+Agent: orchestrator
+Task: Make the card icon bigger and overlap the top edge of the card (renewed card UI).
+
+Work Log:
+- challenge-solution.tsx StatementCard: renewed UI with an overlapping top icon.
+  - Icon badge now large (h-12 w-12 / sm:h-14 w-14 = 56px measured) and positioned absolute -top-6 left-5/6 so it sits half-outside the card's top edge (23px overlap above the card top confirmed).
+  - Icon badge is a gradient orange (bg-gradient-to-br from-brand to-orange-400) with white icon and a soft orange shadow — visually striking against the white card.
+  - Card now relative positioned, rounded-2xl, with extra top padding (pt-9 sm:pt-10) to make room for the overlapping icon. Clean border + soft shadow, no hover.
+  - Question/divider/answer kept compact (14.5px / 13px).
+  - Grid: added top margin (mt-20) and increased vertical gap (sm:gap-y-9) so overlapping icons aren't clipped and rows breathe.
+- Verified with Agent Browser + VLM:
+  - Icon 56×56px (was 32px); overlaps card top by 23px (icon top 1994 vs card top 2017).
+  - Icon background = linear-gradient orange confirmed.
+  - VLM-confirmed all 4 points: large rounded icon overlapping top edge, gradient orange, clean 2-col grid, modern & attractive.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Card UI renewed: each card now features a large gradient-orange icon badge that overlaps the card's top edge — a modern, attractive focal point. 2-column grid preserved. Verified.

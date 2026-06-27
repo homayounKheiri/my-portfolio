@@ -88,8 +88,8 @@ export function ChallengeSolution() {
           </motion.p>
         </div>
 
-        {/* 2-column grid (3 rows of 2 cards) */}
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+        {/* 2-column grid (3 rows of 2 cards) — extra top padding for overlapping icons */}
+        <div className="mt-20 grid grid-cols-1 gap-7 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-9">
           {CARDS.map((card, i) => (
             <motion.div
               key={card.question}
@@ -107,21 +107,21 @@ export function ChallengeSolution() {
   );
 }
 
-/* ---------- Compact statement card (soft shadow only, no hover) ---------- */
+/* ---------- Statement card with overlapping top icon ---------- */
 
 function StatementCard({ card }: { card: Card }) {
   const Icon = card.icon;
   return (
-    <div className="flex w-full flex-col rounded-xl border border-border bg-white p-4 shadow-[0_8px_30px_-12px_rgba(17,24,39,0.12)] sm:p-5">
-      {/* Icon beside the question */}
-      <div className="flex items-center gap-2.5">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
-          <Icon className="h-4 w-4" strokeWidth={1.9} />
-        </span>
-        <p className="text-pretty text-[13.5px] font-semibold leading-snug tracking-tight text-ink sm:text-[14.5px]">
-          {card.question}
-        </p>
-      </div>
+    <div className="relative flex h-full flex-col rounded-2xl border border-border bg-white px-5 pb-5 pt-9 shadow-[0_10px_36px_-14px_rgba(17,24,39,0.14)] sm:px-6 sm:pb-6 sm:pt-10">
+      {/* Large icon overlapping the top edge */}
+      <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_10px_24px_-8px_rgba(249,115,22,0.65)] sm:left-6 sm:h-14 sm:w-14">
+        <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.9} />
+      </span>
+
+      {/* Question */}
+      <p className="text-pretty text-[14.5px] font-semibold leading-snug tracking-tight text-ink sm:text-[15.5px]">
+        {card.question}
+      </p>
 
       {/* Thin divider */}
       <div className="my-3 h-px w-full bg-border" />
