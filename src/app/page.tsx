@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
@@ -6,17 +9,32 @@ import { AIChat } from "@/components/sections/ai-chat";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
 
+type View = "home" | "projects";
+
 export default function Home() {
+  const [view, setView] = useState<View>("home");
+
+  // Scroll to top whenever the view changes.
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [view]);
+
   return (
     <>
-      <Header />
+      <Header view={view} onViewChange={setView} />
       <main className="flex-1">
-        {/* Section colorize: white → black → white → black → white */}
-        <Hero />
-        <Projects />
-        <ChallengeSolution />
-        <AIChat />
-        <Contact />
+        {view === "home" ? (
+          <>
+            <Hero onViewProjects={() => setView("projects")} />
+            <ChallengeSolution />
+            <AIChat />
+            <Contact />
+          </>
+        ) : (
+          <div className="pt-20">
+            <Projects />
+          </div>
+        )}
       </main>
       <Footer />
     </>

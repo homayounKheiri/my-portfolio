@@ -14,7 +14,7 @@ function scrollToId(id: string) {
   window.scrollTo({ top, behavior: "smooth" });
 }
 
-export function Hero() {
+export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
   const reduce = useReducedMotion();
   const { ref, glowRef, size } = useCursorGlow<HTMLDivElement>({
     size: 560,
@@ -77,12 +77,12 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        {/* LEFT — typography headline */}
+        {/* LEFT — typography headline (center on mobile, left on desktop) */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-start text-left"
+          className="flex flex-col items-center text-center sm:items-start sm:text-left"
         >
           {/* Eyebrow */}
           <motion.div variants={item}>
@@ -98,7 +98,7 @@ export function Hero() {
           {/* Headline — simple, readable, with keyword emphasis */}
           <motion.h1
             variants={item}
-            className="mt-7 max-w-xl text-balance text-[34px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[44px] md:text-[52px]"
+            className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-left sm:text-[44px] md:text-[52px]"
           >
             <span className="text-brand">99%</span> of repetitive tasks can be{" "}
             <span className="text-brand">automated</span> with{" "}
@@ -109,19 +109,19 @@ export function Hero() {
           {/* Subtitle — smaller, lighter */}
           <motion.p
             variants={item}
-            className="mt-7 max-w-md text-pretty text-[14.5px] font-light leading-relaxed text-ink-muted sm:text-[15.5px]"
+            className="mt-7 max-w-md text-pretty text-center text-[14.5px] font-light leading-relaxed text-ink-muted sm:text-left sm:text-[15.5px]"
           >
             Web Developer and Consultant and Specialist in AI Business
             Intelligence and Automation.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs — center on mobile, left on desktop */}
           <motion.div
             variants={item}
-            className="mt-8 flex w-full flex-col items-start gap-3 sm:w-auto sm:flex-row"
+            className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-start"
           >
             <button
-              onClick={() => scrollToId("projects")}
+              onClick={onViewProjects}
               className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_12px_34px_-10px_rgba(249,115,22,0.75)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_16px_40px_-10px_rgba(249,115,22,0.9)] active:scale-95 focus-brand sm:w-auto"
             >
               <Sparkles className="h-4 w-4 transition-transform duration-500 group-hover:rotate-12" />

@@ -587,3 +587,24 @@ Work Log:
 
 Stage Summary:
 - Surrounding nodes now display: Chat, Email, Calendar, CRM, Calls, Instagram, Reports, Dashboard (with matching icons, including a custom Instagram SVG). Verified.
+
+---
+Task ID: 31
+Agent: orchestrator
+Task: (1) Center hero text on mobile. (2) Move Projects to a separate view (client-side route). (3) Header nav = Home, Projects only.
+
+Work Log:
+- page.tsx: converted to "use client" with a `view` state ("home" | "projects"). Home view renders Hero + ChallengeSolution + AIChat + Contact (NO Projects). Projects view renders <Projects/> with pt-20 top padding. Scrolls to top on view change. Passes view/onViewChange to Header, onViewProjects to Hero.
+- header.tsx: rewrote to accept view + onViewChange props. NAV is now just Home + Projects. Home button → goHome() (switches view or scrolls top). Projects button → goProjects() (switches view or scrolls top). "Let's talk" CTA → goContact() (switches to home then scrolls to contact). Mobile dropdown mirrors this. Glass appears on projects view OR when scrolled.
+- hero.tsx: Hero now accepts onViewProjects prop. Left column changed from items-start/text-left to items-center/text-center on mobile, sm:items-start/sm:text-left on desktop. Headline + subtitle + CTA container all text-center on mobile. "View Projects" button now calls onViewProjects instead of scrolling to #projects.
+- Projects section already had its own header ("Selected Work / Projects with real outcomes") so it works as a standalone view.
+- Verified with Agent Browser + VLM:
+  - Desktop nav = ["Home","Projects"]; Projects removed from home view.
+  - Clicking "Projects" nav → projects view shown; clicking "Home" → home view. View toggle works.
+  - Clicking hero "View Projects" button → projects view.
+  - Mobile (390px): hero text centered (alignItems=center, textAlign=center for column/headline/subtitle); infographic below text. VLM-confirmed.
+  - Desktop (1440px): hero left-aligned (alignItems=flex-start, textAlign=left) — preserved.
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Hero text now centers on mobile (left on desktop). Projects moved to a dedicated client-side view (toggled via header, no URL change — respects the single-route constraint). Header nav reduced to just Home + Projects. All verified.
