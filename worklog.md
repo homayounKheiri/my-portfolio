@@ -389,3 +389,26 @@ Work Log:
 
 Stage Summary:
 - Hero headline is now a premium typography-driven composition. "99%", "Automated", and "AI" receive the strongest visual emphasis (oversized, extrabold, orange accent) while connector words are small and light, creating a clean, elegant, highly readable SaaS-style hero. Verified.
+
+---
+Task ID: 22
+Agent: orchestrator
+Task: Soften the Hero headline — make it more attractive and refined (previous version was too aggressive).
+
+Work Log:
+- hero.tsx: redesigned the typography composition to be softer and more attractive.
+  - Reduced the extreme sizes: 99% 140px→92px, Automated 92px→60px (now lowercase), AI 116px→64px.
+  - Removed the harsh ALL-CAPS "AUTOMATED" — now soft lowercase "automated".
+  - Balanced color usage: previously everything was orange; now mostly charcoal/ink text with orange only on 99%, AI, and a small accent dot after "automated". Connectors stay light muted.
+  - Mixed weights for elegance: 99% bold (not extrabold), automated semibold, AI bold, connectors light/medium.
+  - Softer line rhythm with tighter, balanced vertical spacing (mt-1.5/mt-2/mt-2.5).
+  - Added a subtle charcoal/30 period after AI for a refined finish.
+- Verified with VLM:
+  - "Typography is soft, attractive, and elegant."
+  - Text reads correctly: "99% of repetitive tasks in a business can be automated. and powered by AI."
+  - "Color usage is balanced — charcoal text with subtle orange accents on 99% and AI."
+  - "Feels premium and refined for a SaaS hero."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Hero headline softened: smaller balanced sizes, lowercase "automated", mixed weights, mostly charcoal with subtle orange accents on 99% and AI. Now attractive, elegant, and premium. Verified.

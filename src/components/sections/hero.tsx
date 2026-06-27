@@ -92,40 +92,45 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Typography-driven hero headline */}
+          {/* Typography-driven hero headline — soft & attractive */}
           <motion.h1
             variants={item}
-            className="mt-8 flex flex-col items-center gap-1 font-sans tracking-tight"
+            className="mt-8 flex flex-col items-center font-sans tracking-tight text-ink"
           >
-            {/* Line 1 — oversized 99% + smaller connector */}
-            <span className="flex items-baseline gap-3 flex-wrap justify-center">
-              <span className="text-[80px] font-extrabold leading-none text-brand sm:text-[104px] md:text-[120px] lg:text-[140px]">
+            {/* Line 1 — 99% accent + soft connector */}
+            <span className="flex items-baseline gap-2.5 flex-wrap justify-center">
+              <span className="text-[64px] font-bold leading-[0.95] text-brand sm:text-[80px] md:text-[92px]">
                 99%
               </span>
-              <span className="text-[19px] font-medium leading-tight text-ink-muted sm:text-[22px] md:text-[24px]">
+              <span className="text-[18px] font-medium leading-tight text-ink-muted sm:text-[20px] md:text-[22px]">
                 of repetitive tasks
               </span>
             </span>
 
-            {/* Line 2 — small connector */}
-            <span className="mt-1 text-[15px] font-light tracking-wide text-ink-muted/80 sm:text-[17px] md:text-[18px]">
+            {/* Line 2 — soft connector */}
+            <span className="mt-2 text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[19px] md:text-[20px]">
               in a business can be
             </span>
 
-            {/* Line 3 — oversized AUTOMATED */}
-            <span className="mt-2 text-[52px] font-extrabold uppercase leading-none tracking-tight text-brand sm:text-[68px] md:text-[82px] lg:text-[92px]">
-              Automated
+            {/* Line 3 — Automated (mixed weight, charcoal + orange accent dot) */}
+            <span className="mt-1.5 flex items-baseline gap-1">
+              <span className="text-[40px] font-semibold leading-none tracking-tight text-ink sm:text-[52px] md:text-[60px]">
+                automated
+              </span>
+              <span className="text-[40px] font-bold leading-none text-brand sm:text-[52px] md:text-[60px]">
+                .
+              </span>
             </span>
 
-            {/* Line 4 — small connector */}
-            <span className="mt-3 text-[15px] font-light tracking-wide text-ink-muted/80 sm:text-[17px] md:text-[18px]">
+            {/* Line 4 — soft connector */}
+            <span className="mt-2.5 text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[19px] md:text-[20px]">
               and powered by
             </span>
 
-            {/* Line 5 — oversized AI */}
-            <span className="mt-2 text-[64px] font-extrabold leading-none text-brand sm:text-[84px] md:text-[100px] lg:text-[116px]">
+            {/* Line 5 — AI accent */}
+            <span className="mt-1.5 text-[44px] font-bold leading-none text-brand sm:text-[56px] md:text-[64px]">
               AI
-              <span className="text-ink">.</span>
+              <span className="text-ink/30">.</span>
             </span>
           </motion.h1>
 
