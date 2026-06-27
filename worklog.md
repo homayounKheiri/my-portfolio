@@ -238,3 +238,25 @@ Work Log:
 
 Stage Summary:
 - "Why Automation" now a clean grid of conversational statement cards (question → answer) with contextual outline icons, replacing the previous ✕/✓ comparison layout. Minimalist, premium, approachable — verified by VLM.
+
+---
+Task ID: 15
+Agent: orchestrator
+Task: Redesign "Why Automation" as a staggered (alternating left/right) card layout with large typography and dashed borders.
+
+Work Log:
+- challenge-solution.tsx: replaced the uniform 3-col grid with a staggered layout.
+  - Cards now alternate alignment: even index = justify-start with right padding (pr-[15%]/lg:pr-[28%]); odd index = justify-end with left padding (pl-[15%]/lg:pl-[28%]). Produces the [Card] / [Card] / [Card] alternating zigzag.
+  - Card border changed from solid border to border-2 border-dashed (border-ink/15) for a modern technical feel; hover turns it border-brand/40.
+  - Typography made noticeably larger than the rest of the site: question = text-[22px] sm:text-[26px] lg:text-[28px] font-semibold (was 15px); answer = text-[18px] sm:text-[20px] (was 14px). Card padding increased to p-7 sm:p-8. Icon badge larger (h-12 w-12, icon h-6 w-6).
+  - Kept contextual outline icons (MessagesSquare, Database, FileBarChart, Clock, CalendarClock, Users), thin divider, and the 6 question/answer pairs.
+  - Section header (eyebrow / title / subtitle) unchanged; section gap increased to mt-16 with gap-6 sm:gap-8 between rows.
+- Verified with Agent Browser + VLM:
+  - 6 cards; x-positions alternate 144 ↔ 467 (left, right, left, right, left, right) — staggered confirmed.
+  - Border: borderStyle "dashed", borderWidth "2px".
+  - Question font 28px, answer font 20px (both markedly larger than site body ~14-15px).
+  - VLM-confirmed all 4 points: staggered layout, dashed borders, large bold question + large answer, contextual icon per card.
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- "Why Automation" now a premium staggered card layout (alternating left/right), each card with a dashed border, contextual icon, large bold question, thin divider, and large answer — highly scannable and visually impactful. Verified.
