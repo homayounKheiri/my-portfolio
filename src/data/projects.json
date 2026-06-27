@@ -3,6 +3,7 @@
     {
       "id": "aut-1",
       "image": "/images/automation-1.png",
+      "images": ["/images/automation-1.png", "/images/automation-1b.png"],
       "tags": ["LLM Routing", "n8n", "CRM Sync", "Slack"],
       "en": {
         "title": "Intelligent Lead Routing Engine",
@@ -24,6 +25,7 @@
     {
       "id": "aut-2",
       "image": "/images/automation-2.png",
+      "images": ["/images/automation-2.png", "/images/automation-2b.png"],
       "tags": ["ETL", "LLM Briefs", "Anomaly Detection"],
       "en": {
         "title": "Revenue Intelligence Dashboard",
@@ -45,6 +47,7 @@
     {
       "id": "aut-3",
       "image": "/images/automation-3.png",
+      "images": ["/images/automation-3.png", "/images/automation-3b.png"],
       "tags": ["RAG", "Vector Search", "Action Agents"],
       "en": {
         "title": "Conversational Support Concierge",
@@ -68,6 +71,7 @@
     {
       "id": "web-1",
       "image": "/images/website-1.png",
+      "images": ["/images/website-1.png", "/images/website-1b.png"],
       "tags": ["Next.js", "Headless", "Motion", "Edge"],
       "en": {
         "title": "Maison — Premium Commerce",
@@ -89,6 +93,7 @@
     {
       "id": "web-2",
       "image": "/images/website-2.png",
+      "images": ["/images/website-2.png", "/images/website-2b.png"],
       "tags": ["Next.js", "Design System", "Conversion"],
       "en": {
         "title": "Pulse — SaaS Platform",
@@ -110,6 +115,7 @@
     {
       "id": "web-3",
       "image": "/images/website-3.png",
+      "images": ["/images/website-3.png"],
       "tags": ["Next.js", "CMS", "Editorial", "GSAP"],
       "en": {
         "title": "Atelier — Portfolio Studio",

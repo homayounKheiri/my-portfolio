@@ -26,6 +26,7 @@ type LangContent = {
 type Project = {
   id: string;
   image: string;
+  images: string[];
   tags: string[];
   en: LangContent;
   fa: LangContent;
@@ -339,30 +340,24 @@ function ProjectDialog({
             <X className="h-4.5 w-4.5" />
           </button>
 
-          <div className="relative aspect-[16/9] w-full overflow-hidden sm:rounded-t-3xl">
-            <img
-              src={project.image}
-              alt={c.title}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-              <div className="flex items-center gap-2">
-                <span className="rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
-                  {c.category}
-                </span>
-                <span className="rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold text-ink backdrop-blur-sm">
-                  {c.metric}
-                </span>
-              </div>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                {c.title}
-              </h3>
-            </div>
-          </div>
+          {/* Image slider (Swiper) */}
+          <DialogImageSwiper project={project} title={c.title} />
 
           <div className="p-6 sm:p-8">
-            <p className="text-pretty text-[15px] leading-relaxed text-ink-muted">
+            {/* Title header */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+                {c.category}
+              </span>
+              <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-ink-muted">
+                {c.metric}
+              </span>
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+              {c.title}
+            </h3>
+
+            <p className="mt-4 text-pretty text-[15px] leading-relaxed text-ink-muted">
               {c.summary}
             </p>
 
@@ -408,3 +403,74 @@ function ProjectDialog({
   );
 }
 
+/* ---------- Dialog image slider (Swiper, like the card) ---------- */
+
+function DialogImageSwiper({
+  project,
+  title,
+}: {
+  project: Project;
+  title: string;
+}) {
+  const { t } = useI18n();
+  // Build slide list: all images + outcome matt + stack matt
+  const images = project.images?.length ? project.images : [project.image];
+
+  return (
+    <div className="relative aspect-[16/10] w-full overflow-hidden sm:rounded-t-3xl">
+      <Swiper
+        modules={[Pagination, Mousewheel, Keyboard]}
+        slidesPerView={1}
+        spaceBetween={0}
+        grabCursor
+        keyboard
+        mousewheel={{ forceToAxis: true }}
+        pagination={{
+          clickable: true,
+          bulletActiveClass: "swiper-bullet-active",
+          bulletClass: "swiper-bullet",
+        }}
+        className="!h-full !w-full card-swiper"
+      >
+        {/* Image slides */}
+        {images.map((src, i) => (
+          <SwiperSlide key={i} className="!h-full">
+            <div className="relative h-full w-full">
+              <img
+                src={src}
+                alt={`${title} ${i + 1}`}
+                className="h-full w-full object-cover"
+                draggable={false}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" />
+            </div>
+          </SwiperSlide>
+        ))}
+
+        {/* Outcome matt (charcoal) */}
+        <SwiperSlide className="!h-full">
+          <div className="flex h-full w-full flex-col items-center justify-center bg-ink px-6 text-center">
+            <span className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-stone-500">
+              {t("projects.outcome")}
+            </span>
+            <span className="mt-2 text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl">
+              {project.en.metric}
+            </span>
+          </div>
+        </SwiperSlide>
+
+        {/* Stack matt (orange) */}
+        <SwiperSlide className="!h-full">
+          <div className="flex h-full w-full flex-col items-center justify-center bg-brand px-6 text-center">
+            <span className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-white/70">
+              {t("projects.stack")}
+            </span>
+            <span className="mt-2 text-[14px] font-semibold leading-tight text-white">
+              {project.tags.slice(0, 3).join(" · ")}
+            </span>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  );
+}

@@ -883,3 +883,23 @@ Work Log:
 
 Stage Summary:
 - The overlayed icon on Why Automation cards now automatically positions on the right for English and on the left for Persian, using the CSS logical property `insetInlineEnd`. Verified.
+
+---
+Task ID: 46
+Agent: orchestrator
+Task: Add an image slider (Swiper) to the project details modal, matching the project card style.
+
+Work Log:
+- projects.json: added an `images` array to each project (main image + "b" variant where available). web-3 has only 1 image (no b variant exists).
+- projects.tsx: added `images: string[]` to the Project type.
+- Created DialogImageSwiper component: uses Swiper React (Pagination, Mousewheel, Keyboard modules) like the card swiper. Slides = all project images + an outcome matt (charcoal, shows the metric) + a stack matt (orange, shows up to 3 tags). Pagination dots with the same swiper-bullet styling. aspect-[16/10].
+- Replaced the dialog's static image block with <DialogImageSwiper>. Moved the category/metric/title overlay to sit below the slider in the content area (cleaner separation).
+- Verified with Agent Browser + VLM:
+  - Dialog swiper present with 4 slides (2 images + outcome + stack).
+  - Pagination dots present.
+  - Swiping works: slide 2 active after slideTo(1); last slide shows stack matt "تکنولوژی LLM Routing · n8n".
+  - VLM: "Top image area shows a swiper slider with pagination dots at the bottom, project image clearly visible."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Project details modal now has a Swiper image slider at the top (matching the card's style) with all project images plus outcome/stack matt panels and pagination dots. Verified.
