@@ -260,3 +260,24 @@ Work Log:
 
 Stage Summary:
 - "Why Automation" now a premium staggered card layout (alternating left/right), each card with a dashed border, contextual icon, large bold question, thin divider, and large answer — highly scannable and visually impactful. Verified.
+
+---
+Task ID: 16
+Agent: orchestrator
+Task: Tweak Why Automation cards — narrower width, more gap between cards, smaller fonts, icon beside title.
+
+Work Log:
+- challenge-solution.tsx StatementCard: moved the icon from above the question to BESIDE it (wrapped icon + question in a flex items-center gap-3 row). Icon badge reduced h-12 w-12 → h-10 w-10; icon h-6 w-6 → h-5 w-5.
+- Decreased font sizes: question 28px → 19px (text-[16px] sm:text-[18px] lg:text-[19px]); answer 20px → 15px (text-[14px] sm:text-[15px]). Card padding p-7/p-8 → p-6/p-7; divider margin my-5 → my-4.
+- Decreased card width by increasing the stagger padding: sm:pr/pl-[15%] → sm:pr/pl-[28%], lg:pr/pl-[28%] → lg:pr/pl-[40%].
+- Increased vertical gap between cards: gap-6 sm:gap-8 → gap-10 sm:gap-14.
+- Verified with Agent Browser + VLM:
+  - Card width 691px (down from 829px).
+  - Vertical gap 56px (up from ~32px).
+  - Question font 19px (down from 28px); answer 15px (down from 20px).
+  - Icon beside title confirmed (same flex row, icon before text).
+  - VLM-confirmed all 4 points: narrower, generous vertical space, icon left of title same row, moderate font sizes.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Why Automation cards are now narrower with more breathing room between them, smaller typography, and the contextual icon sits beside the question title (same row) instead of above it.
