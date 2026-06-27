@@ -7,6 +7,7 @@ import { Projects } from "@/components/sections/projects";
 import { ChallengeSolution } from "@/components/sections/challenge-solution";
 import { AIChat } from "@/components/sections/ai-chat";
 import { Contact } from "@/components/sections/contact";
+import { ContinuousCursorGlow } from "@/components/sections/continuous-cursor-glow";
 
 type View = "home" | "projects";
 
@@ -20,6 +21,8 @@ export default function Home() {
 
   return (
     <>
+      {/* Blurred cursor glow — only in Hero + Why Automation sections */}
+      <ContinuousCursorGlow sectionIds={["hero", "flow"]} />
       <Header view={view} onViewChange={setView} />
       <main className="flex-1">
         {view === "home" ? (

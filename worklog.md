@@ -722,3 +722,16 @@ Work Log:
 
 Stage Summary:
 - The blurred cursor-follow glow is completely removed from all sections and pages. Verified zero glow elements remain.
+
+---
+Task ID: 38
+Agent: orchestrator
+Task: Re-add the blurred cursor glow, only in Hero + Why Automation sections.
+
+Work Log:
+- Recreated src/components/sections/continuous-cursor-glow.tsx with the sectionIds restriction: the glow activates ONLY when the mouse is within #hero or #flow bounding rects, fades to 0 elsewhere. position:fixed + mix-blend-mode:screen + blur(60px), seamless across the hero→flow boundary.
+- page.tsx: re-added <ContinuousCursorGlow sectionIds={["hero","flow"]} />.
+- Verified: glow opacity 0.35 over hero; 0 over contact; 0 over ai-chat. `bun run lint` clean.
+
+Stage Summary:
+- Blurred cursor-follow glow restored, restricted to only the Hero and Why Automation sections (removed from all other sections and the projects page). Verified.
