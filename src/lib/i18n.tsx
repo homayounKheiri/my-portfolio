@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   type ReactNode,
 } from "react";
 
@@ -79,6 +80,21 @@ const EN: Dict = {
   "projects.stack": "Stack",
   "projects.challenge": "The Challenge",
   "projects.solution": "The Solution",
+
+  // Infographic (AutomationFlow)
+  "flow.liveWorkflow": "Live workflow",
+  "flow.pipeline": "Lead automation pipeline",
+  "flow.active": "Active",
+  "flow.aiCore": "AI Core",
+  "flow.processedToday": "Processed today",
+  "flow.node.chat": "Chat",
+  "flow.node.email": "Email",
+  "flow.node.calendar": "Calendar",
+  "flow.node.crm": "CRM",
+  "flow.node.calls": "Calls",
+  "flow.node.instagram": "Instagram",
+  "flow.node.reports": "Reports",
+  "flow.node.dashboard": "Dashboard",
 };
 
 const FA: Dict = {
@@ -148,6 +164,21 @@ const FA: Dict = {
   "projects.stack": "تکنولوژی",
   "projects.challenge": "چالش",
   "projects.solution": "راه‌حل",
+
+  // Infographic (AutomationFlow)
+  "flow.liveWorkflow": "گردشکار زنده",
+  "flow.pipeline": "خط لوله اتوماسیون سرنخ",
+  "flow.active": "فعال",
+  "flow.aiCore": "هسته هوش مصنوعی",
+  "flow.processedToday": "پردازش‌شده امروز",
+  "flow.node.chat": "گفت‌وگو",
+  "flow.node.email": "ایمیل",
+  "flow.node.calendar": "تقویم",
+  "flow.node.crm": "CRM",
+  "flow.node.calls": "تماس‌ها",
+  "flow.node.instagram": "اینستاگرام",
+  "flow.node.reports": "گزارش‌ها",
+  "flow.node.dashboard": "داشبورد",
 };
 
 const DICTS: Record<Locale, Dict> = { en: EN, fa: FA };
@@ -162,8 +193,37 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
+const COOKIE_NAME = "locale";
+
+function readCookieLocale(): Locale {
+  if (typeof document === "undefined") return "en";
+  const match = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
+  const val = match?.split("=")[1];
+  return val === "fa" ? "fa" : "en";
+}
+
+function writeCookieLocale(l: Locale) {
+  if (typeof document === "undefined") return;
+  // Persist for 1 year, site-wide.
+  document.cookie = `${COOKIE_NAME}=${l}; path=/; max-age=31536000; SameSite=Lax`;
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
+  // Initialize from cookie (falls back to "en").
+  const [locale, setLocaleState] = useState<Locale>(readCookieLocale);
+
+  // Whenever locale changes, persist to cookie + update <html lang/dir>.
+  useEffect(() => {
+    writeCookieLocale(locale);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale;
+      document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+    }
+  }, [locale]);
+
+  const setLocale = useCallback((l: Locale) => setLocaleState(l), []);
 
   const t = useCallback(
     (key: string, vars?: Record<string, string>) => {
@@ -179,7 +239,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   );
 
   const toggleLocale = useCallback(
-    () => setLocale((l) => (l === "en" ? "fa" : "en")),
+    () => setLocaleState((l) => (l === "en" ? "fa" : "en")),
     []
   );
 
@@ -187,7 +247,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   return (
     <I18nContext.Provider value={{ locale, dir, t, setLocale, toggleLocale }}>
-      <div dir={dir}>{children}</div>
+      {children}
     </I18nContext.Provider>
   );
 }

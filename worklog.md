@@ -785,3 +785,23 @@ Work Log:
 
 Stage Summary:
 - Proper i18n system (React Context provider + hook) with full EN/FA dictionaries. Language toggle button in the header switches the ENTIRE site (header, hero, why automation, AI chat, contact, projects) between English and Persian, with automatic RTL direction for Persian. Verified end-to-end.
+
+---
+Task ID: 41
+Agent: orchestrator
+Task: Localize infographic text, remove Projects toggle (use global), persist language in cookie, fix section directions.
+
+Work Log:
+- i18n.tsx: added infographic strings to both EN and FA dictionaries (flow.liveWorkflow, flow.pipeline, flow.active, flow.aiCore, flow.processedToday, flow.node.chat/email/calendar/crm/calls/instagram/reports/dashboard).
+- i18n.tsx: added cookie persistence — readCookieLocale() reads the `locale` cookie on init (useState initializer), writeCookieLocale() writes it (path=/, max-age=1 year, SameSite=Lax). A useEffect updates document.documentElement.lang + dir whenever locale changes, so the <html> element carries the direction (no wrapper div needed). Removed the wrapper <div dir> — children render directly so sections inherit dir from <html>.
+- automation-flow.tsx: all text now via useI18n. NODES use labelKey ("flow.node.chat" etc.) instead of hardcoded labels. "AI Core" label → t("flow.aiCore"). Verified Persian labels: گفت‌وگو، ایمیل، تقویم، CRM، تماس‌ها، اینستاگرام، گزارش‌ها، داشبورد + هسته هوش مصنوعی.
+- projects.tsx: removed the language toggle button (Languages icon) and the `toggleLocale` usage. Projects text now depends entirely on the global locale from useI18n. Removed the local `dir` attribute from the section + dialog — they inherit dir from <html> (rtl/ltr) automatically.
+- Verified with Agent Browser:
+  - Infographic labels switch EN↔FA with the header toggle.
+  - Cookie: locale=fa set after toggle to Persian; persists across page reload (html dir=rtl, nav Persian, infographic Persian after reload).
+  - Projects: dir attribute null (inherits rtl from html); heading/tabs in Persian; no toggle button in the section (0 instances).
+  - Toggle back to English: cookie locale=en, heading "Projects with real outcomes".
+  - `bun run lint` clean.
+
+Stage Summary:
+- All text including the infographic (node labels, AI Core) is now localized via the global i18n. The Projects section toggle is removed (uses the global locale). Language persists in a `locale` cookie (read on load, so reloads keep the selected language). Section directions inherit from <html dir> which updates with the locale. Verified end-to-end.

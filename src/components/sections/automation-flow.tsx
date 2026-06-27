@@ -11,6 +11,7 @@ import {
   FileBarChart,
   LayoutDashboard,
 } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -42,18 +43,19 @@ function Instagram({ className, strokeWidth = 1.9 }: { className?: string; strok
  */
 export function AutomationFlow() {
   const reduce = useReducedMotion();
+  const { t } = useI18n();
 
   // 8 nodes evenly placed around the circle (every 45°).
   // Start at -90° (top) and go clockwise.
   const NODES = [
-    { icon: MessageSquare, label: "Chat", angle: -90 },
-    { icon: Mail, label: "Email", angle: -45 },
-    { icon: CalendarClock, label: "Calendar", angle: 0 },
-    { icon: Users, label: "CRM", angle: 45 },
-    { icon: Phone, label: "Calls", angle: 90 },
-    { icon: Instagram, label: "Instagram", angle: 135 },
-    { icon: FileBarChart, label: "Reports", angle: 180 },
-    { icon: LayoutDashboard, label: "Dashboard", angle: 225 },
+    { icon: MessageSquare, labelKey: "flow.node.chat", angle: -90 },
+    { icon: Mail, labelKey: "flow.node.email", angle: -45 },
+    { icon: CalendarClock, labelKey: "flow.node.calendar", angle: 0 },
+    { icon: Users, labelKey: "flow.node.crm", angle: 45 },
+    { icon: Phone, labelKey: "flow.node.calls", angle: 90 },
+    { icon: Instagram, labelKey: "flow.node.instagram", angle: 135 },
+    { icon: FileBarChart, labelKey: "flow.node.reports", angle: 180 },
+    { icon: LayoutDashboard, labelKey: "flow.node.dashboard", angle: 225 },
   ] as const;
 
   // Geometry (in % of the square container)
@@ -237,16 +239,17 @@ export function AutomationFlow() {
       <p
         className="pointer-events-none absolute left-1/2 top-[calc(50%+3.25rem)] -translate-x-1/2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted sm:top-[calc(50%+3.75rem)]"
       >
-        AI Core
+        {t("flow.aiCore")}
       </p>
 
       {/* Surrounding nodes */}
       {NODES.map((node, i) => {
         const p = polar(node.angle, RADIUS);
         const Icon = node.icon;
+        const label = t(node.labelKey);
         return (
           <motion.div
-            key={node.label}
+            key={node.labelKey}
             className="absolute -translate-x-1/2 -translate-y-1/2"
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
             initial={{ opacity: 0, scale: 0.7 }}
@@ -274,7 +277,7 @@ export function AutomationFlow() {
               <Icon className="h-5 w-5 text-ink/70 sm:h-5.5 sm:w-5.5" strokeWidth={1.9} />
             </motion.div>
             <p className="mt-1.5 text-center text-[10px] font-medium text-ink-muted">
-              {node.label}
+              {label}
             </p>
           </motion.div>
         );

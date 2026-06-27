@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import { ArrowUpRight, Target, Lightbulb, X, Languages } from "lucide-react";
+import { ArrowUpRight, Target, Lightbulb, X } from "lucide-react";
 import projectsData from "@/data/projects.json";
 import { useI18n, type Locale } from "@/lib/i18n";
 
@@ -41,18 +41,16 @@ type TabId = (typeof TABS)[number]["id"];
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Projects() {
-  const { t, locale, toggleLocale } = useI18n();
+  const { t, locale } = useI18n();
   const [tab, setTab] = useState<TabId>("automation");
   const [selected, setSelected] = useState<Project | null>(null);
 
   const list = (projectsData as Record<TabId, Project[]>)[tab];
   const lang: Lang = locale;
-  const dir = lang === "fa" ? "rtl" : "ltr";
 
   return (
     <section
       id="projects"
-      dir={dir}
       className="section-dark relative px-4 py-24 sm:px-6 sm:py-32"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
@@ -82,16 +80,6 @@ export function Projects() {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Language toggle (also available in header) */}
-            <button
-              onClick={toggleLocale}
-              className="glass-dark flex items-center gap-1.5 rounded-2xl px-3.5 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:border-brand/40 focus-brand"
-              aria-label="Toggle language"
-            >
-              <Languages className="h-4 w-4 text-brand" />
-              {locale === "en" ? "FA" : "EN"}
-            </button>
-
             {/* Tabs */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -324,7 +312,6 @@ function ProjectDialog({
 }) {
   const c = project[lang];
   const { t } = useI18n();
-  const dir = lang === "fa" ? "rtl" : "ltr";
 
   return (
     <AnimatePresence>
@@ -342,7 +329,6 @@ function ProjectDialog({
           exit={{ opacity: 0, y: 24, scale: 0.98 }}
           transition={{ duration: 0.45, ease: EASE }}
           onClick={(e) => e.stopPropagation()}
-          dir={dir}
           className="scroll-area relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-background sm:rounded-3xl"
         >
           <button
