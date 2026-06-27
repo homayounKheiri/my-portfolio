@@ -76,9 +76,9 @@ export function ChallengeSolution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
-            className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-[44px]"
+            className="mt-4 text-balance text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-[44px] lg:text-left"
           >
-            Small questions, real outcomes
+            What <span className="text-brand">Challenges</span> Can Be Solved?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

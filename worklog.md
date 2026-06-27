@@ -691,3 +691,21 @@ Work Log:
 
 Stage Summary:
 - Cursor glow restricted to Hero + Why Automation only (seamless across their boundary, removed from all other sections). Projects dark background is a full-width unified surface. Hero left-column text/CTAs center up to md, switch to left at lg+. Header frosted glass triggers earlier (40px instead of 120px). All verified.
+
+---
+Task ID: 36
+Agent: orchestrator
+Task: (1) Cursor glow ONLY in Hero + Why Us sections (remove from all other sections/pages). (2) Why Us heading → "What Challenges Can Be Solved?" with "Challenges" in orange.
+
+Work Log:
+- Cursor glow: verified it was ALREADY restricted to sectionIds={["hero","flow"]} (from Task 35). The ContinuousCursorGlow component checks isInTrackedSections on every mousemove — shows opacity 0.35 only when mouse is within #hero or #flow bounding rects, fades to 0 otherwise. Confirmed: 0.35 over hero, 0 over contact, 0 over ai-chat. No code change needed — already correct.
+- challenge-solution.tsx: replaced the heading "Small questions, real outcomes" (font-semibold) with "What Challenges Can Be Solved?" (font-bold, 700). The word "Challenges" wrapped in <span className="text-brand"> (orange #F97316); the rest ("What", "Can Be Solved?") in the default ink/charcoal. Generous spacing: mt-4 above the heading (increased from mt-3). Kept text-center up to md, lg:text-left for desktop alignment. Size: text-3xl sm:text-4xl md:text-[44px].
+- Verified with Agent Browser + VLM:
+  - Heading text: "What Challenges Can Be Solved?"
+  - "Challenges" color = rgb(249,115,22) (orange), rest charcoal; font-weight 700 (bold).
+  - Glow: 0.35 over hero; 0 over contact; 0 over ai-chat (removed from all non-tracked sections).
+  - VLM: "Heading is 'What Challenges Can Be Solved?' with 'Challenges' in orange, rest dark charcoal, large bold premium look."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Cursor glow confirmed restricted to only Hero + Why Us sections (removed from all other sections and the projects page). Why Us heading is now "What Challenges Can Be Solved?" — large, bold, with "Challenges" highlighted in orange accent. Verified.
