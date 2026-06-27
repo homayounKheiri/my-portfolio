@@ -155,9 +155,12 @@ export function AutomationFlow() {
         })}
       </svg>
 
-      {/* Central AI core — breathing + pulsing */}
+      {/* Central AI core — breathing + pulsing.
+          Use framer-motion x/y for centering so the transform is fully
+          managed by motion and the scale animation can't knock it off-center. */}
       <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="absolute"
+        style={{ left: "50%", top: "50%", x: "-50%", y: "-50%" }}
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
@@ -172,19 +175,50 @@ export function AutomationFlow() {
           className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_16px_40px_-12px_rgba(249,115,22,0.7)] sm:h-24 sm:w-24"
         >
           <Sparkles className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.8} />
-          {/* pulsing ring */}
+          {/* Seamless pulse ring — opacity starts AND ends at 0 so the loop
+              boundary is invisible (no pop). Scale grows linearly; the
+              reset from 1.8→1 happens while opacity is 0. */}
           {!reduce && (
             <motion.span
               className="absolute inset-0 rounded-full border border-brand/50"
-              animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
+              animate={{
+                scale: [1, 1.9],
+                opacity: [0, 0.6, 0],
+              }}
+              transition={{
+                duration: 2.8,
+                repeat: Infinity,
+                ease: "easeOut",
+                times: [0, 0.35, 1],
+              }}
+            />
+          )}
+          {/* Second staggered pulse for a continuous breathing feel */}
+          {!reduce && (
+            <motion.span
+              className="absolute inset-0 rounded-full border border-brand/40"
+              animate={{
+                scale: [1, 1.9],
+                opacity: [0, 0.45, 0],
+              }}
+              transition={{
+                duration: 2.8,
+                repeat: Infinity,
+                ease: "easeOut",
+                times: [0, 0.35, 1],
+                delay: 1.4,
+              }}
             />
           )}
         </motion.div>
-        <p className="mt-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted">
-          AI Core
-        </p>
       </motion.div>
+      {/* AI Core label — positioned absolutely below the core so it doesn't
+          shift the core's center off the shared concentric center point. */}
+      <p
+        className="pointer-events-none absolute left-1/2 top-[calc(50%+3.25rem)] -translate-x-1/2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted sm:top-[calc(50%+3.75rem)]"
+      >
+        AI Core
+      </p>
 
       {/* Surrounding nodes */}
       {NODES.map((node, i) => {

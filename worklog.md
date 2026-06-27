@@ -552,3 +552,19 @@ Work Log:
 
 Stage Summary:
 - Rotating rings are now true concentric circles (SVG circles sharing cx=50/cy=50). Left headline simplified to one readable sentence with orange keyword emphasis. Both verified.
+
+---
+Task ID: 29
+Agent: orchestrator
+Task: Fix two issues — (1) central AI circle must be perfectly centered within the concentric rings; (2) pulse animation had a visible jump at loop boundary, make it seamless.
+
+Work Log:
+- Centering fix: the AI core wrapper used Tailwind -translate-x-1/2 -translate-y-1/2, but framer-motion's scale animation overrode the transform property, knocking it off-center. Switched to framer-motion x/y for centering (style={{ left:'50%', top:'50%', x:'-50%', y:'-50%' }}) so motion manages the full transform (translate + scale combined) and scale can't break centering.
+- Label offset fix: the "AI Core" label was inside the centered wrapper, shifting the bounding-box center up by ~12px. Moved the label out into a separate absolutely-positioned element (top-[calc(50%+3.25rem)]) so only the circle itself is centered.
+- Verified: AI core center vs container center → offsetX=0, offsetY=0 (perfect). Rings are SVG circles at cx=50 cy=50 = same center.
+- Seamless pulse fix: the old pulse had opacity [0.6, 0] — start 0.6, end 0, so at each loop boundary opacity jumped 0→0.6 = visible pop. Changed to opacity [0, 0.6, 0] with times [0, 0.35, 1] — now starts AND ends at 0, so the loop boundary is invisible. Scale [1, 1.9] grows; the reset 1.9→1 happens while opacity=0. Added a second staggered pulse (delay 1.4s) for a continuous breathing feel.
+- Verified with VLM: "Central orange AI circle perfectly centered within the concentric dashed rings. Pulse rings expand smoothly from center and fade out. AI Core label visible below without offsetting."
+- `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Central AI core now perfectly concentric with the dashed rings (0,0 offset). Pulse animation is seamless — opacity starts and ends at 0 so no visible reset/pop at the loop boundary, with a second staggered pulse for continuous flow. Verified.
