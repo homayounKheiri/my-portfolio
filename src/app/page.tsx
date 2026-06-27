@@ -21,8 +21,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Page-wide continuous cursor glow (fixed, above all sections, below modals) */}
-      <ContinuousCursorGlow />
+      {/* Cursor glow — only in Hero + Why Automation, seamless across their boundary */}
+      <ContinuousCursorGlow sectionIds={["hero", "flow"]} />
       <Header view={view} onViewChange={setView} />
       <main className="flex-1">
         {view === "home" ? (

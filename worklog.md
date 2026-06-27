@@ -670,3 +670,24 @@ Work Log:
 
 Stage Summary:
 - All section headings/descriptions/CTAs center below lg, switch to desktop alignment at lg+. Cursor glow is page-wide (fixed, never clipped, visible across all sections as you scroll). Footer removed entirely. Projects dark background is a full-width unified surface framing the cards. All verified.
+
+---
+Task ID: 35
+Agent: orchestrator
+Task: (1) Cursor glow ONLY in Hero + Why Automation (seamless across their boundary). (2) Projects dark bg full section width. (3) Hero left column center up to md, left at lg+. (4) Header frosted glass triggers earlier.
+
+Work Log:
+- continuous-cursor-glow.tsx: restored the sectionIds restriction. The glow now activates ONLY when the mouse is within #hero or #flow bounding rects; fades out when leaving the tracked area. Still position:fixed + mix-blend-mode:screen so it's never clipped at the Hero bottom boundary (seamless across hero→flow). Removed the page-wide onLeave handler.
+- page.tsx: passed sectionIds={["hero","flow"]} back to ContinuousCursorGlow.
+- header.tsx: lowered the useScrolled threshold from 120 to 40 — the frosted glass now appears after just 40px of scroll (before the header reaches/overlaps the hero text), creating a smoother earlier transition.
+- hero.tsx: changed the left-column centering breakpoint from sm to lg. Column: items-center text-center lg:items-start lg:text-left. Headline: text-center lg:text-left lg:text-[44px] xl:text-[52px]. Subtitle: text-center lg:text-left. CTAs: flex-col items-center lg:flex-row lg:items-start. So the hero text stays centered up to md (768px) and only switches to left-aligned at lg (1024px+).
+- Projects dark bg: already full-width (section-dark on the <section> element which is full viewport width; inner content max-w-6xl). Re-verified by VLM: "dark charcoal background spans the entire width of the viewport, project cards sit on top as a unified dark surface."
+- Verified with Agent Browser + VLM:
+  - Header: transparent at top (backdrop none) → blur(24px) after 50px scroll (earlier trigger confirmed).
+  - Glow: 0.35 over hero, 0 over contact (removed from non-tracked sections, seamless across hero→flow boundary preserved).
+  - Hero centering: at 800px (md) = center (alignItems=center, textAlign=center); at 1280px (lg) = left (alignItems=flex-start, textAlign=left).
+  - Projects: full-width unified dark surface (VLM-confirmed).
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Cursor glow restricted to Hero + Why Automation only (seamless across their boundary, removed from all other sections). Projects dark background is a full-width unified surface. Hero left-column text/CTAs center up to md, switch to left at lg+. Header frosted glass triggers earlier (40px instead of 120px). All verified.

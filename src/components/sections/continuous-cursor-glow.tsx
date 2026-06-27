@@ -3,20 +3,27 @@
 import { useEffect, useRef } from "react";
 
 /**
- * A page-wide continuous cursor glow.
- * Uses position: fixed so it is never clipped by any section boundary and
- * stays visible across the entire page as the user scrolls. Renders above
- * all content (z-30) but below modals/dialogs (z-60).
+ * A continuous cursor glow that appears only within a set of tracked
+ * sections (e.g. Hero + Why Automation), but transitions seamlessly
+ * across their shared boundary — never clipped at the bottom of the
+ * first section.
  *
- * Uses mix-blend-mode: screen so the orange glow lightens whatever is below
- * it — visible over both white and dark backgrounds, and over text, without
- * obscuring content.
+ * Uses position: fixed so the glow itself is never cropped by any
+ * section's overflow-hidden. The glow is shown (opacity) only while the
+ * mouse is within one of the tracked sections' bounding rects, and fades
+ * out smoothly when it leaves the tracked area.
+ *
+ * mix-blend-mode: screen makes the orange glow lighten whatever is below
+ * it — visible over both white and dark backgrounds without obscuring
+ * content. z-30 keeps it above section content but below modals (z-60).
  */
 export function ContinuousCursorGlow({
+  sectionIds,
   size = 560,
   opacity = 0.35,
   smoothing = 0.12,
 }: {
+  sectionIds: string[];
   size?: number;
   opacity?: number;
   smoothing?: number;
@@ -40,18 +47,29 @@ export function ContinuousCursorGlow({
     let active = false;
     let raf = 0;
 
+    const isInTrackedSections = (x: number, y: number) => {
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+          return true;
+        }
+      }
+      return false;
+    };
+
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (!active) {
+      const inside = isInTrackedSections(mouseX, mouseY);
+      if (inside && !active) {
         active = true;
         glow.style.opacity = String(opacity);
+      } else if (!inside && active) {
+        active = false;
+        glow.style.opacity = "0";
       }
-    };
-
-    const onLeave = () => {
-      active = false;
-      glow.style.opacity = "0";
     };
 
     const loop = () => {
@@ -64,15 +82,13 @@ export function ContinuousCursorGlow({
     };
 
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseleave", onLeave);
     raf = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
     };
-  }, [size, opacity, smoothing]);
+  }, [sectionIds, size, opacity, smoothing]);
 
   return (
     <div

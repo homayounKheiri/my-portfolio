@@ -55,12 +55,12 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        {/* LEFT — typography headline (center on mobile, left on desktop) */}
+        {/* LEFT — typography headline (center up to md, left on lg+) */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center sm:items-start sm:text-left"
+          className="flex flex-col items-center text-center lg:items-start lg:text-left"
         >
           {/* Eyebrow */}
           <motion.div variants={item}>
@@ -76,7 +76,7 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
           {/* Headline — simple, readable, with keyword emphasis */}
           <motion.h1
             variants={item}
-            className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-left sm:text-[44px] md:text-[52px]"
+            className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.15] tracking-tight text-ink lg:text-left lg:text-[44px] xl:text-[52px]"
           >
             <span className="text-brand">99%</span> of repetitive tasks can be{" "}
             <span className="text-brand">automated</span> with{" "}
@@ -87,16 +87,16 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
           {/* Subtitle — smaller, lighter */}
           <motion.p
             variants={item}
-            className="mt-7 max-w-md text-pretty text-center text-[14.5px] font-light leading-relaxed text-ink-muted sm:text-left sm:text-[15.5px]"
+            className="mt-7 max-w-md text-pretty text-center text-[14.5px] font-light leading-relaxed text-ink-muted lg:text-left lg:text-[15.5px]"
           >
             Web Developer and Consultant and Specialist in AI Business
             Intelligence and Automation.
           </motion.p>
 
-          {/* CTAs — center on mobile, left on desktop */}
+          {/* CTAs — center up to md, left on lg+ */}
           <motion.div
             variants={item}
-            className="mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-start"
+            className="mt-8 flex w-full flex-col items-center gap-3 lg:w-auto lg:flex-row lg:items-start"
           >
             <button
               onClick={onViewProjects}

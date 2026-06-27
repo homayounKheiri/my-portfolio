@@ -22,7 +22,7 @@ export function Header({
   onViewChange: (v: View) => void;
 }) {
   // Glass appears only after we leave the hero (home view only).
-  const scrolled = useScrolled(120);
+  const scrolled = useScrolled(40);
   const [open, setOpen] = useState(false);
 
   const goHome = () => {
