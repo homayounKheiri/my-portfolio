@@ -709,3 +709,16 @@ Work Log:
 
 Stage Summary:
 - Cursor glow confirmed restricted to only Hero + Why Us sections (removed from all other sections and the projects page). Why Us heading is now "What Challenges Can Be Solved?" — large, bold, with "Challenges" highlighted in orange accent. Verified.
+
+---
+Task ID: 37
+Agent: orchestrator
+Task: Completely remove the blurred color under the mouse from the entire site.
+
+Work Log:
+- page.tsx: removed the <ContinuousCursorGlow> component import and render entirely. The cursor glow no longer appears anywhere on the site.
+- Deleted the now-unused files: src/components/sections/continuous-cursor-glow.tsx and src/hooks/use-cursor-glow.ts.
+- Verified: 0 elements with blur style or the glow class on the page; moving the mouse produces no glow. `bun run lint` clean.
+
+Stage Summary:
+- The blurred cursor-follow glow is completely removed from all sections and pages. Verified zero glow elements remain.
