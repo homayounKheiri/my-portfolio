@@ -365,3 +365,27 @@ Work Log:
 
 Stage Summary:
 - Why Automation cards are now narrower (360px) with generous gaps between them (48px H / 56px V) and a more square/balanced proportion. Overlapping top icon preserved. Verified.
+
+---
+Task ID: 21
+Agent: orchestrator
+Task: Redesign Hero headline as a typography-driven composition: "99% of repetitive tasks in a business can be automated and powered by AI." with emphasis on 99%, Automated, AI.
+
+Work Log:
+- hero.tsx: replaced the old h1 (Consultant & Specialist in AI Business...) + subtitle paragraph with a typography-driven statement headline.
+- Composition (multi-line, varied size/weight/spacing/alignment):
+  - Line 1: "99%" oversized (140px lg) extrabold orange + "of repetitive tasks" small (24px) medium muted, baseline-aligned inline.
+  - Line 2: "in a business can be" small (18px) light tracking-wide muted/80.
+  - Line 3: "AUTOMATED" large (92px lg) extrabold UPPERCASE orange.
+  - Line 4: "and powered by" small (18px) light muted/80.
+  - Line 5: "AI" oversized (116px lg) extrabold orange + a charcoal period.
+- Strong visual hierarchy: 99% / AUTOMATED / AI are the largest, boldest, orange (brand #F97316); connectors are small, light, muted charcoal. Kept the eyebrow pill + two CTA buttons; removed the old subtitle.
+- Kept the animated grid bg + cursor glow (subtle, non-decorative) — impact comes from the typography composition, not graphics.
+- Verified with Agent Browser + VLM:
+  - Headline reads: "99% | of repetitive tasks | in a business can be | AUTOMATED | and powered by | AI."
+  - 99% = 140px orange (rgb(249,115,22)); AUTOMATED = 92px orange; AI = 116px orange; connectors = 18px light muted.
+  - VLM-confirmed all 4 points: typography-driven composition, keywords much larger/bolder/orange with smaller lighter connectors, premium SaaS feel, no excessive decorative graphics — impact from text composition.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Hero headline is now a premium typography-driven composition. "99%", "Automated", and "AI" receive the strongest visual emphasis (oversized, extrabold, orange accent) while connector words are small and light, creating a clean, elegant, highly readable SaaS-style hero. Verified.

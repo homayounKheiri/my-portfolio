@@ -92,23 +92,42 @@ export function Hero() {
             </span>
           </motion.div>
 
+          {/* Typography-driven hero headline */}
           <motion.h1
             variants={item}
-            className="mt-7 text-balance text-4xl font-semibold leading-[1.06] tracking-tight text-ink sm:text-5xl md:text-6xl lg:text-[64px]"
+            className="mt-8 flex flex-col items-center gap-1 font-sans tracking-tight"
           >
-            Consultant &amp; Specialist in{" "}
-            <span className="text-gradient-brand">AI Business</span>{" "}
-            Intelligence &amp; Automation
-          </motion.h1>
+            {/* Line 1 — oversized 99% + smaller connector */}
+            <span className="flex items-baseline gap-3 flex-wrap justify-center">
+              <span className="text-[80px] font-extrabold leading-none text-brand sm:text-[104px] md:text-[120px] lg:text-[140px]">
+                99%
+              </span>
+              <span className="text-[19px] font-medium leading-tight text-ink-muted sm:text-[22px] md:text-[24px]">
+                of repetitive tasks
+              </span>
+            </span>
 
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-2xl text-pretty text-[15px] leading-relaxed text-ink-muted sm:text-[17px]"
-          >
-            Consultant and specialist in business automation and AI-driven
-            optimization — and a web developer crafting premium, high-performance
-            digital products.
-          </motion.p>
+            {/* Line 2 — small connector */}
+            <span className="mt-1 text-[15px] font-light tracking-wide text-ink-muted/80 sm:text-[17px] md:text-[18px]">
+              in a business can be
+            </span>
+
+            {/* Line 3 — oversized AUTOMATED */}
+            <span className="mt-2 text-[52px] font-extrabold uppercase leading-none tracking-tight text-brand sm:text-[68px] md:text-[82px] lg:text-[92px]">
+              Automated
+            </span>
+
+            {/* Line 4 — small connector */}
+            <span className="mt-3 text-[15px] font-light tracking-wide text-ink-muted/80 sm:text-[17px] md:text-[18px]">
+              and powered by
+            </span>
+
+            {/* Line 5 — oversized AI */}
+            <span className="mt-2 text-[64px] font-extrabold leading-none text-brand sm:text-[84px] md:text-[100px] lg:text-[116px]">
+              AI
+              <span className="text-ink">.</span>
+            </span>
+          </motion.h1>
 
           <motion.div
             variants={item}
