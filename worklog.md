@@ -847,3 +847,23 @@ Work Log:
 
 Stage Summary:
 - Why Automation now has 8 cards (added scattered-data and manual-orders at the end) with full EN/FA translations, followed by two orange "etc." dots indicating there's more. Verified.
+
+---
+Task ID: 44
+Agent: orchestrator
+Task: Remove "AI Core" text from infographic; change contact form title to "شماره تماس خود را ثبت کنید و 5 دقیقه منتظر بمانید :)".
+
+Work Log:
+- automation-flow.tsx: removed the "AI Core" / "هسته هوش مصنوعی" label paragraph entirely. The central glowing gradient-orange core now speaks for itself without text.
+- i18n.tsx: restructured the contact title into 3 keys (titlePre / titleMid / titlePost) so the "5 minutes" / "۵ دقیقه" portion gets the gradient-brand highlight.
+  - EN: "Register your number and wait" + "5 minutes" + ":)"
+  - FA: "شماره تماس خود را ثبت کنید و" + "۵ دقیقه" + "منتظر بمانید :)"
+- contact.tsx: updated the h2 to render t("contact.titlePre") + gradient span t("contact.titleMid") + t("contact.titlePost").
+- Verified with Agent Browser:
+  - "AI Core" text REMOVED from infographic (both EN and FA).
+  - English title: "Register your number and wait 5 minutes :)"
+  - Persian title: "شماره تماس خود را ثبت کنید و ۵ دقیقه منتظر بمانید :)" (exact requested text).
+  - `bun run lint` clean.
+
+Stage Summary:
+- Infographic no longer shows any "AI Core" text — just the visual core. Contact form title now reads the requested Persian text (with EN equivalent), with "5 minutes"/"۵ دقیقه" highlighted in gradient orange. Verified.

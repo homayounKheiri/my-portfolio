@@ -66,7 +66,7 @@ export function Contact() {
             {/* Title */}
             <h2 className="mt-4 text-balance text-center text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px] lg:text-left">
               {t("contact.titlePre")}{" "}
-              <span className="text-gradient-brand">5&nbsp;minutes</span>{" "}
+              <span className="text-gradient-brand">{t("contact.titleMid")}</span>{" "}
               {t("contact.titlePost")}
             </h2>
 

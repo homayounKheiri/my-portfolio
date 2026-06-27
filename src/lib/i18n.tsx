@@ -53,7 +53,8 @@ const EN: Dict = {
 
   // Contact
   "contact.eyebrow": "Contact",
-  "contact.titlePre": "Leave your number and expect a reply within",
+  "contact.titlePre": "Register your number and wait",
+  "contact.titleMid": "5 minutes",
   "contact.titlePost": ":)",
   "contact.subtitle":
     "No forms to fill, no back-and-forth. Just drop your number and I'll reach out personally — fast.",
@@ -137,8 +138,9 @@ const FA: Dict = {
 
   // Contact
   "contact.eyebrow": "تماس",
-  "contact.titlePre": "شماره خود را بگذارید و انتظار پاسخ در عرض",
-  "contact.titlePost": "داشته باشید :)",
+  "contact.titlePre": "شماره تماس خود را ثبت کنید و",
+  "contact.titleMid": "۵ دقیقه",
+  "contact.titlePost": "منتظر بمانید :)",
   "contact.subtitle":
     "بدون فرم، بدون رفت‌وبرگشت. فقط شماره خود را بگذارید تا شخصاً و سریع با شما تماس بگیرم.",
   "contact.placeholder": "+۹۸ ۹۱۲ ۳۴۵ ۶۷۸۹",

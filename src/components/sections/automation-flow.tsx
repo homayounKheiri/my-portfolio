@@ -234,13 +234,7 @@ export function AutomationFlow() {
           )}
         </motion.div>
       </motion.div>
-      {/* AI Core label — positioned absolutely below the core so it doesn't
-          shift the core's center off the shared concentric center point. */}
-      <p
-        className="pointer-events-none absolute left-1/2 top-[calc(50%+3.25rem)] -translate-x-1/2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted sm:top-[calc(50%+3.75rem)]"
-      >
-        {t("flow.aiCore")}
-      </p>
+      {/* AI Core label removed — the central glowing core speaks for itself */}
 
       {/* Surrounding nodes */}
       {NODES.map((node, i) => {
