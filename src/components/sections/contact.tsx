@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Check, Loader2, ArrowRight } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Contact() {
+  const { t } = useI18n();
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
     "idle"
@@ -57,19 +59,19 @@ export function Contact() {
             <div className="flex justify-center lg:justify-start">
               <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand">
                 <span className="h-px w-6 bg-brand/50" />
-                Contact
+                {t("contact.eyebrow")}
               </span>
             </div>
 
             {/* Title */}
             <h2 className="mt-4 text-balance text-center text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px] lg:text-left">
-              Leave your number and expect a reply within{" "}
-              <span className="text-gradient-brand">5&nbsp;minutes</span> :)
+              {t("contact.titlePre")}{" "}
+              <span className="text-gradient-brand">5&nbsp;minutes</span>{" "}
+              {t("contact.titlePost")}
             </h2>
 
             <p className="mt-3 max-w-lg mx-auto text-center text-[14.5px] leading-relaxed text-ink-muted lg:mx-0 lg:text-left">
-              No forms to fill, no back-and-forth. Just drop your number and
-              I&apos;ll reach out personally — fast.
+              {t("contact.subtitle")}
             </p>
 
             {/* Form / success */}
@@ -89,11 +91,10 @@ export function Contact() {
                     </span>
                     <div>
                       <p className="text-[14.5px] font-semibold text-ink">
-                        Got it — talk soon.
+                        {t("contact.successTitle")}
                       </p>
                       <p className="text-[13px] text-ink-muted">
-                        Your number is on its way. Expect a reply within 5
-                        minutes.
+                        {t("contact.successBody")}
                       </p>
                     </div>
                   </motion.div>
@@ -114,7 +115,7 @@ export function Contact() {
                         autoComplete="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="+1 (555) 123-4567"
+                        placeholder={t("contact.placeholder")}
                         disabled={status === "loading"}
                         className="h-14 w-full rounded-2xl border border-border bg-white pl-12 pr-4 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-muted/70 focus:border-brand/50 focus-brand disabled:opacity-60"
                       />
@@ -127,11 +128,11 @@ export function Contact() {
                       {status === "loading" ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Sending
+                          {t("contact.sending")}
                         </>
                       ) : (
                         <>
-                          Expect a reply
+                          {t("contact.button")}
                           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.4} />
                         </>
                       )}
@@ -155,7 +156,7 @@ export function Contact() {
             </div>
 
             <p className="mt-5 text-[12px] text-ink-muted">
-              Your number is used only to reply to you. Nothing else.
+              {t("contact.note")}
             </p>
           </div>
         </motion.div>

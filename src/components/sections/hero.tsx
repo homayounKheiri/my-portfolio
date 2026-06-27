@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, MessageSquare, ArrowUpRight } from "lucide-react";
 import { AutomationFlow } from "./automation-flow";
+import { useI18n } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -15,6 +16,7 @@ function scrollToId(id: string) {
 
 export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
   const reduce = useReducedMotion();
+  const { t } = useI18n();
 
   const container = {
     hidden: {},
@@ -69,7 +71,7 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
               </span>
-              AI Automation Consultancy
+              {t("hero.eyebrow")}
             </span>
           </motion.div>
 
@@ -78,9 +80,11 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
             variants={item}
             className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.15] tracking-tight text-ink lg:text-left lg:text-[44px] xl:text-[52px]"
           >
-            <span className="text-brand">99%</span> of repetitive tasks can be{" "}
-            <span className="text-brand">automated</span> with{" "}
-            <span className="text-brand">AI</span>
+            <span className="text-brand">99%</span>{" "}
+            {t("hero.headlineMid")}{" "}
+            <span className="text-brand">{t("hero.headlineAuto")}</span>{" "}
+            {t("hero.headlineWith")}{" "}
+            <span className="text-brand">{t("hero.headlineAI")}</span>
             <span className="text-ink/30">.</span>
           </motion.h1>
 
@@ -89,8 +93,7 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
             variants={item}
             className="mt-7 max-w-md text-pretty text-center text-[14.5px] font-light leading-relaxed text-ink-muted lg:text-left lg:text-[15.5px]"
           >
-            Web Developer and Consultant and Specialist in AI Business
-            Intelligence and Automation.
+            {t("hero.subtitle")}
           </motion.p>
 
           {/* CTAs — center up to md, left on lg+ */}
@@ -103,14 +106,14 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
               className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_12px_34px_-10px_rgba(249,115,22,0.75)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_16px_40px_-10px_rgba(249,115,22,0.9)] active:scale-95 focus-brand sm:w-auto"
             >
               <Sparkles className="h-4 w-4 transition-transform duration-500 group-hover:rotate-12" />
-              View Projects
+              {t("hero.ctaProjects")}
             </button>
             <button
               onClick={() => scrollToId("chat")}
               className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-[14.5px] font-semibold text-ink transition-all duration-300 hover:border-ink/30 active:scale-95 focus-brand sm:w-auto"
             >
               <MessageSquare className="h-4 w-4 text-brand transition-transform duration-500 group-hover:-translate-y-0.5" />
-              Start a Conversation
+              {t("hero.ctaChat")}
               <ArrowUpRight
                 className="h-4 w-4 text-ink-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
                 strokeWidth={2.2}

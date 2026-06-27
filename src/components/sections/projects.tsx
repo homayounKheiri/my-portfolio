@@ -7,11 +7,12 @@ import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { ArrowUpRight, Target, Lightbulb, X, Languages } from "lucide-react";
 import projectsData from "@/data/projects.json";
+import { useI18n, type Locale } from "@/lib/i18n";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-type Lang = "en" | "fa";
+type Lang = Locale;
 
 type LangContent = {
   title: string;
@@ -30,41 +31,9 @@ type Project = {
   fa: LangContent;
 };
 
-// UI strings per language
-const UI = {
-  en: {
-    eyebrow: "Selected Work",
-    heading: "Projects with real outcomes",
-    tabAutomation: "Automation",
-    tabWebsites: "Websites",
-    intro:
-      "Behind every project lies a real challenge and an intelligent solution. Select a project to explore it.",
-    swipe: "Swipe",
-    outcome: "Outcome",
-    stack: "Stack",
-    challenge: "The Challenge",
-    solution: "The Solution",
-    langLabel: "FA",
-  },
-  fa: {
-    eyebrow: "نمونه‌کارهای منتخب",
-    heading: "پروژه‌هایی با نتایج واقعی",
-    tabAutomation: "اتوماسیون",
-    tabWebsites: "وب‌سایت‌ها",
-    intro:
-      "پشت هر پروژه یک چالش واقعی و یک راه‌حل هوشمند نهفته است. یک پروژه را برای کاوش انتخاب کنید.",
-    swipe: "بکشید",
-    outcome: "نتیجه",
-    stack: "تکنولوژی",
-    challenge: "چالش",
-    solution: "راه‌حل",
-    langLabel: "EN",
-  },
-} as const;
-
 const TABS = [
-  { id: "automation", labelKey: "tabAutomation" },
-  { id: "websites", labelKey: "tabWebsites" },
+  { id: "automation", labelKey: "projects.tabAutomation" },
+  { id: "websites", labelKey: "projects.tabWebsites" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -72,15 +41,13 @@ type TabId = (typeof TABS)[number]["id"];
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Projects() {
+  const { t, locale, toggleLocale } = useI18n();
   const [tab, setTab] = useState<TabId>("automation");
-  const [lang, setLang] = useState<Lang>("en");
   const [selected, setSelected] = useState<Project | null>(null);
 
   const list = (projectsData as Record<TabId, Project[]>)[tab];
-  const t = UI[lang];
+  const lang: Lang = locale;
   const dir = lang === "fa" ? "rtl" : "ltr";
-
-  const toggleLang = () => setLang((l) => (l === "en" ? "fa" : "en"));
 
   return (
     <section
@@ -90,7 +57,7 @@ export function Projects() {
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
       <div className="relative mx-auto w-full max-w-6xl">
-        {/* Section header — center below lg, left+right at lg+ */}
+        {/* Section header */}
         <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
           <div className="max-w-xl">
             <motion.span
@@ -101,7 +68,7 @@ export function Projects() {
               className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand"
             >
               <span className="h-px w-6 bg-brand/50" />
-              {t.eyebrow}
+              {t("projects.eyebrow")}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -110,19 +77,19 @@ export function Projects() {
               transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
               className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
             >
-              {t.heading}
+              {t("projects.heading")}
             </motion.h2>
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Language toggle */}
+            {/* Language toggle (also available in header) */}
             <button
-              onClick={toggleLang}
+              onClick={toggleLocale}
               className="glass-dark flex items-center gap-1.5 rounded-2xl px-3.5 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:border-brand/40 focus-brand"
               aria-label="Toggle language"
             >
               <Languages className="h-4 w-4 text-brand" />
-              {t.langLabel}
+              {locale === "en" ? "FA" : "EN"}
             </button>
 
             {/* Tabs */}
@@ -146,7 +113,7 @@ export function Projects() {
                         isActive ? "text-white" : "text-stone-400 hover:text-white"
                       }`}
                     >
-                      {t[tb.labelKey]}
+                      {t(tb.labelKey)}
                     </span>
                     {isActive && (
                       <motion.span
@@ -174,7 +141,7 @@ export function Projects() {
           >
             {tab === "automation" && (
               <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-left">
-                {t.intro}
+                {t("projects.intro")}
               </p>
             )}
 
@@ -267,7 +234,7 @@ function ProjectCard({
 function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
   const swiperRef = useRef<SwiperType | null>(null);
   const c = project[lang];
-  const t = UI[lang];
+  const { t } = useI18n();
 
   return (
     <div
@@ -310,7 +277,7 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         <SwiperSlide className="!h-full">
           <div className="flex h-full w-full flex-col items-center justify-center bg-ink px-4 text-center">
             <span className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-stone-500">
-              {t.outcome}
+              {t("projects.outcome")}
             </span>
             <span className="mt-2 text-xl font-semibold leading-tight tracking-tight text-white">
               {c.metric}
@@ -322,7 +289,7 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         <SwiperSlide className="!h-full">
           <div className="flex h-full w-full flex-col items-center justify-center bg-brand px-4 text-center">
             <span className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-white/70">
-              {t.stack}
+              {t("projects.stack")}
             </span>
             <span className="mt-2 text-[13px] font-semibold leading-tight text-white">
               {project.tags.slice(0, 2).join(" · ")}
@@ -338,7 +305,7 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         transition={{ delay: 0.8, duration: 2.4, ease: "easeInOut" }}
         className="pointer-events-none absolute bottom-2.5 right-3 rounded-full bg-black/30 px-2 py-0.5 text-[9.5px] font-medium uppercase tracking-wider text-white/80 backdrop-blur-sm"
       >
-        {t.swipe}
+        {t("projects.swipe")}
       </motion.span>
     </div>
   );
@@ -356,7 +323,7 @@ function ProjectDialog({
   onClose: () => void;
 }) {
   const c = project[lang];
-  const t = UI[lang];
+  const { t } = useI18n();
   const dir = lang === "fa" ? "rtl" : "ltr";
 
   return (
@@ -418,7 +385,7 @@ function ProjectDialog({
                 <div className="flex items-center gap-2 text-brand-foreground">
                   <Target className="h-4 w-4" />
                   <span className="text-[12px] font-semibold uppercase tracking-wider">
-                    {t.challenge}
+                    {t("projects.challenge")}
                   </span>
                 </div>
                 <p className="mt-3 text-[14px] leading-relaxed text-ink">
@@ -429,7 +396,7 @@ function ProjectDialog({
                 <div className="flex items-center gap-2 text-brand">
                   <Lightbulb className="h-4 w-4" />
                   <span className="text-[12px] font-semibold uppercase tracking-wider">
-                    {t.solution}
+                    {t("projects.solution")}
                   </span>
                 </div>
                 <p className="mt-3 text-[14px] leading-relaxed text-ink">
@@ -454,3 +421,4 @@ function ProjectDialog({
     </AnimatePresence>
   );
 }
+

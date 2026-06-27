@@ -761,3 +761,27 @@ Work Log:
 
 Stage Summary:
 - Projects section now supports English and Persian (Farsi) with a language toggle button. All project content (titles, summaries, challenges, solutions, metrics) and all UI strings (headings, tabs, dialog labels, slide labels) are translated. Persian mode applies RTL direction throughout the section and dialog. Verified end-to-end.
+
+---
+Task ID: 40
+Agent: orchestrator
+Task: Convert to proper i18n with a language toggle in the header (applies across whole site, EN/FA, RTL).
+
+Work Log:
+- Created src/lib/i18n.tsx: a React Context-based i18n provider with `locale` state ("en"|"fa"), `dir`, `t(key, vars)` translation function, `setLocale`, and `toggleLocale`. Contains full EN and FA dictionaries covering: header nav, hero, why automation, AI chat, contact, projects. Wraps children in a div with dir attribute (rtl for fa, ltr for en) so the whole page direction switches.
+- layout.tsx: wrapped the app in <I18nProvider>.
+- header.tsx: added a language toggle button (Languages icon + "FA"/"EN" label) in the right cluster next to the CTA. Nav labels now use t("nav.home")/t("nav.projects"). CTA uses t("nav.cta"). Mobile dropdown labels also localized.
+- hero.tsx: all strings via t() — eyebrow, headline parts (split into hero.headlineMid/Auto/With/AI so the orange keyword spans can wrap each word), subtitle, CTA buttons.
+- challenge-solution.tsx: heading constructed per-locale inline (EN: "What Challenges Can Be Solved?" / FA: "چه چالش‌هایی قابل حل هستند؟") with "Challenges"/"چالش" in orange. Eyebrow + subheading via t(). Card question/answer content localized via a CARD_CONTENT lookup keyed by card.key + locale.
+- ai-chat.tsx: greeting/quick-replies/heading/subtitle/name/status/placeholder/reset all via t(). Greeting auto-resets when locale changes (useEffect on locale).
+- contact.tsx: eyebrow/title (split into titlePre + "5 minutes" + titlePost)/subtitle/placeholder/button/sending/successTitle/successBody/note all via t(). Error messages also localized (errorEmpty/errorInvalid/errorGeneric).
+- projects.tsx: removed its own local UI dictionary; now uses useI18n(). Heading/eyebrow/tabs/intro/swipe/outcome/stack/challenge/solution all via t(). Keeps a secondary language toggle in the projects header too (synced with the global one).
+- Fixed a heading duplicate-suffix bug (was appending "Can Be Solved?" twice).
+- Verified with Agent Browser + VLM:
+  - EN: header ["Home","Projects"], hero eyebrow "AI AUTOMATION CONSULTANCY", flow heading "What Challenges Can Be Solved?".
+  - After header toggle → FA: header ["خانه","پروژه‌ها"], hero eyebrow "مشاوره اتوماسیون هوش مصنوعی", flow heading "چه چالش‌هایی قابل حل هستند؟", subheading + card content in Persian, dir=rtl.
+  - VLM-confirmed Persian mode: nav in Persian, hero text in Persian, RTL layout, "چالش" highlighted in orange.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Proper i18n system (React Context provider + hook) with full EN/FA dictionaries. Language toggle button in the header switches the ENTIRE site (header, hero, why automation, AI chat, contact, projects) between English and Persian, with automatic RTL direction for Persian. Verified end-to-end.

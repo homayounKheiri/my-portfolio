@@ -3,30 +3,28 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Sparkles, RotateCcw, Zap } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 type Msg = { role: "user" | "assistant"; content: string };
-
-const QUICK = [
-  "What can you automate for me?",
-  "Can you build a website?",
-  "How does AI BI help?",
-];
-
-const GREETING: Msg = {
-  role: "assistant",
-  content:
-    "Hi, I'm Aria — a lightweight assistant for the studio. Ask me anything about AI automation, business intelligence, or web work.",
-};
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function AIChat() {
-  const [messages, setMessages] = useState<Msg[]>([GREETING]);
+  const { t, locale } = useI18n();
+  const greeting: Msg = { role: "assistant", content: t("chat.greeting") };
+  const QUICK = [t("chat.quick1"), t("chat.quick2"), t("chat.quick3")];
+
+  const [messages, setMessages] = useState<Msg[]>([greeting]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const sessionId = useRef("sess-" + Math.random().toString(36).slice(2, 10)).current;
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Reset conversation greeting when language changes
+  useEffect(() => {
+    setMessages([{ role: "assistant", content: t("chat.greeting") }]);
+  }, [locale, t]);
 
   const scrollToBottom = useCallback(() => {
     const el = scrollRef.current;
@@ -70,7 +68,7 @@ export function AIChat() {
   };
 
   const reset = () => {
-    setMessages([GREETING]);
+    setMessages([{ role: "assistant", content: t("chat.greeting") }]);
     setInput("");
     inputRef.current?.focus();
   };
@@ -104,7 +102,7 @@ export function AIChat() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
             className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
           >
-            Meet your lightweight assistant
+            {t("chat.heading")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -113,7 +111,7 @@ export function AIChat() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
             className="mt-3 max-w-md text-[14.5px] text-stone-400"
           >
-            A small, fast helper — no signup, no noise. Just answers.
+            {t("chat.subtitle")}
           </motion.p>
         </div>
 
@@ -133,16 +131,16 @@ export function AIChat() {
                 <Sparkles className="h-4.5 w-4.5 text-white" />
               </div>
               <div>
-                <p className="text-[14px] font-semibold text-white">Aria</p>
+                <p className="text-[14px] font-semibold text-white">{t("chat.name")}</p>
                 <p className="flex items-center gap-1.5 text-[11.5px] text-stone-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
-                  Online · replies in seconds
+                  {t("chat.status")}
                 </p>
               </div>
             </div>
             <button
               onClick={reset}
-              aria-label="Reset conversation"
+              aria-label={t("chat.reset")}
               className="flex h-9 w-9 items-center justify-center rounded-xl text-stone-400 transition-all hover:scale-105 hover:bg-white/10 hover:text-white focus-brand"
             >
               <RotateCcw className="h-4 w-4" />
@@ -188,7 +186,7 @@ export function AIChat() {
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your question…"
+              placeholder={t("chat.placeholder")}
               maxLength={1000}
               className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-[14px] text-white outline-none transition-colors placeholder:text-stone-500 focus:border-brand/60 focus-brand"
             />
