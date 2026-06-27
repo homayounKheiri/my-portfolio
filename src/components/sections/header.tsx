@@ -56,8 +56,8 @@ export function Header({
 
   const barClass =
     view === "projects" || scrolled
-      ? "glass-strong shadow-[0_10px_40px_-20px_rgba(17,24,39,0.18)]"
-      : "bg-white/60 backdrop-blur-xl border border-white/40";
+      ? "bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_10px_40px_-20px_rgba(17,24,39,0.18)]"
+      : "bg-transparent";
 
   const navItems: { label: string; active: boolean; onClick: () => void }[] = [
     { label: "Home", active: view === "home", onClick: goHome },

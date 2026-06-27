@@ -9,7 +9,6 @@ import {
   CalendarClock,
   Users,
 } from "lucide-react";
-import { useCursorGlow } from "@/hooks/use-cursor-glow";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -53,32 +52,11 @@ const CARDS: Card[] = [
 ];
 
 export function ChallengeSolution() {
-  const { ref, glowRef, size } = useCursorGlow<HTMLElement>({
-    size: 520,
-    opacity: 0.4,
-    smoothing: 0.12,
-  });
-
   return (
     <section
       id="flow"
-      ref={ref}
       className="section-light relative px-4 py-24 sm:px-6 sm:py-32"
     >
-      {/* Soft orange cursor glow (follows mouse) */}
-      <div
-        ref={glowRef}
-        aria-hidden
-        className="pointer-events-none absolute left-0 top-0 z-0 rounded-full opacity-0 transition-opacity duration-700"
-        style={{
-          width: size,
-          height: size,
-          background:
-            "radial-gradient(circle at center, rgba(249,115,22,0.5), rgba(249,115,22,0.18) 35%, transparent 70%)",
-          filter: "blur(60px)",
-          willChange: "transform, opacity",
-        }}
-      />
       <div className="relative z-10 mx-auto w-full max-w-3xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">

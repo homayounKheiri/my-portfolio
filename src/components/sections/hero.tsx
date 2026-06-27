@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, MessageSquare, ArrowUpRight } from "lucide-react";
-import { useCursorGlow } from "@/hooks/use-cursor-glow";
 import { AutomationFlow } from "./automation-flow";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -16,11 +15,6 @@ function scrollToId(id: string) {
 
 export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
   const reduce = useReducedMotion();
-  const { ref, glowRef, size } = useCursorGlow<HTMLDivElement>({
-    size: 560,
-    opacity: 0.45,
-    smoothing: 0.12,
-  });
 
   const container = {
     hidden: {},
@@ -40,11 +34,10 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
   return (
     <section
       id="hero"
-      ref={ref}
       className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-16 sm:px-6 sm:pt-32"
     >
       {/* Active background: animated panning grid + soft sheen */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan"
           animate={reduce ? undefined : { opacity: [0.5, 0.8, 0.5] }}
@@ -60,21 +53,6 @@ export function Hero({ onViewProjects }: { onViewProjects: () => void }) {
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
-
-      {/* Soft orange cursor glow */}
-      <div
-        ref={glowRef}
-        aria-hidden
-        className="pointer-events-none absolute left-0 top-0 z-0 rounded-full opacity-0 transition-opacity duration-700"
-        style={{
-          width: size,
-          height: size,
-          background:
-            "radial-gradient(circle at center, rgba(249,115,22,0.5), rgba(249,115,22,0.18) 35%, transparent 70%)",
-          filter: "blur(60px)",
-          willChange: "transform, opacity",
-        }}
-      />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         {/* LEFT — typography headline (center on mobile, left on desktop) */}

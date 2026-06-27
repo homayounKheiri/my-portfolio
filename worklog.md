@@ -628,3 +628,23 @@ Work Log:
 
 Stage Summary:
 - Header always has a blur backdrop filter. Chatbox is wider (560px) and shorter (280px). Cursor-follow orange blur glow now present in both Hero and Why Automation sections. Mobile hero titles confirmed centered. All verified.
+
+---
+Task ID: 33
+Agent: orchestrator
+Task: (1) Mobile hero full center alignment. (2) Continuous cursor glow spanning Hero + Why Automation without clipping. (3) Header backdrop-blur on scroll with smooth transition.
+
+Work Log:
+- header.tsx: reverted to transparent at top ("bg-transparent"), frosted glass when scrolled/projects view ("bg-white/70 backdrop-blur-xl border border-white/50 shadow-..."). Smooth transition via the existing duration-500. Verified: at top backdrop=none, after scroll backdrop=blur(24px).
+- Created continuous-cursor-glow.tsx: a SINGLE fixed-position glow div (z-30, mix-blend-mode: screen, blur(60px), 560px) that tracks mouse via window mousemove + rAF smoothing. Uses getBoundingClientRect to check if the mouse is within #hero or #flow; shows (opacity 0.35) when inside either, fades out when outside. position:fixed means it's NEVER clipped by section overflow.
+- Removed per-section useCursorGlow from both hero.tsx and challenge-solution.tsx (removed the import, the hook call, the ref, and the glow div). The grid bg div in hero now has its own overflow-hidden (so grid stays clipped) while the hero section itself retains overflow-hidden for layout but the glow is outside (fixed) so not affected.
+- page.tsx: added <ContinuousCursorGlow sectionIds={["hero","flow"]} /> in the home view, before Hero. This single glow spans both sections seamlessly.
+- Mobile hero centering: already items-center/text-center on mobile (sm:items-start/sm:text-left on desktop). Re-verified at 390px: alignItems=center, textAlign=center. VLM-confirmed: headline, subtitle, buttons all centered; infographic below text; clean balanced spacing.
+- Verified with Agent Browser:
+  - Header: transparent at top (bg rgba(0,0,0,0), backdrop none) → frosted glass after scroll (backdrop blur(24px), bg white/70). Smooth transition.
+  - Continuous glow: fixed position, opacity 0.35 when mouse over hero, stays 0.35 when mouse over flow (seamless across boundary, not clipped). Old per-section glow removed (0 blur divs in hero).
+  - Mobile: hero centered (VLM-confirmed all elements centered + clean spacing).
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Header is transparent at top, smoothly transitions to frosted-glass (backdrop-blur) on scroll. Continuous cursor glow spans Hero + Why Automation as one seamless area (fixed position, never clipped at the Hero bottom boundary). Mobile hero is fully center-aligned (headline, subtitle, buttons, clean spacing). All verified.
