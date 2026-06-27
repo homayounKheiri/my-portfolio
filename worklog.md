@@ -476,3 +476,37 @@ Work Log:
 
 Stage Summary:
 - Hero rewritten as a genuinely premium, authoritative consultancy hero: editorial headline "Intelligent automation, built around your business." with refined typography (medium/semibold weights, tight tracking), uppercase eyebrow, lighter confident subtitle. VLM-confirmed premium and top-tier. Verified.
+
+---
+Task ID: 26
+Agent: orchestrator
+Task: Build two-column Hero — typography headline (99%/Automated/AI emphasis) on left + interactive automation-flow infographic on right.
+
+Work Log:
+- Created src/components/sections/automation-flow.tsx: a clean premium infographic card.
+  - Vertical flow of 5 connected nodes: Email → AI → Automation → Database → Dashboard, each as a small card (icon + label + sub-label + pulsing status dot).
+  - The "AI" node highlighted with a gradient orange badge; others muted secondary.
+  - Thin vertical connector lines between nodes with a slow flowing orange dot (1.6s loop, staggered delays) — represents data flow.
+  - "Live workflow / Lead automation pipeline" header + green Active pulsing badge.
+  - Footer stat strip: "Processed today 1,284 +12%".
+  - Subtle entrance animations, respects prefers-reduced-motion.
+- Rewrote hero.tsx as a two-column grid (lg:grid-cols-[1.1fr_0.9fr]).
+  - LEFT: refined eyebrow ("AI Automation Consultancy"), typography-driven headline with strong hierarchy:
+    - "99%" oversized bold orange (100px md) + "of repetitive tasks" small muted (baseline-aligned inline)
+    - "in a business can be" small light connector
+    - "automated" large bold orange (64px)
+    - "and powered by" small light connector
+    - "AI" oversized bold orange (78px) + soft charcoal period
+    - Subtitle (lighter): "Web Developer and Consultant and Specialist in AI Business Intelligence and Automation."
+    - Two CTAs (View Projects / Start a Conversation).
+  - RIGHT: the AutomationFlow infographic.
+  - Kept animated grid bg + soft orange cursor glow.
+- Verified with Agent Browser + VLM:
+  - Two columns confirmed (gridTemplateColumns = 2 cols).
+  - Headline reads: "99% | of repetitive tasks | in a business can be | automated | and powered by | AI."
+  - 5 flow nodes present; animated flowing dots (16 brand dots = 5 status + 5 flowing + footer + others).
+  - VLM: "Clean, premium SaaS hero, two-column layout. Left headline with 99%/automated/AI in orange. Right live workflow infographic with connected nodes (Email/AI/Automation/Database/Dashboard), flowing dots, pulsing status. Balanced, elegant, high-end and modern."
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Hero is now a balanced two-column layout: typography-driven headline (99%/Automated/AI emphasized) on the left + a clean interactive automation-flow infographic (5 connected nodes with flowing data + pulsing status) on the right. Premium, elegant, interactive — verified by VLM as high-end SaaS.

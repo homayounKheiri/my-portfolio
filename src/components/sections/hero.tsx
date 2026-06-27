@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, MessageSquare, ArrowUpRight } from "lucide-react";
 import { useCursorGlow } from "@/hooks/use-cursor-glow";
+import { AutomationFlow } from "./automation-flow";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -17,14 +18,14 @@ export function Hero() {
   const reduce = useReducedMotion();
   const { ref, glowRef, size } = useCursorGlow<HTMLDivElement>({
     size: 560,
-    opacity: 0.5,
+    opacity: 0.45,
     smoothing: 0.12,
   });
 
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: 0.15 },
+      transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: 0.12 },
     },
   };
   const item = {
@@ -40,27 +41,27 @@ export function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-20 sm:px-6"
+      className="section-light relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-28 pb-16 sm:px-6 sm:pt-32"
     >
-      {/* Active background: animated panning grid + slow breathing sheen */}
+      {/* Active background: animated panning grid + soft sheen */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <motion.div
           className="absolute inset-0 bg-grid bg-grid-mask animate-grid-pan"
-          animate={reduce ? undefined : { opacity: [0.55, 0.9, 0.55] }}
+          animate={reduce ? undefined : { opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 50% at 50% 38%, rgba(249,115,22,0.06), transparent 70%)",
+              "radial-gradient(60% 50% at 30% 40%, rgba(249,115,22,0.05), transparent 70%)",
           }}
           animate={reduce ? undefined : { opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      {/* Soft orange cursor glow (follows mouse, low opacity, large blur) */}
+      {/* Soft orange cursor glow */}
       <div
         ref={glowRef}
         aria-hidden
@@ -75,14 +76,15 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        {/* LEFT — typography headline */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center"
+          className="flex flex-col items-start text-left"
         >
-          {/* Refined eyebrow */}
+          {/* Eyebrow */}
           <motion.div variants={item}>
             <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-white/70 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted backdrop-blur-sm">
               <span className="relative flex h-1.5 w-1.5">
@@ -93,31 +95,56 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline — editorial, authoritative, refined */}
+          {/* Headline — typography-driven, multi-line, strong hierarchy */}
           <motion.h1
             variants={item}
-            className="mt-8 text-balance text-center text-[40px] font-medium leading-[1.08] tracking-[-0.02em] text-ink sm:text-[54px] md:text-[64px] lg:text-[72px]"
+            className="mt-7 font-sans tracking-[-0.02em] text-ink"
           >
-            Intelligent automation,
-            <br />
-            <span className="font-semibold text-brand">
-              built around your business.
+            {/* Line 1 — 99% oversized + connector */}
+            <span className="flex items-baseline gap-3 flex-wrap">
+              <span className="text-[68px] font-bold leading-[0.9] text-brand sm:text-[88px] md:text-[100px]">
+                99%
+              </span>
+              <span className="text-[19px] font-medium leading-tight text-ink-muted sm:text-[21px] md:text-[23px]">
+                of repetitive tasks
+              </span>
+            </span>
+
+            {/* Line 2 — soft connector */}
+            <span className="mt-2 block text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[18px] md:text-[19px]">
+              in a business can be
+            </span>
+
+            {/* Line 3 — Automated, large, accent */}
+            <span className="mt-1 block text-[44px] font-bold leading-[0.95] tracking-tight text-brand sm:text-[56px] md:text-[64px]">
+              automated
+            </span>
+
+            {/* Line 4 — soft connector */}
+            <span className="mt-2 block text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[18px] md:text-[19px]">
+              and powered by
+            </span>
+
+            {/* Line 5 — AI, large, accent */}
+            <span className="mt-1 block text-[52px] font-bold leading-[0.9] text-brand sm:text-[68px] md:text-[78px]">
+              AI
+              <span className="text-ink/30">.</span>
             </span>
           </motion.h1>
 
-          {/* Subtitle — specific and confident */}
+          {/* Subtitle — smaller, lighter */}
           <motion.p
             variants={item}
-            className="mt-7 max-w-xl text-pretty text-center text-[16px] font-light leading-relaxed text-ink-muted sm:text-[17px]"
+            className="mt-7 max-w-md text-pretty text-[14.5px] font-light leading-relaxed text-ink-muted sm:text-[15.5px]"
           >
-            I design and ship AI systems that remove repetitive work, connect
-            your tools, and give your team back the hours that matter — measured
-            in real outcomes, not hype.
+            Web Developer and Consultant and Specialist in AI Business
+            Intelligence and Automation.
           </motion.p>
 
+          {/* CTAs */}
           <motion.div
             variants={item}
-            className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+            className="mt-8 flex w-full flex-col items-start gap-3 sm:w-auto sm:flex-row"
           >
             <button
               onClick={() => scrollToId("projects")}
@@ -138,6 +165,16 @@ export function Hero() {
               />
             </button>
           </motion.div>
+        </motion.div>
+
+        {/* RIGHT — interactive automation flow infographic */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
+          className="relative"
+        >
+          <AutomationFlow />
         </motion.div>
       </div>
     </section>
