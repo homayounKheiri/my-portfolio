@@ -92,46 +92,16 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Typography-driven hero headline — soft & attractive */}
+          {/* Hero headline — clean, readable sentence with keyword emphasis */}
           <motion.h1
             variants={item}
-            className="mt-8 flex flex-col items-center font-sans tracking-tight text-ink"
+            className="mt-8 max-w-3xl text-balance text-center text-[34px] font-semibold leading-[1.18] tracking-tight text-ink sm:text-[44px] md:text-[52px] lg:text-[58px]"
           >
-            {/* Line 1 — 99% accent + soft connector */}
-            <span className="flex items-baseline gap-2.5 flex-wrap justify-center">
-              <span className="text-[64px] font-bold leading-[0.95] text-brand sm:text-[80px] md:text-[92px]">
-                99%
-              </span>
-              <span className="text-[18px] font-medium leading-tight text-ink-muted sm:text-[20px] md:text-[22px]">
-                of repetitive tasks
-              </span>
-            </span>
-
-            {/* Line 2 — soft connector */}
-            <span className="mt-2 text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[19px] md:text-[20px]">
-              in a business can be
-            </span>
-
-            {/* Line 3 — Automated (mixed weight, charcoal + orange accent dot) */}
-            <span className="mt-1.5 flex items-baseline gap-1">
-              <span className="text-[40px] font-semibold leading-none tracking-tight text-ink sm:text-[52px] md:text-[60px]">
-                automated
-              </span>
-              <span className="text-[40px] font-bold leading-none text-brand sm:text-[52px] md:text-[60px]">
-                .
-              </span>
-            </span>
-
-            {/* Line 4 — soft connector */}
-            <span className="mt-2.5 text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[19px] md:text-[20px]">
-              and powered by
-            </span>
-
-            {/* Line 5 — AI accent */}
-            <span className="mt-1.5 text-[44px] font-bold leading-none text-brand sm:text-[56px] md:text-[64px]">
-              AI
-              <span className="text-ink/30">.</span>
-            </span>
+            <span className="font-bold text-brand">99%</span> of repetitive
+            tasks in a business can be{" "}
+            <span className="font-bold text-brand">automated</span> and powered
+            by <span className="font-bold text-brand">AI</span>
+            <span className="text-ink/40">.</span>
           </motion.h1>
 
           <motion.div

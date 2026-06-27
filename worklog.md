@@ -412,3 +412,25 @@ Work Log:
 
 Stage Summary:
 - Hero headline softened: smaller balanced sizes, lowercase "automated", mixed weights, mostly charcoal with subtle orange accents on 99% and AI. Now attractive, elegant, and premium. Verified.
+
+---
+Task ID: 23
+Agent: orchestrator
+Task: Rewrite Hero headline to be fully readable — clean sentence with elegant keyword emphasis (previous multi-line fragmented version was unreadable).
+
+Work Log:
+- hero.tsx: replaced the fragmented multi-line composition with a single clean, balanced headline sentence.
+  - One continuous sentence: "99% of repetitive tasks in a business can be automated and powered by AI."
+  - Uniform size (58px lg) and weight (semibold) for the whole sentence — readable, no mismatched line sizes.
+  - Keywords 99%, automated, AI emphasized with font-bold + brand orange; rest of sentence in charcoal ink.
+  - Subtle charcoal/40 period at the end.
+  - text-balance + text-center + max-w-3xl for clean wrapping, leading-[1.18] for comfortable line height.
+- Verified with VLM:
+  - "Fully readable as one clean sentence (not fragmented)."
+  - Reads exactly: "99% of repetitive tasks in a business can be automated and powered by AI."
+  - "99%, automated, and AI are orange, the rest is charcoal."
+  - "Elegant and premium, not harsh or ugly."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Hero headline is now a clean, fully readable sentence with elegant orange emphasis on the three keywords (99%, automated, AI). Readable, premium, attractive. Verified.
