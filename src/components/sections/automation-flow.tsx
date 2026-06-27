@@ -2,139 +2,209 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  Mail,
   Sparkles,
-  Workflow,
+  MessageSquare,
+  Mail,
   Database,
-  LineChart,
-  Users,
+  CalendarClock,
+  FileBarChart,
+  Globe,
+  Workflow,
 } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Minimal interactive infographic representing an AI-powered automation flow.
- * Clean premium cards (Email → AI → Automation → Database → Dashboard)
- * connected by thin animated lines with slow data flow + pulsing status.
+ * Minimal circular infographic: a central AI core with 8 circular nodes
+ * evenly distributed around it, connected by thin curved lines.
+ * Subtle animations: rotating rings, pulsing nodes, flowing dots,
+ * gentle breathing of the core. Purely circular UI, premium & futuristic.
  */
 export function AutomationFlow() {
   const reduce = useReducedMotion();
 
+  // 8 nodes evenly placed around the circle (every 45°).
+  // Start at -90° (top) and go clockwise.
   const NODES = [
-    { icon: Mail, label: "Email", sub: "inbound", status: "live" },
-    { icon: Sparkles, label: "AI", sub: "intake", status: "live" },
-    { icon: Workflow, label: "Automation", sub: "orchestrate", status: "live" },
-    { icon: Database, label: "Database", sub: "store", status: "live" },
-    { icon: LineChart, label: "Dashboard", sub: "report", status: "live" },
+    { icon: MessageSquare, label: "Chat", angle: -90 },
+    { icon: Mail, label: "Email", angle: -45 },
+    { icon: Database, label: "Database", angle: 0 },
+    { icon: FileBarChart, label: "Reports", angle: 45 },
+    { icon: CalendarClock, label: "Calendar", angle: 90 },
+    { icon: Globe, label: "Website", angle: 135 },
+    { icon: Workflow, label: "Automation", angle: 180 },
+    { icon: Sparkles, label: "AI", angle: 225 },
   ] as const;
 
+  // Geometry (in % of the square container)
+  const RADIUS = 38; // distance from center to node center
+  const CENTER = 50;
+
+  const polar = (angleDeg: number, r: number) => {
+    const rad = (angleDeg * Math.PI) / 180;
+    return {
+      x: CENTER + r * Math.cos(rad),
+      y: CENTER + r * Math.sin(rad),
+    };
+  };
+
   return (
-    <div className="relative w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
-        className="relative overflow-hidden rounded-3xl border border-border bg-white/80 p-6 shadow-[0_40px_90px_-50px_rgba(17,24,39,0.4)] backdrop-blur-xl sm:p-8"
+    <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+      {/* Outer soft glow behind everything */}
+      <div
+        aria-hidden
+        className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.10),transparent_65%)]"
+      />
+
+      {/* Rotating dashed rings (decorative) */}
+      {!reduce && (
+        <>
+          <motion.div
+            aria-hidden
+            className="absolute inset-[6%] rounded-full border border-dashed border-ink/10"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute inset-[16%] rounded-full border border-dashed border-brand/20"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute inset-[26%] rounded-full border border-ink/8"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+          />
+        </>
+      )}
+
+      {/* SVG: curved connectors + flowing dots */}
+      <svg
+        viewBox="0 0 100 100"
+        className="absolute inset-0 h-full w-full"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
       >
-        {/* top accent line */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/40 to-transparent" />
+        <defs>
+          <linearGradient id="conn" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="rgba(249,115,22,0.05)" />
+            <stop offset="50%" stopColor="rgba(249,115,22,0.45)" />
+            <stop offset="100%" stopColor="rgba(249,115,22,0.05)" />
+          </linearGradient>
+        </defs>
 
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-ink-muted">
-              Live workflow
-            </p>
-            <p className="mt-0.5 text-[15px] font-semibold tracking-tight text-ink">
-              Lead automation pipeline
-            </p>
-          </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-green-600">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
-            </span>
-            Active
-          </span>
-        </div>
+        {NODES.map((node, i) => {
+          const p = polar(node.angle, RADIUS);
+          // Quadratic curve from center to node, with a slight bow.
+          const midAngle = node.angle + 12;
+          const mid = polar(midAngle, RADIUS * 0.55);
+          const d = `M ${CENTER} ${CENTER} Q ${mid.x} ${mid.y} ${p.x} ${p.y}`;
+          return (
+            <g key={node.label}>
+              <path
+                d={d}
+                stroke="url(#conn)"
+                strokeWidth="0.5"
+                strokeLinecap="round"
+              />
+              {/* flowing dot along the curve */}
+              {!reduce && (
+                <motion.circle
+                  r="0.9"
+                  fill="#F97316"
+                  animate={{
+                    offsetDistance: ["0%", "100%"],
+                    opacity: [0, 1, 1, 0],
+                  }}
+                  transition={{
+                    duration: 2.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3,
+                  }}
+                  style={{
+                    offsetPath: `path("${d}")`,
+                    filter: "drop-shadow(0 0 2px rgba(249,115,22,0.9))",
+                  } as React.CSSProperties}
+                />
+              )}
+            </g>
+          );
+        })}
+      </svg>
 
-        {/* Flow — vertical on small screens, vertical stack with connectors */}
-        <div className="relative mt-7 flex flex-col gap-0">
-          {NODES.map((node, i) => {
-            const Icon = node.icon;
-            const isLast = i === NODES.length - 1;
-            return (
-              <div key={node.label} className="relative">
-                {/* Node card */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, ease: EASE, delay: 0.35 + i * 0.1 }}
-                  className="relative z-10 flex items-center gap-3 rounded-2xl border border-border bg-white px-4 py-3 shadow-[0_6px_20px_-12px_rgba(17,24,39,0.18)]"
-                >
-                  <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
-                      node.label === "AI"
-                        ? "bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_8px_20px_-8px_rgba(249,115,22,0.65)]"
-                        : "bg-secondary text-ink"
-                    }`}
-                  >
-                    <Icon className="h-4.5 w-4.5" strokeWidth={1.9} />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[13.5px] font-semibold leading-tight text-ink">
-                      {node.label}
-                    </p>
-                    <p className="text-[10.5px] uppercase tracking-wider text-ink-muted">
-                      {node.sub}
-                    </p>
-                  </div>
-                  {/* pulsing status */}
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
-                  </span>
-                </motion.div>
-
-                {/* Connector line + flowing dot */}
-                {!isLast && (
-                  <div className="relative ml-[2.6rem] h-7 w-px">
-                    <div className="absolute inset-0 bg-gradient-to-b from-border to-border/40" />
-                    {!reduce && (
-                      <motion.span
-                        className="absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-brand shadow-[0_0_8px_rgba(249,115,22,0.9)]"
-                        animate={{ top: ["-2px", "26px"] }}
-                        transition={{
-                          duration: 1.6,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: 0.5 + i * 0.35,
-                        }}
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Footer stat strip */}
-        <div className="mt-6 flex items-center justify-between rounded-2xl border border-border bg-[#FAFAF9] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <Users className="h-4 w-4 text-brand" strokeWidth={1.9} />
-            <span className="text-[12px] font-medium text-ink-muted">
-              Processed today
-            </span>
-          </div>
-          <span className="text-[15px] font-bold tracking-tight text-ink">
-            1,284
-            <span className="ml-1 text-[11px] font-semibold text-brand">
-              +12%
-            </span>
-          </span>
-        </div>
+      {/* Central AI core — breathing + pulsing */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+      >
+        <motion.div
+          animate={
+            reduce
+              ? undefined
+              : { scale: [1, 1.06, 1], opacity: [1, 0.92, 1] }
+          }
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_16px_40px_-12px_rgba(249,115,22,0.7)] sm:h-24 sm:w-24"
+        >
+          <Sparkles className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.8} />
+          {/* pulsing ring */}
+          {!reduce && (
+            <motion.span
+              className="absolute inset-0 rounded-full border border-brand/50"
+              animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut" }}
+            />
+          )}
+        </motion.div>
+        <p className="mt-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted">
+          AI Core
+        </p>
       </motion.div>
+
+      {/* Surrounding nodes */}
+      {NODES.map((node, i) => {
+        const p = polar(node.angle, RADIUS);
+        const Icon = node.icon;
+        return (
+          <motion.div
+            key={node.label}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${p.x}%`, top: `${p.y}%` }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              ease: EASE,
+              delay: 0.4 + i * 0.08,
+            }}
+          >
+            <motion.div
+              animate={
+                reduce
+                  ? undefined
+                  : { scale: [1, 1.08, 1] }
+              }
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.25,
+              }}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-white text-ink shadow-[0_8px_22px_-10px_rgba(17,24,39,0.25)] sm:h-14 sm:w-14"
+            >
+              <Icon className="h-5 w-5 text-ink/70 sm:h-5.5 sm:w-5.5" strokeWidth={1.9} />
+            </motion.div>
+            <p className="mt-1.5 text-center text-[10px] font-medium text-ink-muted">
+              {node.label}
+            </p>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

@@ -510,3 +510,28 @@ Work Log:
 
 Stage Summary:
 - Hero is now a balanced two-column layout: typography-driven headline (99%/Automated/AI emphasized) on the left + a clean interactive automation-flow infographic (5 connected nodes with flowing data + pulsing status) on the right. Premium, elegant, interactive — verified by VLM as high-end SaaS.
+
+---
+Task ID: 27
+Agent: orchestrator
+Task: Replace vertical flow infographic with a minimal circular radial infographic — central AI core + 8 circular nodes around it, curved connectors, rotating rings, flowing dots, breathing core.
+
+Work Log:
+- Rewrote automation-flow.tsx as a circular radial infographic:
+  - Central AI core: gradient-orange circle with Sparkles icon, gentle breathing (scale 1→1.06 loop), pulsing ring expanding outward, "AI CORE" label.
+  - 8 circular nodes evenly distributed every 45° around the center: Chat, Email, Database, Reports, Calendar, Website, Automation, AI. Each is a white circular badge with an outline icon + label, with a soft pulsing scale animation (staggered).
+  - Curved connectors: SVG quadratic Bézier paths from center to each node (slight bow), gradient orange stroke.
+  - Flowing dots: a small orange dot travels along each connector path via CSS offset-path + motion offsetDistance animation (staggered, 2.4s loop) with glow drop-shadow.
+  - 3 rotating decorative rings: two dashed (ink/10 and brand/20) rotating opposite directions (60s/45s), one solid ink/8 (80s). Slow, barely noticeable.
+  - Outer soft radial glow behind the whole composition.
+  - Purely circular UI — no boxes, rectangles, dashboards, or flowcharts.
+  - Respects prefers-reduced-motion (disables rings/dots/breathing).
+  - Fixed a duplicate style prop lint error by merging the two style objects on motion.circle.
+- Verified with Agent Browser + VLM:
+  - "AI CORE" present + all 8 node labels (Chat, Email, Database, Reports, Calendar, Website, Automation, AI).
+  - 2 dashed rotating rings + 43 SVG path elements (connectors + gradient defs).
+  - VLM: "Central orange circular AI CORE at center, surrounded by circular nodes (Chat, Email, Database, Automation, Website, Reports, Calendar, AI) connected by curved lines. No boxes/rectangles. Premium and minimalist, clean modern layout, ample white space."
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Hero right side is now a minimal circular radial infographic: central breathing AI core with 8 circular process nodes around it, connected by thin curved lines with flowing dots, plus slow rotating dashed rings. Purely circular, premium, futuristic, minimalist — communicates AI as the central intelligence connecting every part of the business. Verified.
