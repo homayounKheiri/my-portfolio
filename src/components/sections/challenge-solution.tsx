@@ -54,7 +54,7 @@ const CARDS: Card[] = [
 export function ChallengeSolution() {
   return (
     <section id="flow" className="section-light relative px-4 py-24 sm:px-6 sm:py-32">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-3xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
           <motion.span
@@ -88,8 +88,8 @@ export function ChallengeSolution() {
           </motion.p>
         </div>
 
-        {/* 2-column grid (3 rows of 2 cards) — extra top padding for overlapping icons */}
-        <div className="mt-20 grid grid-cols-1 gap-7 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-9">
+        {/* 2-column grid — narrow square-ish cards, generous gaps */}
+        <div className="mt-20 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14">
           {CARDS.map((card, i) => (
             <motion.div
               key={card.question}
@@ -112,7 +112,7 @@ export function ChallengeSolution() {
 function StatementCard({ card }: { card: Card }) {
   const Icon = card.icon;
   return (
-    <div className="relative flex h-full flex-col rounded-2xl border border-border bg-white px-5 pb-5 pt-9 shadow-[0_10px_36px_-14px_rgba(17,24,39,0.14)] sm:px-6 sm:pb-6 sm:pt-10">
+    <div className="relative flex h-full flex-col rounded-2xl border border-border bg-white px-6 pb-7 pt-10 shadow-[0_10px_36px_-14px_rgba(17,24,39,0.14)] sm:px-7 sm:pb-8 sm:pt-11">
       {/* Large icon overlapping the top edge */}
       <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_10px_24px_-8px_rgba(249,115,22,0.65)] sm:left-6 sm:h-14 sm:w-14">
         <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.9} />

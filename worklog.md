@@ -346,3 +346,22 @@ Work Log:
 
 Stage Summary:
 - Card UI renewed: each card now features a large gradient-orange icon badge that overlaps the card's top edge — a modern, attractive focal point. 2-column grid preserved. Verified.
+
+---
+Task ID: 20
+Agent: orchestrator
+Task: Decrease card width and increase gaps between cards for a more square-ish proportion.
+
+Work Log:
+- challenge-solution.tsx: narrowed the section container max-w-5xl → max-w-3xl so each card column is narrower.
+- Increased gaps: grid gap from sm:gap-x-6 sm:gap-y-9 → gap-x-10 gap-y-12 / sm:gap-x-12 sm:gap-y-14 (horizontal 48px, vertical 56px measured).
+- Increased card vertical padding (px-5/pb-5/pt-9 → px-6/pb-7/pt-10 sm:px-7/pb-8/pt-11) so cards are taller and more square/balanced in proportion.
+- Verified with Agent Browser + VLM:
+  - Card width 360px (down from 500px); height 167px (up from 133px) — more square-ish.
+  - Horizontal gap 48px; vertical gap 56px (both up from ~32px).
+  - Big orange icon still overlapping top edge (preserved).
+  - VLM-confirmed all 4 points: narrower/compact, generous gaps, more square/balanced, icon still overlapping top.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Why Automation cards are now narrower (360px) with generous gaps between them (48px H / 56px V) and a more square/balanced proportion. Overlapping top icon preserved. Verified.
