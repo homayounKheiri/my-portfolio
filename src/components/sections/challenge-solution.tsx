@@ -197,8 +197,11 @@ function StatementCard({ card }: { card: Card }) {
   const Icon = card.icon;
   return (
     <div className="relative flex h-full flex-col rounded-2xl border border-border bg-white px-6 pb-7 pt-10 shadow-[0_10px_36px_-14px_rgba(17,24,39,0.14)] sm:px-7 sm:pb-8 sm:pt-11">
-      {/* Large icon overlapping the top edge */}
-      <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_10px_24px_-8px_rgba(249,115,22,0.65)] sm:left-6 sm:h-14 sm:w-14">
+      {/* Large icon overlapping the top edge — right in EN (LTR), left in FA (RTL) */}
+      <span
+        className="absolute -top-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-orange-400 text-white shadow-[0_10px_24px_-8px_rgba(249,115,22,0.65)] sm:h-14 sm:w-14"
+        style={{ insetInlineEnd: "1.25rem" }}
+      >
         <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.9} />
       </span>
 

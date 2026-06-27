@@ -867,3 +867,19 @@ Work Log:
 
 Stage Summary:
 - Infographic no longer shows any "AI Core" text — just the visual core. Contact form title now reads the requested Persian text (with EN equivalent), with "5 minutes"/"۵ دقیقه" highlighted in gradient orange. Verified.
+
+---
+Task ID: 45
+Agent: orchestrator
+Task: Why Automation overlayed icon — right in English, left in Persian.
+
+Work Log:
+- challenge-solution.tsx StatementCard: changed the icon's horizontal positioning from `left-5 sm:left-6` (always left) to `style={{ insetInlineEnd: "1.25rem" }}` — a CSS logical property that maps to `right` in LTR (English) and `left` in RTL (Persian).
+- Initial attempt with Tailwind's `end-5` utility didn't work (icon stayed on wrong side), so used the raw CSS logical property `insetInlineEnd` via inline style which is guaranteed to respect the `dir` attribute.
+- Verified with Agent Browser:
+  - English (LTR): icon on the RIGHT ✓
+  - Persian (RTL): icon on the LEFT ✓
+  - `bun run lint` clean.
+
+Stage Summary:
+- The overlayed icon on Why Automation cards now automatically positions on the right for English and on the left for Persian, using the CSS logical property `insetInlineEnd`. Verified.
