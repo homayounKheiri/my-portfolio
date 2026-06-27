@@ -54,24 +54,26 @@ export function Contact() {
 
           <div className="relative">
             {/* Eyebrow */}
-            <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand">
-              <span className="h-px w-6 bg-brand/50" />
-              Contact
-            </span>
+            <div className="flex justify-center lg:justify-start">
+              <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-brand">
+                <span className="h-px w-6 bg-brand/50" />
+                Contact
+              </span>
+            </div>
 
             {/* Title */}
-            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px]">
+            <h2 className="mt-4 text-balance text-center text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px] lg:text-left">
               Leave your number and expect a reply within{" "}
               <span className="text-gradient-brand">5&nbsp;minutes</span> :)
             </h2>
 
-            <p className="mt-3 max-w-lg text-[14.5px] leading-relaxed text-ink-muted">
+            <p className="mt-3 max-w-lg mx-auto text-center text-[14.5px] leading-relaxed text-ink-muted lg:mx-0 lg:text-left">
               No forms to fill, no back-and-forth. Just drop your number and
               I&apos;ll reach out personally — fast.
             </p>
 
             {/* Form / success */}
-            <div className="mt-8">
+            <div className="mt-8 mx-auto max-w-xl lg:mx-0">
               <AnimatePresence mode="wait">
                 {status === "done" ? (
                   <motion.div

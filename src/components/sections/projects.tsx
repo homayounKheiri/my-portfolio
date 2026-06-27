@@ -42,8 +42,8 @@ export function Projects() {
     <section id="projects" className="section-dark relative px-4 py-24 sm:px-6 sm:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
       <div className="relative mx-auto w-full max-w-6xl">
-        {/* Section header */}
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+        {/* Section header — center below lg, left+right at lg+ */}
+        <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
           <div className="max-w-xl">
             <motion.span
               initial={{ opacity: 0, y: 12 }}
@@ -113,7 +113,7 @@ export function Projects() {
             className="mt-10"
           >
             {tab === "automation" && (
-              <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400">
+              <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-left">
                 Behind every project lies a real challenge and an intelligent
                 solution. Select a project to explore it.
               </p>

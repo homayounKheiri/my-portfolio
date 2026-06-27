@@ -648,3 +648,25 @@ Work Log:
 
 Stage Summary:
 - Header is transparent at top, smoothly transitions to frosted-glass (backdrop-blur) on scroll. Continuous cursor glow spans Hero + Why Automation as one seamless area (fixed position, never clipped at the Hero bottom boundary). Mobile hero is fully center-aligned (headline, subtitle, buttons, clean spacing). All verified.
+
+---
+Task ID: 34
+Agent: orchestrator
+Task: (1) Center all section headings/descriptions/CTAs below lg, desktop alignment at lg+. (2) Page-wide cursor glow (never clipped after hero). (3) Remove footer. (4) Projects dark background full-width unified surface.
+
+Work Log:
+- continuous-cursor-glow.tsx: removed the sectionIds restriction entirely. The glow is now page-wide — activates on ANY window mousemove, fades out only on window mouseleave. Still position:fixed + z-30 + mix-blend-mode:screen + blur(60px). Never clipped by any section. Verified: opacity 0.35 when mouse over contact section (after scrolling past hero).
+- page.tsx: removed <Footer/> import and render. Moved <ContinuousCursorGlow/> to the top level (outside main) so it spans the whole page in both home and projects views. Removed the sectionIds prop.
+- projects.tsx: section header changed from "flex-col items-start sm:flex-row" to "flex-col items-center text-center lg:flex-row lg:items-end lg:justify-between lg:text-left" — centered below lg, desktop layout at lg+. The automation message paragraph: text-center mx-auto lg:mx-0 lg:text-left. The dark section-dark background already spans full width (section is full-width; only inner content is max-w-6xl) — confirmed by VLM as full-width unified surface framing the cards.
+- contact.tsx: eyebrow wrapped in flex justify-center lg:justify-start. Title: text-center lg:text-left. Subtitle: text-center mx-auto lg:mx-0 lg:text-left. Form container: mx-auto max-w-xl lg:mx-0 so it centers below lg.
+- ai-chat.tsx + challenge-solution.tsx: already items-center text-center (works for both mobile and desktop since they're centered designs) — no change needed.
+- Verified with Agent Browser + VLM:
+  - Footer REMOVED (document.querySelector('footer') = null).
+  - Cursor glow present page-wide; opacity 0.35 over contact section after scrolling past hero.
+  - At 800px (below lg): Contact title textAlign=center, Projects header textAlign=center.
+  - At 1280px (lg+): Contact title textAlign=left, Projects header textAlign=left.
+  - Projects: dark charcoal background spans full viewport width, cards framed within, clean and unified (VLM-confirmed).
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- All section headings/descriptions/CTAs center below lg, switch to desktop alignment at lg+. Cursor glow is page-wide (fixed, never clipped, visible across all sections as you scroll). Footer removed entirely. Projects dark background is a full-width unified surface framing the cards. All verified.
