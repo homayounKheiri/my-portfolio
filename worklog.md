@@ -434,3 +434,24 @@ Work Log:
 
 Stage Summary:
 - Hero headline is now a clean, fully readable sentence with elegant orange emphasis on the three keywords (99%, automated, AI). Readable, premium, attractive. Verified.
+
+---
+Task ID: 24
+Agent: orchestrator
+Task: Completely rewrite the Hero headline from scratch based on correct hero design principles.
+
+Work Log:
+- hero.tsx: removed the long "99% of repetitive tasks..." statement entirely. Wrote a clean, properly-designed hero.
+  - Headline (two-line, strong hierarchy): "Automate your business." (charcoal) / "Powered by AI." (orange accent). Large bold (72px lg), tight leading (1.1), tracking-tight.
+  - Supporting subtitle below: "Consultant and specialist in business automation, AI-driven optimization, and premium web development — helping teams remove repetitive work and focus on what matters." (18px, muted, max-w-xl, centered).
+  - Kept the eyebrow pill ("Available for new projects") and the two CTA buttons.
+  - Hierarchy: eyebrow → headline → subtitle → CTAs (correct modern SaaS hero structure).
+- Verified with VLM:
+  - "Clean, concise, well-designed with a clear two-line structure."
+  - "First line 'Automate your business.' in charcoal, second line 'Powered by AI.' in orange."
+  - "Readable supporting subtitle below."
+  - "Overall hierarchy feels correct and premium, aligning with modern SaaS hero design."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Hero completely rewritten with correct design: concise two-line headline ("Automate your business. / Powered by AI.") + readable subtitle + existing eyebrow and CTAs. Clean, premium, readable. Verified.

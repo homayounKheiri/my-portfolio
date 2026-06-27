@@ -92,17 +92,24 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Hero headline — clean, readable sentence with keyword emphasis */}
+          {/* Hero headline — clean, concise, strong hierarchy */}
           <motion.h1
             variants={item}
-            className="mt-8 max-w-3xl text-balance text-center text-[34px] font-semibold leading-[1.18] tracking-tight text-ink sm:text-[44px] md:text-[52px] lg:text-[58px]"
+            className="mt-8 text-balance text-center text-[40px] font-bold leading-[1.1] tracking-tight text-ink sm:text-[56px] md:text-[64px] lg:text-[72px]"
           >
-            <span className="font-bold text-brand">99%</span> of repetitive
-            tasks in a business can be{" "}
-            <span className="font-bold text-brand">automated</span> and powered
-            by <span className="font-bold text-brand">AI</span>
-            <span className="text-ink/40">.</span>
+            Automate your business.
+            <br />
+            <span className="text-brand">Powered by AI.</span>
           </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="mt-6 max-w-xl text-pretty text-center text-[16px] leading-relaxed text-ink-muted sm:text-[18px]"
+          >
+            Consultant and specialist in business automation, AI-driven
+            optimization, and premium web development — helping teams remove
+            repetitive work and focus on what matters.
+          </motion.p>
 
           <motion.div
             variants={item}
