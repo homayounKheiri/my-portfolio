@@ -214,3 +214,27 @@ Stage Summary:
 - Tech Stack section removed; header logo/profile removed (nav + CTA only).
 - Project cards made smaller (4-col grid, tighter aspect/padding/typography).
 - Challenge→Solution completely redesigned as clean minimal premium cards with ✕ Problem + ✓ Solution in the same card, thin divider, short labels, subtle hover. Re-alternated all section colors. All interactions verified.
+
+---
+Task ID: 14
+Agent: orchestrator
+Task: Redesign "Why Automation" section as conversational statement cards with contextual icons (replacing ✕/✓ Problem→Solution).
+
+Work Log:
+- challenge-solution.tsx: COMPLETE REDESIGN per new spec.
+  - Removed the Problem→Solution comparison (✕/✓ icons, red/orange badges, "PROBLEM"/"SOLUTION" labels).
+  - Now 6 premium conversational statement cards in a responsive grid (1/2/3 cols), white section.
+  - Each card: contextual outline icon (orange brand/10 badge) → bold question (the situation) → thin gradient divider → lighter answer sentence (the result). Generous spacing (p-6).
+  - Contextual icons via lucide (outline, strokeWidth 1.9): MessagesSquare, Database, FileBarChart, Clock, CalendarClock, Users — one per card matching its topic.
+  - Cards: rounded-2xl, soft border, subtle shadow, hover = slight elevation (-translate-y-1) + border-brand/30 + icon scale.
+  - Header retitled "Small questions, real outcomes" with subtitle "The everyday frictions automation quietly removes."
+  - Content: the 6 exact question/answer pairs from the spec.
+- Verified with Agent Browser + VLM:
+  - 6 cards, each with a unique contextual icon (messages-square, database, file-chart, clock, calendar-clock, users).
+  - First card: "Repetitive customer questions? → AI responds automatically." (with divider between).
+  - All 6 pairs match spec content exactly.
+  - VLM-confirmed: (1) premium minimalist cards with outline icon + bold question + thin divider + lighter answer; (2) conversational not Problem→Solution; (3) NO ✓/✕ icons; (4) clean white bg with generous spacing.
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- "Why Automation" now a clean grid of conversational statement cards (question → answer) with contextual outline icons, replacing the previous ✕/✓ comparison layout. Minimalist, premium, approachable — verified by VLM.
