@@ -735,3 +735,29 @@ Work Log:
 
 Stage Summary:
 - Blurred cursor-follow glow restored, restricted to only the Hero and Why Automation sections (removed from all other sections and the projects page). Verified.
+
+---
+Task ID: 39
+Agent: orchestrator
+Task: Add multi-language support (Persian/Farsi + English) to the Projects section.
+
+Work Log:
+- src/data/projects.json: restructured to bilingual format. Each project now has `en` and `fa` objects containing title/category/summary/challenge/solution/metric in both languages. Tags kept shared (technical terms). All 6 projects translated to Persian.
+- src/components/sections/projects.tsx: rewrote with full bilingual support:
+  - Added `lang` state ("en" | "fa") + `toggleLang` function.
+  - Added a `UI` dictionary with all static UI strings in both languages (eyebrow, heading, tab labels, intro text, swipe hint, outcome/stack slide labels, challenge/solution dialog labels, language toggle label).
+  - Language toggle button (Languages icon + "FA"/"EN" label) placed next to the tabs — glass-dark styled, brand orange icon.
+  - `dir` attribute on the <section> and dialog wrapper: "rtl" for Persian, "ltr" for English.
+  - All project content reads from `project[lang]` — title, category, summary, challenge, solution, metric all switch with the language.
+  - Tab body re-keys on `tab + lang` so the AnimatePresence transition plays on language change too.
+  - Dialog also receives `lang` and `dir` — Persian dialog is RTL with Persian labels.
+- Verified with Agent Browser + VLM:
+  - English: heading "Projects with real outcomes", tabs "Automation"/"Websites", card titles in English, dir=ltr.
+  - Persian: heading "پروژه‌هایی با نتایج واقعی", tabs "اتوماسیون"/"وب‌سایت‌ها", card titles "موتور هوشمند مسیریابی سرنخ‌ها" etc., dir=rtl.
+  - Dialog in Persian: challenge label "چالش", solution label "راه‌حل", RTL direction.
+  - Toggle back to English works (heading/tabs/direction revert to EN/LTR).
+  - VLM: "Heading in Persian script, tab labels in Persian, card titles in Persian, layout appears right-to-left (RTL)."
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Projects section now supports English and Persian (Farsi) with a language toggle button. All project content (titles, summaries, challenges, solutions, metrics) and all UI strings (headings, tabs, dialog labels, slide labels) are translated. Persian mode applies RTL direction throughout the section and dialog. Verified end-to-end.

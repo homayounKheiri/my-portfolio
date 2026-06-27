@@ -2,71 +2,131 @@
   "automation": [
     {
       "id": "aut-1",
-      "title": "Intelligent Lead Routing Engine",
       "image": "/images/automation-1.png",
-      "category": "Automation",
-      "summary": "An AI-driven pipeline that scores, enriches, and routes every inbound lead to the right sales rep in under 800ms.",
-      "challenge": "A fast-growing SaaS company was losing 38% of inbound leads because manual triage took hours and reps worked in different time zones.",
-      "solution": "Built a serverless orchestration layer that fuses behavioral signals with firmographic data, runs an LLM classifier for intent, and pushes prioritized leads into the CRM with a warm-handoff Slack message — all under one second.",
       "tags": ["LLM Routing", "n8n", "CRM Sync", "Slack"],
-      "metric": "4.2× faster response"
+      "en": {
+        "title": "Intelligent Lead Routing Engine",
+        "category": "Automation",
+        "summary": "An AI-driven pipeline that scores, enriches, and routes every inbound lead to the right sales rep in under 800ms.",
+        "challenge": "A fast-growing SaaS company was losing 38% of inbound leads because manual triage took hours and reps worked in different time zones.",
+        "solution": "Built a serverless orchestration layer that fuses behavioral signals with firmographic data, runs an LLM classifier for intent, and pushes prioritized leads into the CRM with a warm-handoff Slack message — all under one second.",
+        "metric": "4.2× faster response"
+      },
+      "fa": {
+        "title": "موتور هوشمند مسیریابی سرنخ‌ها",
+        "category": "اتوماسیون",
+        "summary": "خط لوله مبتنی بر هوش مصنوعی که هر سرنخ ورودی را امتیازدهی، غنی‌سازی و در کمتر از ۸۰۰ میلی‌ثانیه به نماینده فروش مناسب ارجاع می‌دهد.",
+        "challenge": "یک شرکت SaaS در حال رشد، ۳۸٪ از سرنخ‌های ورودی را از دست می‌داد زیرا دسته‌بندی دستی ساعت‌ها طول می‌کشید و نمایندگان در مناطق زمانی مختلف کار می‌کردند.",
+        "solution": "یک لایه ارکستراسیون بدون سرور ساخته شد که سیگنال‌های رفتاری را با داده‌های جمعیتی شرکت‌ها ترکیب می‌کند، یک طبقه‌بند LLM برای تشخیص نیت اجرا می‌کند و سرنخ‌های اولویت‌دار را با پیام دست‌به‌دست Slack در CRM ثبت می‌کند — همه در کمتر از یک ثانیه.",
+        "metric": "۴.۲× پاسخ سریع‌تر"
+      }
     },
     {
       "id": "aut-2",
-      "title": "Revenue Intelligence Dashboard",
       "image": "/images/automation-2.png",
-      "category": "Automation",
-      "summary": "A self-updating BI surface that turns fragmented data sources into a single, plain-language narrative for the leadership team.",
-      "challenge": "Executives were juggling six dashboards and still couldn't answer 'what changed this week and why' without a 30-minute analyst call.",
-      "solution": "Engineered an automated data pipeline that ingests product, billing, and marketing signals, then an LLM composes a weekly executive brief with anomalies, drivers, and recommended actions — delivered by 8am every Monday.",
       "tags": ["ETL", "LLM Briefs", "Anomaly Detection"],
-      "metric": "6 tools → 1 view"
+      "en": {
+        "title": "Revenue Intelligence Dashboard",
+        "category": "Automation",
+        "summary": "A self-updating BI surface that turns fragmented data sources into a single, plain-language narrative for the leadership team.",
+        "challenge": "Executives were juggling six dashboards and still couldn't answer 'what changed this week and why' without a 30-minute analyst call.",
+        "solution": "Engineered an automated data pipeline that ingests product, billing, and marketing signals, then an LLM composes a weekly executive brief with anomalies, drivers, and recommended actions — delivered by 8am every Monday.",
+        "metric": "6 tools → 1 view"
+      },
+      "fa": {
+        "title": "داشبورد هوشمندی درآمد",
+        "category": "اتوماسیون",
+        "summary": "یک سطح BI خودبه‌خود به‌روزرسانی‌شونده که منابع داده پراکنده را به یک روایت واحد و ساده برای تیم رهبری تبدیل می‌کند.",
+        "challenge": "مدیران شش داشبورد را مدیریت می‌کردند و همچنان نمی‌توانستند بدون یک تماس ۳۰ دقیقه‌ای با تحلیل‌گر، به این سؤال پاسخ دهند که «این هفته چه چیزی تغییر کرد و چرا».",
+        "solution": "یک خط لوله داده خودکار طراحی شد که سیگنال‌های محصول، صورت‌حساب و بازاریابی را دریافت می‌کند، سپس یک LLM خلاصه اجرایی هفتگی با ناهنجاری‌ها، عوامل مؤثر و اقدامات پیشنهادی تهیه می‌کند — هر دوشنبه ساعت ۸ صبح تحویل داده می‌شود.",
+        "metric": "۶ ابزار → ۱ نما"
+      }
     },
     {
       "id": "aut-3",
-      "title": "Conversational Support Concierge",
       "image": "/images/automation-3.png",
-      "category": "Automation",
-      "summary": "A 24/7 support agent that resolves 64% of tickets autonomously and escalates the rest with full context attached.",
-      "challenge": "A consumer brand's support team was drowning in repetitive tickets, and customers waited an average of 9 hours for a first response.",
-      "solution": "Deployed a retrieval-augmented assistant grounded in the brand's knowledge base and order system. It understands intent, takes actions (refunds, status checks), and hands off to humans with a one-paragraph context summary.",
       "tags": ["RAG", "Vector Search", "Action Agents"],
-      "metric": "64% auto-resolved"
+      "en": {
+        "title": "Conversational Support Concierge",
+        "category": "Automation",
+        "summary": "A 24/7 support agent that resolves 64% of tickets autonomously and escalates the rest with full context attached.",
+        "challenge": "A consumer brand's support team was drowning in repetitive tickets, and customers waited an average of 9 hours for a first response.",
+        "solution": "Deployed a retrieval-augmented assistant grounded in the brand's knowledge base and order system. It understands intent, takes actions (refunds, status checks), and hands off to humans with a one-paragraph context summary.",
+        "metric": "64% auto-resolved"
+      },
+      "fa": {
+        "title": "مهماندار پشتیبانی مکالمه‌ای",
+        "category": "اتوماسیون",
+        "summary": "یک نماینده پشتیبانی ۲۴/۷ که ۶۴٪ از تیکت‌ها را به‌صورت خودکار حل می‌کند و بقیه را با زمینه کامل ارجاع می‌دهد.",
+        "challenge": "تیم پشتیبانی یک برند مصرفی در تیکت‌های تکراری غرق شده بود و مشتریان به‌طور میانگین ۹ ساعت برای اولین پاسخ منتظر می‌ماندند.",
+        "solution": "یک دستیار تقویت‌شده با بازیابی مستقر شد که بر پایه دانش‌نامه برند و سیستم سفارش کار می‌کند. نیت را درک می‌کند، اقدامات انجام می‌دهد (بازپرداخت، بررسی وضعیت) و با یک خلاصه زمینه‌ای یک‌پاراگرافی به انسان‌ها ارجاع می‌دهد.",
+        "metric": "۶۴٪ حل خودکار"
+      }
     }
   ],
   "websites": [
     {
       "id": "web-1",
-      "title": "Maison — Premium Commerce",
       "image": "/images/website-1.png",
-      "category": "Website",
-      "summary": "A headless commerce experience for a luxury lifestyle brand, built for speed, storytelling, and conversion.",
-      "challenge": "A heritage brand needed an online presence that felt as crafted as their physical boutiques, without sacrificing performance.",
-      "solution": "Designed and built a headless storefront with cinematic product pages, motion-driven storytelling, and an edge-cached checkout. Lighthouse 99 across the board.",
       "tags": ["Next.js", "Headless", "Motion", "Edge"],
-      "metric": "99 Lighthouse"
+      "en": {
+        "title": "Maison — Premium Commerce",
+        "category": "Website",
+        "summary": "A headless commerce experience for a luxury lifestyle brand, built for speed, storytelling, and conversion.",
+        "challenge": "A heritage brand needed an online presence that felt as crafted as their physical boutiques, without sacrificing performance.",
+        "solution": "Designed and built a headless storefront with cinematic product pages, motion-driven storytelling, and an edge-cached checkout. Lighthouse 99 across the board.",
+        "metric": "99 Lighthouse"
+      },
+      "fa": {
+        "title": "میزون — تجارتPremium",
+        "category": "وب‌سایت",
+        "summary": "یک تجربه تجارت هدلس برای یک برند لوکس سبک زندگی، ساخته‌شده برای سرعت، داستان‌سرایی و تبدیل.",
+        "challenge": "یک برند اصیل به حضور آنلاینی نیاز داشت که به اندازه بوتیک‌های فیزیکی‌اش دقیق و crafted باشد، بدون اینکه عملکرد را فدا کند.",
+        "solution": "یک فروشگاه هدلس با صفحات محصول سینمایی، داستان‌سرایی مبتنی بر حرکت و پردازش کش‌شده در لبه طراحی و ساخته شد. امتیاز Lighthouse ۹۹ در همه بخش‌ها.",
+        "metric": "۹۹ Lighthouse"
+      }
     },
     {
       "id": "web-2",
-      "title": "Pulse — SaaS Platform",
       "image": "/images/website-2.png",
-      "category": "Website",
-      "summary": "A marketing site and onboarding flow for a B2B analytics startup, engineered to turn curiosity into activation.",
-      "challenge": "A technical startup had a powerful product but a website that confused visitors and buried the value proposition.",
-      "solution": "Rebuilt the narrative around outcomes, designed a modular component system, and crafted a frictionless sign-up flow with live interactive previews of the product.",
       "tags": ["Next.js", "Design System", "Conversion"],
-      "metric": "+57% activation"
+      "en": {
+        "title": "Pulse — SaaS Platform",
+        "category": "Website",
+        "summary": "A marketing site and onboarding flow for a B2B analytics startup, engineered to turn curiosity into activation.",
+        "challenge": "A technical startup had a powerful product but a website that confused visitors and buried the value proposition.",
+        "solution": "Rebuilt the narrative around outcomes, designed a modular component system, and crafted a frictionless sign-up flow with live interactive previews of the product.",
+        "metric": "+57% activation"
+      },
+      "fa": {
+        "title": "پالس — پلتفرم SaaS",
+        "category": "وب‌سایت",
+        "summary": "یک سایت بازاریابی و جریان آشناسازی برای یک استارتاپ تحلیلی B2B، مهندسی‌شده برای تبدیل کنجکاوی به فعال‌سازی.",
+        "challenge": "یک استارتاپ فنی محصول قدرتمندی داشت اما وب‌سایتی که بازدیدکنندگان را سردرگم می‌کرد و پیشنهاد ارزش را پنهان می‌کرد.",
+        "solution": "روایت حول نتایج بازسازی شد، یک سیستم کامپوننت ماژولار طراحی شد و یک جریان ثبت‌نام بدون اصطکاک با پیش‌نمایش‌های تعاملی زنده محصول ساخته شد.",
+        "metric": "۵۷٪+ فعال‌سازی"
+      }
     },
     {
       "id": "web-3",
-      "title": "Atelier — Portfolio Studio",
       "image": "/images/website-3.png",
-      "category": "Website",
-      "summary": "A portfolio for an independent design studio — a quiet, confident space that lets the work speak.",
-      "challenge": "A design studio wanted a portfolio that felt premium and intentional, not just another grid of images.",
-      "solution": "Built a scroll-choreographed experience with editorial typography, case-study deep dives, and a custom CMS so the team can publish without engineering.",
       "tags": ["Next.js", "CMS", "Editorial", "GSAP"],
-      "metric": "Editorial craft"
+      "en": {
+        "title": "Atelier — Portfolio Studio",
+        "category": "Website",
+        "summary": "A portfolio for an independent design studio — a quiet, confident space that lets the work speak.",
+        "challenge": "A design studio wanted a portfolio that felt premium and intentional, not just another grid of images.",
+        "solution": "Built a scroll-choreographed experience with editorial typography, case-study deep dives, and a custom CMS so the team can publish without engineering.",
+        "metric": "Editorial craft"
+      },
+      "fa": {
+        "title": "آتلیه — استودیو نمونه‌کار",
+        "category": "وب‌سایت",
+        "summary": "یک نمونه‌کار برای یک استودیوی طراحی مستقل — فضایی آرام و مطمئن که به کار اجازه صحبت می‌دهد.",
+        "challenge": "یک استودیوی طراحی می‌خواست نمونه‌کاری که Premium و هدفمند به‌نظر برسد، نه فقط یک شبکه دیگر از تصاویر.",
+        "solution": "یک تجربه هماهنگ‌شده با اسکرول با تایپوگرافی ویرایشی، بررسی عمیق مطالعات موردی و یک CMS سفارشی ساخته شد تا تیم بتواند بدون مهندسی منتشر کند.",
+        "metric": "مهارت ویرایشی"
+      }
     }
   ]
 }
