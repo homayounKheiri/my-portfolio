@@ -144,7 +144,7 @@ export function AutomationFlow() {
           const mid = polar(midAngle, RADIUS * 0.55);
           const d = `M ${CENTER} ${CENTER} Q ${mid.x} ${mid.y} ${p.x} ${p.y}`;
           return (
-            <g key={node.label}>
+            <g key={node.labelKey}>
               <path
                 d={d}
                 stroke="url(#conn)"

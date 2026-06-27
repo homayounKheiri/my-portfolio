@@ -805,3 +805,23 @@ Work Log:
 
 Stage Summary:
 - All text including the infographic (node labels, AI Core) is now localized via the global i18n. The Projects section toggle is removed (uses the global locale). Language persists in a `locale` cookie (read on load, so reloads keep the selected language). Section directions inherit from <html dir> which updates with the locale. Verified end-to-end.
+
+---
+Task ID: 42
+Agent: orchestrator
+Task: Add Vazirmatn font for Persian text only, keep modern Geist font for English text only.
+
+Work Log:
+- layout.tsx: imported Vazirmatn from next/font/google with ONLY the "arabic" subset (no latin), so Latin characters skip Vazirmatn and fall through to Geist. Added the vazirmatn.variable (--font-vazirmatn) to the body className alongside Geist/Geist Mono. Added `font-sans` utility class to body so the Tailwind theme font token applies.
+- globals.css: updated the --font-sans theme token to a stack: var(--font-vazirmatn), var(--font-geist-sans), system-ui, sans-serif. Persian glyphs resolve to Vazirmatn (first font with those glyphs); Latin glyphs skip Vazirmatn (arabic-only subset) and use Geist.
+- Added [dir="rtl"] base rule to reset font-feature-settings and letter-spacing for Persian (Geist's ss01/cv01/cv11 features are latin-only and don't apply to Persian).
+- Fixed a React key warning in automation-flow.tsx (a <g> element used node.label which no longer exists → changed to node.labelKey).
+- Verified with Agent Browser + VLM:
+  - Body font-family resolves to: "Vazirmatn, Geist, system-ui, sans-serif".
+  - Both fonts registered: Geist + Vazirmatn present in document.fonts.
+  - Persian mode (locale=fa, reload): dir=rtl; VLM confirmed "Persian letters properly shaped and connected, using a proper Persian font, no broken characters or square boxes."
+  - English mode: VLM confirmed "modern sans-serif font with clean letter shapes, different/more modern than the Persian version."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Vazirmatn (Persian font) loads with arabic-only subset and renders all Persian text; Geist (modern English font) renders all Latin/English text. The font stack order ensures each script uses the correct font. Verified visually for both languages.
