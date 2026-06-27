@@ -5,14 +5,34 @@ import {
   Sparkles,
   MessageSquare,
   Mail,
-  Database,
   CalendarClock,
+  Users,
+  Phone,
   FileBarChart,
-  Globe,
-  Workflow,
+  LayoutDashboard,
 } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+/** Instagram icon (not available in lucide-react). */
+function Instagram({ className, strokeWidth = 1.9 }: { className?: string; strokeWidth?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
 
 /**
  * Minimal circular infographic: a central AI core with 8 circular nodes
@@ -28,12 +48,12 @@ export function AutomationFlow() {
   const NODES = [
     { icon: MessageSquare, label: "Chat", angle: -90 },
     { icon: Mail, label: "Email", angle: -45 },
-    { icon: Database, label: "Database", angle: 0 },
-    { icon: FileBarChart, label: "Reports", angle: 45 },
-    { icon: CalendarClock, label: "Calendar", angle: 90 },
-    { icon: Globe, label: "Website", angle: 135 },
-    { icon: Workflow, label: "Automation", angle: 180 },
-    { icon: Sparkles, label: "AI", angle: 225 },
+    { icon: CalendarClock, label: "Calendar", angle: 0 },
+    { icon: Users, label: "CRM", angle: 45 },
+    { icon: Phone, label: "Calls", angle: 90 },
+    { icon: Instagram, label: "Instagram", angle: 135 },
+    { icon: FileBarChart, label: "Reports", angle: 180 },
+    { icon: LayoutDashboard, label: "Dashboard", angle: 225 },
   ] as const;
 
   // Geometry (in % of the square container)

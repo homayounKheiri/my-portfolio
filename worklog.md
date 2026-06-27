@@ -568,3 +568,22 @@ Work Log:
 
 Stage Summary:
 - Central AI core now perfectly concentric with the dashed rings (0,0 offset). Pulse animation is seamless — opacity starts and ends at 0 so no visible reset/pop at the loop boundary, with a second staggered pulse for continuous flow. Verified.
+
+---
+Task ID: 30
+Agent: orchestrator
+Task: Update the 8 surrounding nodes to use: Chat, Email, Calendar, CRM, Calls, Instagram, Reports, Dashboard.
+
+Work Log:
+- automation-flow.tsx: updated imports — removed Database, Globe, Workflow; added Users (CRM), Phone (Calls), LayoutDashboard (Dashboard). Kept MessageSquare, Mail, CalendarClock, FileBarChart.
+- Added a custom Instagram icon component (Instagram not in lucide-react) — outline-style SVG matching lucide's stroke style (rounded rect camera + lens + dot).
+- Updated NODES array (clockwise from top): Chat(-90°), Email(-45°), Calendar(0°), CRM(45°), Calls(90°), Instagram(135°), Reports(180°), Dashboard(225°).
+- The <Icon className strokeWidth /> render works for both lucide icons and the custom Instagram component.
+- Verified with Agent Browser + VLM:
+  - All 8 new labels present: Chat, Email, Calendar, CRM, Calls, Instagram, Reports, Dashboard.
+  - Old labels (Database, Website) gone.
+  - VLM: "The 8 nodes and their labels are: Chat, Email, Calendar, CRM, Calls, Instagram, Reports, Dashboard. Yes, they match."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Surrounding nodes now display: Chat, Email, Calendar, CRM, Calls, Instagram, Reports, Dashboard (with matching icons, including a custom Instagram SVG). Verified.
