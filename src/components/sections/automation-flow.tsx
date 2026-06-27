@@ -56,28 +56,48 @@ export function AutomationFlow() {
         className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.10),transparent_65%)]"
       />
 
-      {/* Rotating dashed rings (decorative) */}
+      {/* Rotating dashed rings — drawn in SVG so they share the exact center */}
       {!reduce && (
-        <>
-          <motion.div
-            aria-hidden
-            className="absolute inset-[6%] rounded-full border border-dashed border-ink/10"
+        <svg
+          viewBox="0 0 100 100"
+          className="absolute inset-0 h-full w-full"
+          fill="none"
+          preserveAspectRatio="xMidYMid meet"
+          aria-hidden
+        >
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="47"
+            stroke="rgba(17,24,39,0.08)"
+            strokeWidth="0.3"
+            strokeDasharray="1.5 2"
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            style={{ transformOrigin: "50px 50px" } as React.CSSProperties}
           />
-          <motion.div
-            aria-hidden
-            className="absolute inset-[16%] rounded-full border border-dashed border-brand/20"
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="34"
+            stroke="rgba(249,115,22,0.22)"
+            strokeWidth="0.3"
+            strokeDasharray="1.5 2"
             animate={{ rotate: -360 }}
             transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+            style={{ transformOrigin: "50px 50px" } as React.CSSProperties}
           />
-          <motion.div
-            aria-hidden
-            className="absolute inset-[26%] rounded-full border border-ink/8"
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="24"
+            stroke="rgba(17,24,39,0.06)"
+            strokeWidth="0.3"
             animate={{ rotate: 360 }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+            style={{ transformOrigin: "50px 50px" } as React.CSSProperties}
           />
-        </>
+        </svg>
       )}
 
       {/* SVG: curved connectors + flowing dots */}

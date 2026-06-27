@@ -535,3 +535,20 @@ Work Log:
 
 Stage Summary:
 - Hero right side is now a minimal circular radial infographic: central breathing AI core with 8 circular process nodes around it, connected by thin curved lines with flowing dots, plus slow rotating dashed rings. Purely circular, premium, futuristic, minimalist — communicates AI as the central intelligence connecting every part of the business. Verified.
+
+---
+Task ID: 28
+Agent: orchestrator
+Task: Make the rotating rings concentric (shared center) and simplify the left headline (was unreadable).
+
+Work Log:
+- automation-flow.tsx: replaced the 3 div-based rings (inset-[6%]/[16%]/[26%] with border) with 3 SVG <circle> elements all using cx=50 cy=50 (the exact container center) — guaranteed concentric. Radii 47/34/24, dashed for the outer two, with transformOrigin: 50px 50px so rotation pivots on the shared center. Removed the old div rings.
+- hero.tsx: simplified the headline from the fragmented 5-line composition (mismatched 100px/19px/64px/78px sizes — unreadable) into a single clean sentence: "99% of repetitive tasks can be automated with AI." Uniform size (52px md) + semibold weight, with 99%/automated/AI in orange and the rest in charcoal. text-balance + max-w-xl + leading-[1.15] for clean wrapping.
+- Verified with Agent Browser + VLM:
+  - Headline reads: "99% of repetitive tasks can be automated with AI." at 52px (readable).
+  - First 3 SVG circles all cx=50, cy=50 (concentric confirmed).
+  - VLM: "Left headline is a simple, readable sentence with 99%/automated/AI in orange, not fragmented. Right side has central orange AI core with circular nodes around it, rotating rings are concentric (sharing the same center point). Overall clean and readable."
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Rotating rings are now true concentric circles (SVG circles sharing cx=50/cy=50). Left headline simplified to one readable sentence with orange keyword emphasis. Both verified.

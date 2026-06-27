@@ -95,41 +95,15 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline — typography-driven, multi-line, strong hierarchy */}
+          {/* Headline — simple, readable, with keyword emphasis */}
           <motion.h1
             variants={item}
-            className="mt-7 font-sans tracking-[-0.02em] text-ink"
+            className="mt-7 max-w-xl text-balance text-[34px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[44px] md:text-[52px]"
           >
-            {/* Line 1 — 99% oversized + connector */}
-            <span className="flex items-baseline gap-3 flex-wrap">
-              <span className="text-[68px] font-bold leading-[0.9] text-brand sm:text-[88px] md:text-[100px]">
-                99%
-              </span>
-              <span className="text-[19px] font-medium leading-tight text-ink-muted sm:text-[21px] md:text-[23px]">
-                of repetitive tasks
-              </span>
-            </span>
-
-            {/* Line 2 — soft connector */}
-            <span className="mt-2 block text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[18px] md:text-[19px]">
-              in a business can be
-            </span>
-
-            {/* Line 3 — Automated, large, accent */}
-            <span className="mt-1 block text-[44px] font-bold leading-[0.95] tracking-tight text-brand sm:text-[56px] md:text-[64px]">
-              automated
-            </span>
-
-            {/* Line 4 — soft connector */}
-            <span className="mt-2 block text-[17px] font-light tracking-wide text-ink-muted/70 sm:text-[18px] md:text-[19px]">
-              and powered by
-            </span>
-
-            {/* Line 5 — AI, large, accent */}
-            <span className="mt-1 block text-[52px] font-bold leading-[0.9] text-brand sm:text-[68px] md:text-[78px]">
-              AI
-              <span className="text-ink/30">.</span>
-            </span>
+            <span className="text-brand">99%</span> of repetitive tasks can be{" "}
+            <span className="text-brand">automated</span> with{" "}
+            <span className="text-brand">AI</span>
+            <span className="text-ink/30">.</span>
           </motion.h1>
 
           {/* Subtitle — smaller, lighter */}
