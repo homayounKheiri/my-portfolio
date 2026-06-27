@@ -455,3 +455,24 @@ Work Log:
 
 Stage Summary:
 - Hero completely rewritten with correct design: concise two-line headline ("Automate your business. / Powered by AI.") + readable subtitle + existing eyebrow and CTAs. Clean, premium, readable. Verified.
+
+---
+Task ID: 25
+Agent: orchestrator
+Task: Rewrite Hero to be genuinely premium and authoritative (previous versions rejected as not good / not premium).
+
+Work Log:
+- hero.tsx: elevated the hero to a high-end consultancy aesthetic.
+  - Eyebrow refined: uppercase tracking-[0.18em], smaller (11px), "AI Automation Consultancy" with a subtle blur.
+  - Headline: editorial, authoritative — "Intelligent automation, / built around your business." Mixed weights: font-medium for line 1 (charcoal), font-semibold for line 2 (orange). Tight tracking [-0.02em], leading-[1.08], large (72px lg) — refined, not loud.
+  - Subtitle: specific and confident, lighter weight (font-light) — "I design and ship AI systems that remove repetitive work, connect your tools, and give your team back the hours that matter — measured in real outcomes, not hype."
+  - Kept eyebrow → headline → subtitle → CTAs hierarchy.
+- Verified with VLM (honest/critical mode):
+  - Headline reads correctly with second line in orange.
+  - "Typography is refined and editorial (light/medium weights, tight tracking) rather than generic bold."
+  - "Genuinely premium and authoritative — evokes top-tier consultancy vibes (McKinsey/BCG). Avoids generic SaaS templates through restraint, clarity, and focus on expertise."
+  - "Hierarchy is clean: refined uppercase eyebrow, large headline, lighter subtitle, distinct buttons."
+  - `bun run lint` clean.
+
+Stage Summary:
+- Hero rewritten as a genuinely premium, authoritative consultancy hero: editorial headline "Intelligent automation, built around your business." with refined typography (medium/semibold weights, tight tracking), uppercase eyebrow, lighter confident subtitle. VLM-confirmed premium and top-tier. Verified.

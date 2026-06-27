@@ -82,33 +82,37 @@ export function Hero() {
           animate="show"
           className="flex flex-col items-center text-center"
         >
+          {/* Refined eyebrow */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-ink-muted">
-              <span className="relative flex h-2 w-2">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-white/70 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted backdrop-blur-sm">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
               </span>
-              Available for new projects
+              AI Automation Consultancy
             </span>
           </motion.div>
 
-          {/* Hero headline — clean, concise, strong hierarchy */}
+          {/* Headline — editorial, authoritative, refined */}
           <motion.h1
             variants={item}
-            className="mt-8 text-balance text-center text-[40px] font-bold leading-[1.1] tracking-tight text-ink sm:text-[56px] md:text-[64px] lg:text-[72px]"
+            className="mt-8 text-balance text-center text-[40px] font-medium leading-[1.08] tracking-[-0.02em] text-ink sm:text-[54px] md:text-[64px] lg:text-[72px]"
           >
-            Automate your business.
+            Intelligent automation,
             <br />
-            <span className="text-brand">Powered by AI.</span>
+            <span className="font-semibold text-brand">
+              built around your business.
+            </span>
           </motion.h1>
 
+          {/* Subtitle — specific and confident */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-xl text-pretty text-center text-[16px] leading-relaxed text-ink-muted sm:text-[18px]"
+            className="mt-7 max-w-xl text-pretty text-center text-[16px] font-light leading-relaxed text-ink-muted sm:text-[17px]"
           >
-            Consultant and specialist in business automation, AI-driven
-            optimization, and premium web development — helping teams remove
-            repetitive work and focus on what matters.
+            I design and ship AI systems that remove repetitive work, connect
+            your tools, and give your team back the hours that matter — measured
+            in real outcomes, not hype.
           </motion.p>
 
           <motion.div
