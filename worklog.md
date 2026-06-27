@@ -608,3 +608,23 @@ Work Log:
 
 Stage Summary:
 - Hero text now centers on mobile (left on desktop). Projects moved to a dedicated client-side view (toggled via header, no URL change — respects the single-route constraint). Header nav reduced to just Home + Projects. All verified.
+
+---
+Task ID: 32
+Agent: orchestrator
+Task: (1) Add blur backdrop filter to header (always). (2) Confirm mobile hero titles centered. (3) Increase chatbox width, decrease height. (4) Add cursor glow blur to Hero AND Why Automation sections.
+
+Work Log:
+- header.tsx: changed the "not scrolled" bar style from "bg-transparent" to "bg-white/60 backdrop-blur-xl border border-white/40" — the header now always has a blur backdrop filter (verified: backdrop-filter blur(24px) at top of page). The scrolled/projects-view style (glass-strong) is unchanged.
+- ai-chat.tsx: chatbox width max-w-[460px] → max-w-[560px] (verified 560px). Messages height h-[320px] sm:h-[360px] → h-[240px] sm:h-[280px] (verified 280px). Wider + shorter as requested.
+- challenge-solution.tsx: added useCursorGlow to the section (size 520, opacity 0.4). The section now has a ref on the <section> element and a cursor-following orange blur div (same as hero). Verified: glow div present with blur(60px) filter in the flow section. Content wrapped in relative z-10 so it sits above the glow.
+- Mobile hero centering: already implemented in Task 31 (items-center text-center on mobile). Re-verified at 390px: alignItems=center, textAlign=center for column/headline/subtitle. VLM-confirmed all three (headline, subtitle, buttons) horizontally centered on mobile.
+- Verified with Agent Browser + VLM:
+  - Header backdrop-filter = blur(24px) always present (even at scrollY=0).
+  - Chatbox width 560px (up from 460); messages height 280px (down from 360).
+  - Cursor glow present in both #hero and #flow sections.
+  - Mobile (390px): hero headline/subtitle/buttons centered (VLM-confirmed).
+  - `bun run lint` clean; no runtime errors.
+
+Stage Summary:
+- Header always has a blur backdrop filter. Chatbox is wider (560px) and shorter (280px). Cursor-follow orange blur glow now present in both Hero and Why Automation sections. Mobile hero titles confirmed centered. All verified.

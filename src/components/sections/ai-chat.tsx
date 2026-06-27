@@ -123,7 +123,7 @@ export function AIChat() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-          className="glass-dark-strong mx-auto mt-10 w-full max-w-[460px] overflow-hidden rounded-[28px] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)]"
+          className="glass-dark-strong mx-auto mt-10 w-full max-w-[560px] overflow-hidden rounded-[28px] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)]"
         >
           {/* Header bar — gradient accent */}
           <div className="relative flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-5 py-4">
@@ -150,7 +150,7 @@ export function AIChat() {
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} className="scroll-area h-[320px] overflow-y-auto bg-black/20 px-4 py-5 sm:h-[360px]">
+          <div ref={scrollRef} className="scroll-area h-[240px] overflow-y-auto bg-black/20 px-4 py-5 sm:h-[280px]">
             <div className="flex flex-col gap-3">
               <AnimatePresence initial={false}>
                 {messages.map((m, i) => (
