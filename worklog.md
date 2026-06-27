@@ -281,3 +281,30 @@ Work Log:
 
 Stage Summary:
 - Why Automation cards are now narrower with more breathing room between them, smaller typography, and the contextual icon sits beside the question title (same row) instead of above it.
+
+---
+Task ID: 17
+Agent: orchestrator
+Task: Make Why Automation cards smaller and more attractive — remove hover effects, keep only a soft shadow.
+
+Work Log:
+- challenge-solution.tsx StatementCard: complete restyle for compactness + attractiveness.
+  - Removed all hover effects: no more `lift`, `group`, `group-hover:*`, `hover:-translate-y-1`, `hover:border-brand/40`, `hover:shadow-*`. Card is now static with a constant soft shadow.
+  - Removed the dashed border (border-2 border-dashed) — replaced with a clean thin solid border (border border-border) + constant soft shadow `shadow-[0_8px_30px_-12px_rgba(17,24,39,0.12)]`.
+  - Made cards much smaller: width via increased stagger padding (sm:pr/pl-[35%] lg:pr/pl-[45%]) → cards now 563px wide (was 691px). Height ~120px (compact).
+  - Reduced padding p-6/p-7 → p-4/p-5. Rounded-2xl → rounded-xl.
+  - Smaller icon badge h-10 w-10 → h-8 w-8; icon h-5 w-5 → h-4 w-4.
+  - Smaller fonts: question 19px → 14.5px (text-[13.5px] sm:text-[14.5px]); answer 15px → 13px (text-[12.5px] sm:text-[13px]).
+  - Tighter internal spacing: gap-3 → gap-2.5; divider margin my-4 → my-3.
+  - Section max-width tightened max-w-6xl → max-w-5xl; row gap gap-10 sm:gap-14 → gap-5 sm:gap-6.
+- Verified with Agent Browser + VLM:
+  - Card width 563px (down from 691px); height ~120px (compact).
+  - No hover/lift/group-hover classes present (hasLift:false, hasGroupHover:false, hasHoverTrans:false).
+  - Soft shadow present (boxShadow set).
+  - Question font 14.5px (down from 19px).
+  - Stagger preserved: x positions alternate 208 ↔ 669.
+  - VLM-confirmed all 4 points: small/compact, subtle soft shadow + clean minimal, staggered left/right, attractive and refined.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Why Automation cards are now small, compact, and attractive with a constant soft shadow — no hover effects. Clean thin border, smaller icon/typography/padding, tighter staggered layout. Verified.
