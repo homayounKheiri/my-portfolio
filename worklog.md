@@ -308,3 +308,20 @@ Work Log:
 
 Stage Summary:
 - Why Automation cards are now small, compact, and attractive with a constant soft shadow — no hover effects. Clean thin border, smaller icon/typography/padding, tighter staggered layout. Verified.
+
+---
+Task ID: 18
+Agent: orchestrator
+Task: Change Why Automation cards from staggered layout to a 2-column grid (3 rows of 2 cards).
+
+Work Log:
+- challenge-solution.tsx: replaced the staggered flex layout (alternating left/right with padding) with a clean CSS grid: grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6. Removed the justify-start/justify-end + padding offset classes. Cards now flow naturally into 2 equal columns.
+- Verified with Agent Browser + VLM:
+  - Computed grid: "500px 500px" (2 columns).
+  - 2 cards per row, 6 total (3 rows).
+  - X positions alternate between 2 column lefts (208, 732, 208, 732, 208, 732).
+  - VLM-confirmed: 2-column grid, 2 cards per row, 6 cards across 3 rows.
+  - `bun run lint` clean.
+
+Stage Summary:
+- Why Automation cards now arranged as a clean 2-column grid (3 rows × 2 cards) instead of the staggered zigzag. Verified.

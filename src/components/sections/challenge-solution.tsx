@@ -88,20 +88,15 @@ export function ChallengeSolution() {
           </motion.p>
         </div>
 
-        {/* Staggered compact card layout — alternating left/right */}
-        <div className="mt-14 flex flex-col gap-5 sm:gap-6">
+        {/* 2-column grid (3 rows of 2 cards) */}
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
           {CARDS.map((card, i) => (
             <motion.div
               key={card.question}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, ease: EASE }}
-              className={`flex ${
-                i % 2 === 0
-                  ? "justify-start sm:pr-[35%] lg:pr-[45%]"
-                  : "justify-end sm:pl-[35%] lg:pl-[45%]"
-              }`}
+              transition={{ duration: 0.55, ease: EASE, delay: (i % 2) * 0.08 }}
             >
               <StatementCard card={card} />
             </motion.div>
