@@ -1,70 +1,75 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Languages } from "lucide-react";
-import { useScrolled } from "@/hooks/use-scrolled";
-import { useI18n } from "@/lib/i18n";
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, ArrowUpRight, Languages, ArrowUpLeft } from "lucide-react"
+import { useScrolled } from "@/hooks/use-scrolled"
+import { useI18n } from "@/lib/i18n"
+import { usePathname, useRouter } from "next/navigation"
 
-type View = "home" | "projects";
+type View = "home" | "projects"
 
 function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const top = el.getBoundingClientRect().top + window.scrollY - 84;
-  window.scrollTo({ top, behavior: "smooth" });
+  const el = document.getElementById(id)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - 84
+  window.scrollTo({ top, behavior: "smooth" })
 }
 
-export function Header({
-  view,
-  onViewChange,
-}: {
-  view: View;
-  onViewChange: (v: View) => void;
-}) {
-  const { t, locale, toggleLocale } = useI18n();
+export function Header() {
+  const { t, locale, toggleLocale } = useI18n()
   // Glass appears only after we leave the hero (home view only).
-  const scrolled = useScrolled(40);
-  const [open, setOpen] = useState(false);
+  const scrolled = useScrolled(40)
+  const [open, setOpen] = useState(false)
+
+  const router = useRouter()
+  const pathName = usePathname()
 
   const goHome = () => {
-    setOpen(false);
-    if (view !== "home") {
-      onViewChange("home");
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+    setOpen(false)
+    router.push("home", {
+      scroll: true,
+    })
+    // window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   const goProjects = () => {
-    setOpen(false);
-    if (view !== "projects") {
-      onViewChange("projects");
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+    setOpen(false)
+    router.push("projects", {
+      scroll: true,
+    })
+  }
 
   const goContact = () => {
-    setOpen(false);
-    if (view !== "home") {
-      onViewChange("home");
-      // wait for view to mount then scroll
-      setTimeout(() => scrollToId("contact"), 80);
+    setOpen(false)
+
+    if (!pathName.endsWith("/home")) {
+      router.push("home")
+      setTimeout(() => {
+        scrollToId("contact")
+      }, 300)
     } else {
-      scrollToId("contact");
+      scrollToId("contact")
     }
-  };
+  }
 
   const barClass =
-    view === "projects" || scrolled
+    pathName.endsWith("projects") || scrolled
       ? "bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_10px_40px_-20px_rgba(17,24,39,0.18)]"
-      : "bg-transparent";
+      : "bg-transparent"
 
   const navItems: { label: string; active: boolean; onClick: () => void }[] = [
-    { label: t("nav.home"), active: view === "home", onClick: goHome },
-    { label: t("nav.projects"), active: view === "projects", onClick: goProjects },
-  ];
+    {
+      label: t("nav.home"),
+      active: pathName.endsWith("home"),
+      onClick: goHome,
+    },
+    {
+      label: t("nav.projects"),
+      active: pathName.endsWith("projects"),
+      onClick: goProjects,
+    },
+  ]
 
   return (
     <motion.header
@@ -78,7 +83,7 @@ export function Header({
       >
         {/* Desktop nav */}
         <nav className="hidden items-center gap-0.5 md:flex">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <button
               key={item.label}
               onClick={item.onClick}
@@ -108,12 +113,16 @@ export function Header({
             className="hidden items-center gap-1.5 rounded-xl bg-brand px-4 py-2.5 text-[13.5px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.7)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_-8px_rgba(249,115,22,0.85)] active:scale-95 focus-brand md:flex"
           >
             {t("nav.cta")}
-            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+            {locale === "en" ? (
+              <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+            ) : (
+              <ArrowUpLeft className="h-4 w-4" strokeWidth={2.5} />
+            )}
           </button>
 
           {/* Mobile trigger */}
           <button
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen(v => !v)}
             className="flex h-10 w-10 items-center justify-center rounded-xl text-ink transition-colors hover:bg-secondary md:hidden focus-brand"
             aria-label={t("nav.menu")}
             aria-expanded={open}
@@ -158,12 +167,16 @@ export function Header({
                 className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-xl bg-brand px-4 py-3 text-[15px] font-semibold text-white"
               >
                 {t("nav.cta")}
-                <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+                {locale === "en" ? (
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+                ) : (
+                  <ArrowUpLeft className="h-4 w-4" strokeWidth={2.5} />
+                )}
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.header>
-  );
+  )
 }

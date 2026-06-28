@@ -1,47 +1,50 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Check, Loader2, ArrowRight } from "lucide-react";
-import { useI18n } from "@/lib/i18n";
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Phone, Check, Loader2, ArrowRight, ArrowLeft } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+const EASE = [0.16, 1, 0.3, 1] as const
 
 export function Contact() {
-  const { t } = useI18n();
-  const [phone, setPhone] = useState("");
+  const { t, locale } = useI18n()
+  const [phone, setPhone] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
-    "idle"
-  );
-  const [error, setError] = useState("");
+    "idle",
+  )
+  const [error, setError] = useState("")
 
   const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (status === "loading") return;
-    setError("");
-    setStatus("loading");
+    e.preventDefault()
+    if (status === "loading") return
+    setError("")
+    setStatus("loading")
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone }),
-      });
-      const data = await res.json();
+      })
+      const data = await res.json()
       if (data?.ok) {
-        setStatus("done");
-        setPhone("");
+        setStatus("done")
+        setPhone("")
       } else {
-        setStatus("error");
-        setError(data?.error || "Please try again.");
+        setStatus("error")
+        setError(data?.error || "Please try again.")
       }
     } catch {
-      setStatus("error");
-      setError("Network error. Please try again.");
+      setStatus("error")
+      setError("Network error. Please try again.")
     }
-  };
+  }
 
   return (
-    <section id="contact" className="section-light relative px-4 py-24 sm:px-6 sm:py-32">
+    <section
+      id="contact"
+      className="section-light relative px-4 py-24 sm:px-6 sm:py-32"
+    >
       <div className="relative mx-auto w-full max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -64,18 +67,22 @@ export function Contact() {
             </div>
 
             {/* Title */}
-            <h2 className="mt-4 text-balance text-center text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-[40px] lg:text-left">
+            <h2 className="flex gap-3 flex-col mt-4 text-balance text-center text-2xl font-bold leading-tight tracking-tight text-ink sm:text-4xl md:text-[30px] lg:text-start">
               {t("contact.titlePre")}{" "}
-              <span className="text-gradient-brand">{t("contact.titleMid")}</span>{" "}
-              {t("contact.titlePost")}
+              <p>
+                <span className="text-gradient-brand">
+                  {t("contact.titleMid")}
+                </span>{" "}
+                {t("contact.titlePost")}
+              </p>
             </h2>
 
-            <p className="mt-3 max-w-lg mx-auto text-center text-[14.5px] leading-relaxed text-ink-muted lg:mx-0 lg:text-left">
+            {/* <p className="mt-3 max-w-lg mx-auto text-center text-[14.5px] leading-relaxed text-ink-muted lg:mx-0 lg:text-left">
               {t("contact.subtitle")}
-            </p>
+            </p> */}
 
             {/* Form / success */}
-            <div className="mt-8 mx-auto max-w-xl lg:mx-0">
+            <div className="my-10 mx-auto max-w-xl lg:mx-0">
               <AnimatePresence mode="wait">
                 {status === "done" ? (
                   <motion.div
@@ -114,7 +121,7 @@ export function Contact() {
                         inputMode="tel"
                         autoComplete="tel"
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={e => setPhone(e.target.value)}
                         placeholder={t("contact.placeholder")}
                         disabled={status === "loading"}
                         className="h-14 w-full rounded-2xl border border-border bg-white pl-12 pr-4 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-muted/70 focus:border-brand/50 focus-brand disabled:opacity-60"
@@ -133,7 +140,18 @@ export function Contact() {
                       ) : (
                         <>
                           {t("contact.button")}
-                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2.4} />
+                          {
+                            locale === "en" ? 
+                            <ArrowRight
+                              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                              strokeWidth={2.4}
+                            />
+                            : 
+                            <ArrowLeft
+                              className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5"
+                              strokeWidth={2.4}
+                            />
+                          }
                         </>
                       )}
                     </button>
@@ -149,7 +167,7 @@ export function Contact() {
                     exit={{ opacity: 0 }}
                     className="mt-3 text-[13px] font-medium text-red-500"
                   >
-                    {error}
+                    {t("contact.errorInvalid")}
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -162,5 +180,5 @@ export function Contact() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   createContext,
@@ -7,49 +7,52 @@ import {
   useCallback,
   useEffect,
   type ReactNode,
-} from "react";
+  useMemo,
+} from "react"
 
-export type Locale = "en" | "fa";
+export type Locale = "en" | "fa"
 
-type Dict = Record<string, string>;
+type Dict = Record<string, string>
 
 const EN: Dict = {
   // Header
   "nav.home": "Home",
   "nav.projects": "Projects",
-  "nav.cta": "Let's talk",
+  "nav.cta": "Request a Call",
   "nav.menu": "Toggle menu",
 
   // Hero
   "hero.eyebrow": "AI Automation Consultancy",
-  "hero.headlineMid": "of repetitive tasks can be",
+  "hero.headlineMid": "of repetitive your tasks can be",
   "hero.headlineAuto": "automated",
   "hero.headlineWith": "with",
   "hero.headlineAI": "AI",
   "hero.subtitle":
-    "Web Developer and Consultant and Specialist in AI Business Intelligence and Automation.",
+    "Homayoun Kheiri, Web Developer and Consultant and Specialist in AI Business Intelligence and Automation",
   "hero.ctaProjects": "View Projects",
   "hero.ctaChat": "Start a Conversation",
 
   // Why Automation
-  "flow.eyebrow": "Why Automation",
+  "flow.eyebrow": "Why Automation?",
   "flow.heading": "What {challenges} Can Be Solved?",
   "flow.subheading": "The everyday frictions automation quietly removes.",
 
   // AI Chat
-  "chat.eyebrow": "Ask Anything",
-  "chat.heading": "Meet your lightweight assistant",
-  "chat.subtitle": "A small, fast helper — no signup, no noise. Just answers.",
-  "chat.name": "Aria",
-  "chat.status": "Online · replies in seconds",
+  "chat.eyebrow": "Ask",
+  "chat.heading": "Ask Anything",
+  "chat.subtitle": "Need a quick answer? Ask our AI assistant.",
+  "chat.subtitle2":
+    "Prefer to talk with us instead? Leave your phone number in the next form and we'll get in touch with you.",
+  "chat.name": "Assistant",
+  "chat.status": "Online · Replies in seconds",
   "chat.placeholder": "Type your question…",
-  "chat.reset": "Reset conversation",
+  "chat.reset": "Reset Conversation",
   "chat.send": "Send",
   "chat.greeting":
-    "Hi, I'm Aria — a lightweight assistant for the studio. Ask me anything about AI automation, business intelligence, or web work.",
-  "chat.quick1": "What can you automate for me?",
-  "chat.quick2": "Can you build a website?",
-  "chat.quick3": "How does AI BI help?",
+    "Hi! I'm Homayoun's AI assistant. Feel free to ask me anything about AI business automation or website development.",
+  "chat.quick1": "Can my business be automated?",
+  "chat.quick2": "Can I connect the automation system to my website?",
+  "chat.quick3": "I'd like to schedule a consultation.",
 
   // Contact
   "contact.eyebrow": "Contact",
@@ -61,9 +64,8 @@ const EN: Dict = {
   "contact.placeholder": "+1 (555) 123-4567",
   "contact.button": "Expect a reply",
   "contact.sending": "Sending",
-  "contact.successTitle": "Got it — talk soon.",
-  "contact.successBody":
-    "Your number is on its way. Expect a reply within 5 minutes.",
+  "contact.successTitle": "Your phone number has been received.",
+  "contact.successBody": "We'll get in touch with you soon.",
   "contact.note": "Your number is used only to reply to you. Nothing else.",
   "contact.errorEmpty": "Please enter your phone number.",
   "contact.errorInvalid": "That doesn't look like a valid phone number.",
@@ -71,11 +73,13 @@ const EN: Dict = {
 
   // Projects
   "projects.eyebrow": "Selected Work",
-  "projects.heading": "Projects with real outcomes",
+  "projects.heading": "Projects",
   "projects.tabAutomation": "Automation",
   "projects.tabWebsites": "Websites",
   "projects.intro":
-    "Behind every project lies a real challenge and an intelligent solution. Select a project to explore it.",
+    "Select a project to explore the {challenge} they faced and the {solution} we delivered.",
+  "projects.intro_challenge": "Challenges",
+  "projects.intro_solution": "Solutions",
   "projects.swipe": "Swipe",
   "projects.outcome": "Outcome",
   "projects.stack": "Stack",
@@ -96,71 +100,76 @@ const EN: Dict = {
   "flow.node.instagram": "Instagram",
   "flow.node.reports": "Reports",
   "flow.node.dashboard": "Dashboard",
-};
+}
 
 const FA: Dict = {
   // Header
   "nav.home": "خانه",
   "nav.projects": "پروژه‌ها",
-  "nav.cta": "گفت‌وگو",
+  "nav.cta": "درخواست تماس",
   "nav.menu": "باز کردن منو",
 
   // Hero
   "hero.eyebrow": "مشاوره اتوماسیون هوش مصنوعی",
-  "hero.headlineMid": "از کارهای تکراری می‌توانند",
-  "hero.headlineAuto": "اتوماتیک",
-  "hero.headlineWith": "شوند با",
+  "hero.headlineMid": "از کارهای تکراری شما رو میشه",
+  "hero.headlineAuto": "خودکار",
+  "hero.headlineWith": "کرد و به",
   "hero.headlineAI": "هوش مصنوعی",
+  "hero.headlineDone": "سپرد",
   "hero.subtitle":
-    "توسعه‌دهنده وب و مشاور و متخصص هوش تجاری و اتوماسیون هوش مصنوعی.",
+    "همایون خیری، توسعه‌دهنده وب، مشاور و متخصص در هوش مصنوعی و اتوماسیون کسب و کار",
   "hero.ctaProjects": "مشاهده پروژه‌ها",
   "hero.ctaChat": "شروع گفت‌وگو",
 
   // Why Automation
-  "flow.eyebrow": "چرا اتوماسیون",
+  "flow.eyebrow": "چرا اتوماسیون؟",
   "flow.heading": "چه {challenges}‌هایی قابل حل هستند؟",
   "flow.subheading": "اصطکاک‌های روزمره‌ای که اتوماسیون بی‌صدا برطرف می‌کند.",
 
   // AI Chat
-  "chat.eyebrow": "هرچیزی بپرسید",
-  "chat.heading": "با دستیار سبک خود آشنا شوید",
-  "chat.subtitle": "یک دستیار کوچک و سریع — بدون ثبت‌نام، بدون نویز. فقط پاسخ.",
-  "chat.name": "آریا",
-  "chat.status": "آنلاین · پاسخ در ثانیه‌ها",
+  "chat.eyebrow": "بپرسید",
+  "chat.heading": "هر سؤالی داری بپرس",
+  "chat.subtitle": "اگه نیاز به پاسخگویی سریع داری میتونی از دستیار بپرسی.",
+  "chat.subtitle2":
+    "اگر ترجیح می‌دی با هم صحبت کنیم، شماره‌ات را در فرم بعدی ثبت کن تا باهات تماس بگیریم.",
+  "chat.name": "دستیار",
+  "chat.status": "آنلاین · پاسخ در چند ثانیه",
   "chat.placeholder": "سؤال خود را بنویسید…",
   "chat.reset": "بازنشانی گفت‌وگو",
   "chat.send": "ارسال",
   "chat.greeting":
-    "سلام، من آریا هستم — یک دستیار سبک برای استودیو. هرچیزی درباره اتوماسیون هوش مصنوعی، هوش تجاری یا کار وب بپرسید.",
-  "chat.quick1": "برای من چه اتوماسیونی می‌کنید؟",
-  "chat.quick2": "می‌توانید وب‌سایت بسازید؟",
-  "chat.quick3": "هوش تجاری چطور کمک می‌کند؟",
+    "سلام، من دستیار هوشمند همایون هستم — هرچیزی درباره اتوماسیون کسب و کارت با هوش مصنوعی یا طراحی وبسایت داری بپرس.",
+  "chat.quick1": "آیا کار من میتونه اتوماسیون بشه؟",
+  "chat.quick2": "میتونم سیستم اتوماسیون رو به وبسایت متصل کنم؟",
+  "chat.quick3": "میخوام وقت مشاوره رزرو کنم",
 
   // Contact
   "contact.eyebrow": "تماس",
-  "contact.titlePre": "شماره تماس خود را ثبت کنید و",
+  "contact.titlePre": "شماره تماس خودتون رو ثبت کنید،",
   "contact.titleMid": "۵ دقیقه",
-  "contact.titlePost": "منتظر بمانید :)",
+  "contact.titlePost": "منتظر بمونید :)",
   "contact.subtitle":
     "بدون فرم، بدون رفت‌وبرگشت. فقط شماره خود را بگذارید تا شخصاً و سریع با شما تماس بگیرم.",
-  "contact.placeholder": "+۹۸ ۹۱۲ ۳۴۵ ۶۷۸۹",
+  "contact.placeholder": "0912 345 6789",
   "contact.button": "انتظار پاسخ",
   "contact.sending": "در حال ارسال",
-  "contact.successTitle": "گرفتم — به‌زودی صحبت می‌کنیم.",
-  "contact.successBody":
-    "شماره شما در راه است. انتظار پاسخ را در عرض ۵ دقیقه داشته باشید.",
-  "contact.note": "شماره شما فقط برای پاسخ دادن استفاده می‌شود. هیچ چیز دیگر.",
+  "contact.successTitle": "شماره شما ثبت شد.",
+  "contact.successBody": "بزودی باهاتون تماس میگیریم.",
+  "contact.note":
+    "شماره شما فقط برای پاسخ دادن استفاده می‌شود. نه هیچ چیز دیگری.",
   "contact.errorEmpty": "لطفاً شماره تلفن خود را وارد کنید.",
-  "contact.errorInvalid": "این یک شماره تلفن معتبر به‌نظر نمی‌رسد.",
+  "contact.errorInvalid": "این شماره تلفن معتبر نیست.",
   "contact.errorGeneric": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
 
   // Projects
   "projects.eyebrow": "نمونه‌کارهای منتخب",
-  "projects.heading": "پروژه‌هایی با نتایج واقعی",
+  "projects.heading": "پروژه‌ها",
   "projects.tabAutomation": "اتوماسیون",
   "projects.tabWebsites": "وب‌سایت‌ها",
   "projects.intro":
-    "پشت هر پروژه یک چالش واقعی و یک راه‌حل هوشمند نهفته است. یک پروژه را برای کاوش انتخاب کنید.",
+    "با انتخاب هر پروژه {challenge} هایی که وجود داشته و {solution} هایی که ارائه دادیم رو مشاهده کنید.",
+  "projects.intro_challenge": "چالش‌",
+  "projects.intro_solution": "راه‌حل‌",
   "projects.swipe": "بکشید",
   "projects.outcome": "نتیجه",
   "projects.stack": "تکنولوژی",
@@ -181,83 +190,88 @@ const FA: Dict = {
   "flow.node.instagram": "اینستاگرام",
   "flow.node.reports": "گزارش‌ها",
   "flow.node.dashboard": "داشبورد",
-};
+}
 
-const DICTS: Record<Locale, Dict> = { en: EN, fa: FA };
+const DICTS: Record<Locale, Dict> = { en: EN, fa: FA }
 
 type I18nContextValue = {
-  locale: Locale;
-  dir: "ltr" | "rtl";
-  t: (key: string, vars?: Record<string, string>) => string;
-  setLocale: (l: Locale) => void;
-  toggleLocale: () => void;
-};
+  locale: Locale
+  dir: "ltr" | "rtl"
+  t: {
+    (key: string): string
+    (key: string, vars: Record<string, ReactNode>): ReactNode
+  }
+  setLocale: (l: Locale) => void
+  toggleLocale: () => void
+}
 
-const I18nContext = createContext<I18nContextValue | null>(null);
+const I18nContext = createContext<I18nContextValue | null>(null)
 
-const COOKIE_NAME = "locale";
+const COOKIE_NAME = "locale"
 
 function readCookieLocale(): Locale {
-  if (typeof document === "undefined") return "en";
+  if (typeof document === "undefined") return "en"
   const match = document.cookie
     .split("; ")
-    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
-  const val = match?.split("=")[1];
-  return val === "fa" ? "fa" : "en";
+    .find(row => row.startsWith(`${COOKIE_NAME}=`))
+  const val = match?.split("=")[1]
+  return val === "fa" ? "fa" : "en"
 }
 
 function writeCookieLocale(l: Locale) {
-  if (typeof document === "undefined") return;
+  if (typeof document === "undefined") return
   // Persist for 1 year, site-wide.
-  document.cookie = `${COOKIE_NAME}=${l}; path=/; max-age=31536000; SameSite=Lax`;
+  document.cookie = `${COOKIE_NAME}=${l}; path=/; max-age=31536000; SameSite=Lax`
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   // Initialize from cookie (falls back to "en").
-  const [locale, setLocaleState] = useState<Locale>(readCookieLocale);
+  const [locale, setLocaleState] = useState<Locale>(readCookieLocale)
 
   // Whenever locale changes, persist to cookie + update <html lang/dir>.
   useEffect(() => {
-    writeCookieLocale(locale);
+    writeCookieLocale(locale)
     if (typeof document !== "undefined") {
-      document.documentElement.lang = locale;
-      document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+      document.documentElement.lang = locale
+      document.documentElement.dir = locale === "fa" ? "rtl" : "ltr"
     }
-  }, [locale]);
+  }, [locale])
 
-  const setLocale = useCallback((l: Locale) => setLocaleState(l), []);
+  const setLocale = useCallback((l: Locale) => setLocaleState(l), [])
 
-  const t = useCallback(
-    (key: string, vars?: Record<string, string>) => {
-      let str = DICTS[locale][key] ?? DICTS.en[key] ?? key;
-      if (vars) {
-        for (const [k, v] of Object.entries(vars)) {
-          str = str.replace(new RegExp(`\\{${k}\\}`, "g"), v);
-        }
-      }
-      return str;
-    },
-    [locale]
-  );
+  const t = useMemo(() => {
+    const fn = ((key: string, vars?: Record<string, ReactNode>) => {
+      const str = DICTS[locale][key] ?? DICTS.en[key] ?? key
+
+      if (!vars) return str
+
+      return str.split(/(\{[^}]+\})/g).map(part => {
+        const match = part.match(/^\{(.+)\}$/)
+        return match ? vars[match[1]] ?? part : part
+      })
+    }) as I18nContextValue["t"]
+
+    return fn
+  }, [locale])
 
   const toggleLocale = useCallback(
-    () => setLocaleState((l) => (l === "en" ? "fa" : "en")),
-    []
-  );
+    () => setLocaleState(l => (l === "en" ? "fa" : "en")),
+    [],
+  )
 
-  const dir = locale === "fa" ? "rtl" : "ltr";
+  const dir = locale === "fa" ? "rtl" : "ltr"
 
   return (
     <I18nContext.Provider value={{ locale, dir, t, setLocale, toggleLocale }}>
       {children}
     </I18nContext.Provider>
-  );
+  )
 }
 
 export function useI18n() {
-  const ctx = useContext(I18nContext);
+  const ctx = useContext(I18nContext)
   if (!ctx) {
-    throw new Error("useI18n must be used within an I18nProvider");
+    throw new Error("useI18n must be used within an I18nProvider")
   }
-  return ctx;
+  return ctx
 }

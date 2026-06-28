@@ -8,7 +8,8 @@
   --color-foreground: var(--foreground);
   /* Vazirmatn covers Persian/Arabic glyphs; Geist covers Latin.
      Order matters: Persian chars resolve to Vazirmatn, Latin to Geist. */
-  --font-sans: var(--font-vazirmatn), var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-vazirmatn), var(--font-geist-sans), system-ui,
+    sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -45,12 +46,12 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* Brand tokens */
-  --color-brand: #F97316;
-  --color-brand-soft: #FFF4ED;
-  --color-brand-foreground: #C2410C;
+  --color-brand: #f97316;
+  --color-brand-soft: #fff4ed;
+  --color-brand-foreground: #c2410c;
   --color-ink: #111827;
-  --color-ink-soft: #1F2937;
-  --color-ink-muted: #6B7280;
+  --color-ink-soft: #1f2937;
+  --color-ink-muted: #6b7280;
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -60,71 +61,71 @@
 :root {
   --radius: 0.875rem;
   /* Light theme: pure white background, charcoal ink, orange accent */
-  --background: #FFFFFF;
+  --background: #ffffff;
   --foreground: #111827;
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: #111827;
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #111827;
-  --primary: #F97316;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F4F2EF;
+  --primary: #f97316;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f2ef;
   --secondary-foreground: #111827;
-  --muted: #F4F2EF;
-  --muted-foreground: #6B7280;
-  --accent: #FFF4ED;
-  --accent-foreground: #C2410C;
+  --muted: #f4f2ef;
+  --muted-foreground: #6b7280;
+  --accent: #fff4ed;
+  --accent-foreground: #c2410c;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #ECEAE5;
-  --input: #ECEAE5;
-  --ring: #F97316;
-  --chart-1: #F97316;
+  --border: #eceae5;
+  --input: #eceae5;
+  --ring: #f97316;
+  --chart-1: #f97316;
   --chart-2: #111827;
-  --chart-3: #FB923C;
+  --chart-3: #fb923c;
   --chart-4: #374151;
-  --chart-5: #FFEDD5;
-  --sidebar: #FFFFFF;
+  --chart-5: #ffedd5;
+  --sidebar: #ffffff;
   --sidebar-foreground: #111827;
-  --sidebar-primary: #F97316;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #FFF4ED;
-  --sidebar-accent-foreground: #C2410C;
-  --sidebar-border: #ECEAE5;
-  --sidebar-ring: #F97316;
+  --sidebar-primary: #f97316;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fff4ed;
+  --sidebar-accent-foreground: #c2410c;
+  --sidebar-border: #eceae5;
+  --sidebar-ring: #f97316;
 }
 
 .dark {
-  --background: #0B0F17;
-  --foreground: #F5F5F4;
+  --background: #0b0f17;
+  --foreground: #f5f5f4;
   --card: #111827;
-  --card-foreground: #F5F5F4;
+  --card-foreground: #f5f5f4;
   --popover: #111827;
-  --popover-foreground: #F5F5F4;
-  --primary: #F97316;
+  --popover-foreground: #f5f5f4;
+  --primary: #f97316;
   --primary-foreground: #111827;
-  --secondary: #1F2937;
-  --secondary-foreground: #F5F5F4;
-  --muted: #1F2937;
-  --muted-foreground: #9CA3AF;
-  --accent: #1F2937;
-  --accent-foreground: #F97316;
+  --secondary: #1f2937;
+  --secondary-foreground: #f5f5f4;
+  --muted: #1f2937;
+  --muted-foreground: #9ca3af;
+  --accent: #1f2937;
+  --accent-foreground: #f97316;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 12%);
-  --ring: #F97316;
-  --chart-1: #F97316;
-  --chart-2: #F5F5F4;
-  --chart-3: #FB923C;
-  --chart-4: #9CA3AF;
-  --chart-5: #4B5563;
+  --ring: #f97316;
+  --chart-1: #f97316;
+  --chart-2: #f5f5f4;
+  --chart-3: #fb923c;
+  --chart-4: #9ca3af;
+  --chart-5: #4b5563;
   --sidebar: #111827;
-  --sidebar-foreground: #F5F5F4;
-  --sidebar-primary: #F97316;
+  --sidebar-foreground: #f5f5f4;
+  --sidebar-primary: #f97316;
   --sidebar-primary-foreground: #111827;
-  --sidebar-accent: #1F2937;
-  --sidebar-accent-foreground: #F97316;
+  --sidebar-accent: #1f2937;
+  --sidebar-accent-foreground: #f97316;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #F97316;
+  --sidebar-ring: #f97316;
 }
 
 @layer base {
@@ -167,16 +168,26 @@
   background: transparent;
 }
 .scroll-area::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(249, 115, 22, 0.45), rgba(249, 115, 22, 0.2));
+  background: linear-gradient(
+    180deg,
+    rgba(249, 115, 22, 0.45),
+    rgba(249, 115, 22, 0.2)
+  );
   border-radius: 999px;
 }
 .scroll-area::-webkit-scrollbar-thumb:hover {
   background: rgba(249, 115, 22, 0.6);
 }
-
 /* ===== Animated brand gradient text ===== */
 .text-gradient-brand {
-  background: linear-gradient(110deg, #111827 0%, #111827 35%, #F97316 60%, #FB923C 80%, #111827 100%);
+  background: linear-gradient(
+    110deg,
+    #111827 0%,
+    #111827 35%,
+    #f97316 60%,
+    #fb923c 80%,
+    #111827 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -184,7 +195,9 @@
   animation: shine 8s linear infinite;
 }
 @keyframes shine {
-  to { background-position: 200% center; }
+  to {
+    background-position: 200% center;
+  }
 }
 
 /* ===== Glass surfaces ===== */
@@ -204,29 +217,39 @@
 /* ===== Background layers ===== */
 /* Hero grid (light) */
 .bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      rgba(17, 24, 39, 0.05) 1px,
+      transparent 1px
+    ),
     linear-gradient(to bottom, rgba(17, 24, 39, 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 /* Hero grid fade mask — keeps grid only in hero, fading at edges */
 .bg-grid-mask {
-  -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, black 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    120% 90% at 50% 30%,
+    black 35%,
+    transparent 78%
+  );
   mask-image: radial-gradient(120% 90% at 50% 30%, black 35%, transparent 78%);
 }
 .bg-dots {
-  background-image: radial-gradient(rgba(249, 115, 22, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(249, 115, 22, 0.18) 1px,
+    transparent 1px
+  );
   background-size: 22px 22px;
 }
 
 /* ===== Section colorize helpers ===== */
 .section-light {
-  background: #FFFFFF;
+  background: #ffffff;
   color: #111827;
 }
 .section-dark {
   background: #111827;
-  color: #F5F5F4;
+  color: #f5f5f4;
 }
 /* Dark glass surface for cards on charcoal sections */
 .glass-dark {
@@ -254,43 +277,97 @@
   will-change: transform;
 }
 @keyframes float-slow {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(0, -28px, 0) scale(1.06); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -28px, 0) scale(1.06);
+  }
 }
 @keyframes float-slow-2 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(20px, 24px, 0) scale(0.96); }
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(20px, 24px, 0) scale(0.96);
+  }
 }
-.animate-float-slow { animation: float-slow 14s var(--ease-in-out-quint) infinite; }
-.animate-float-slow-2 { animation: float-slow-2 18s var(--ease-in-out-quint) infinite; }
+.animate-float-slow {
+  animation: float-slow 14s var(--ease-in-out-quint) infinite;
+}
+.animate-float-slow-2 {
+  animation: float-slow-2 18s var(--ease-in-out-quint) infinite;
+}
 
 /* ===== Subtle moving grid ===== */
 @keyframes grid-pan {
-  0% { background-position: 0 0; }
-  100% { background-position: 56px 56px; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 56px 56px;
+  }
 }
-.animate-grid-pan { animation: grid-pan 40s linear infinite; }
+.animate-grid-pan {
+  animation: grid-pan 40s linear infinite;
+}
 
 /* ===== Marquee for tech stack ===== */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
-.animate-marquee { animation: marquee 32s linear infinite; }
-.animate-marquee-rev { animation: marquee 38s linear infinite reverse; }
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.animate-marquee-rev {
+  animation: marquee 38s linear infinite reverse;
+}
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
 }
 
 /* ===== Typing dots ===== */
 @keyframes blink {
-  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
-  40% { opacity: 1; transform: translateY(-2px); }
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
 }
-.dot { animation: blink 1.3s infinite ease-in-out; }
-.dot:nth-child(2) { animation-delay: 0.18s; }
-.dot:nth-child(3) { animation-delay: 0.36s; }
+.dot {
+  animation: blink 1.3s infinite ease-in-out;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.36s;
+}
 
 /* ===== Reveal helpers (used with framer-motion fallback) ===== */
 .reveal-mask {
@@ -300,13 +377,18 @@
 
 /* ===== Focus ring ===== */
 .focus-brand:focus-visible {
-  outline: 2px solid #F97316;
+  outline: 2px solid #f97316;
   outline-offset: 2px;
 }
 
 /* ===== Hide scrollbar for sliders ===== */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 /* ===== Swiper pagination bullets (project cards) ===== */
 .card-swiper {
@@ -321,6 +403,7 @@
 }
 .swiper-bullet {
   width: 6px;
+  margin: 0 2px;
   height: 6px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.45);
@@ -335,7 +418,8 @@
 
 /* ===== Soft card hover lift ===== */
 .lift {
-  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.4s ease;
+  transition: transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo), border-color 0.4s ease;
   will-change: transform;
 }
 .lift:hover {
@@ -353,7 +437,7 @@
   bottom: -4px;
   height: 2px;
   width: 100%;
-  background: linear-gradient(90deg, #F97316, #FB923C);
+  background: linear-gradient(90deg, #f97316, #fb923c);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s var(--ease-out-expo);
@@ -366,10 +450,21 @@
 
 /* ===== Pulse ring for chat avatar ===== */
 @keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5); }
-  70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
 }
-.pulse-ring { animation: pulse-ring 2.4s var(--ease-out-expo) infinite; }
+.pulse-ring {
+  animation: pulse-ring 2.4s var(--ease-out-expo) infinite;
+}
+
+/* ===== button labels ===== */
+
 
 /* cache-bust */

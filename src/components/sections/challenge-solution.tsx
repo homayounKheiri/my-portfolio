@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 import {
   MessagesSquare,
   Database,
@@ -10,17 +10,17 @@ import {
   Users,
   Network,
   PackageCheck,
-} from "lucide-react";
-import { useI18n } from "@/lib/i18n";
+} from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+const EASE = [0.16, 1, 0.3, 1] as const
 
 type Card = {
-  key: string;
-  icon: React.ElementType;
-  question: string;
-  answer: string;
-};
+  key: string
+  icon: React.ElementType
+  question: string
+  answer: string
+}
 
 const CARDS: Card[] = [
   {
@@ -71,59 +71,107 @@ const CARDS: Card[] = [
     question: "Are you processing orders manually?",
     answer: "Orders are processed automatically.",
   },
-];
+]
 
 export function ChallengeSolution() {
-  const { t, locale } = useI18n();
+  const { t, locale } = useI18n()
   // Localized card content
-  const CARD_CONTENT: Record<string, { en: { q: string; a: string }; fa: { q: string; a: string } }> = {
+  const CARD_CONTENT: Record<
+    string,
+    { en: { q: string; a: string }; fa: { q: string; a: string } }
+  > = {
     chat: {
-      en: { q: "Repetitive customer questions?", a: "AI responds automatically." },
-      fa: { q: "سؤال‌های تکراری مشتریان؟", a: "هوش مصنوعی خودکار پاسخ می‌دهد." },
+      en: {
+        q: "Answering the same customer questions?",
+        a: "AI replies automatically.",
+      },
+      fa: {
+        q: "پاسخ تکراری به مشتری‌ها؟",
+        a: "هوش مصنوعی خودش جواب میده.",
+      },
     },
     data: {
-      en: { q: "Manual data entry takes too much time?", a: "Everything is recorded automatically." },
-      fa: { q: "ورود داده دستی خیلی زمان می‌برد؟", a: "همه‌چیز خودکار ثبت می‌شود." },
+      en: {
+        q: "Manual data entry taking too much time?",
+        a: "Everything is recorded automatically.",
+      },
+      fa: {
+        q: "ثبت دستی اطلاعات وقتت رو می‌گیره؟",
+        a: "همه‌چیز خودکار ثبت میشه.",
+      },
     },
     reports: {
-      en: { q: "Creating reports every day?", a: "Reports are generated automatically." },
-      fa: { q: "هر روز گزارش می‌سازید؟", a: "گزارش‌ها خودکار تولید می‌شوند." },
-    },
-    waiting: {
-      en: { q: "Customers waiting for replies?", a: "Responses are sent instantly." },
-      fa: { q: "مشتریان در انتظار پاسخ؟", a: "پاسخ‌ها فوراً ارسال می‌شوند." },
-    },
-    calendar: {
-      en: { q: "Forgetting meetings and tasks?", a: "The system saves everything and reminds you at the right time." },
-      fa: { q: "جلسات و کارها را فراموش می‌کنید؟", a: "سیستم همه‌چیز را ذخیره و در زمان مناسب یادآوری می‌کند." },
-    },
-    team: {
-      en: { q: "Your team spends hours on repetitive work?", a: "They can focus on more valuable tasks." },
-      fa: { q: "تیمتان ساعات‌ها روی کار تکراری می‌گذارد؟", a: "می‌توانند روی کارهای ارزشمندتر تمرکز کنند." },
-    },
-    scattered: {
-      en: { q: "Is your data scattered across multiple tools?", a: "Everything stays synchronized in one seamless workflow." },
-      fa: { q: "داده‌هایتان در چند ابزار مختلف پراکنده است؟", a: "همه‌چیز در یک گردشکار یکپارچه همگام می‌ماند." },
+      en: {
+        q: "Creating reports every day?",
+        a: "Reports are generated automatically.",
+      },
+      fa: { q: "هر روز باید گزارش بگیری؟", a: "گزارش‌ها خودشون آماده میشن." },
     },
     orders: {
-      en: { q: "Are you processing orders manually?", a: "Orders are processed automatically." },
-      fa: { q: "سفارش‌ها را به‌صورت دستی پردازش می‌کنید؟", a: "سفارش‌ها به‌صورت خودکار پردازش می‌شوند." },
+      en: {
+        q: "Tracking orders manually?",
+        a: "Every step is handled automatically.",
+      },
+      fa: {
+        q: "سفارش‌ها رو دستی پیگیری می‌کنی؟",
+        a: "همه مراحل خودکار دنبال میشن.",
+      },
     },
-  };
-  const CARDS_LOCAL = CARDS.map((c) => ({
+    scattered: {
+      en: {
+        q: "Is your data scattered across different apps?",
+        a: "Your data stays unified and always in sync.",
+      },
+      fa: {
+        q: "اطلاعات تو نرم افزارهای مختلف پراکندست؟",
+        a: "همه داده ها یکپارچه و همگام میشن.",
+      },
+    },
+    waiting: {
+      en: {
+        q: "Customers waiting for a reply?",
+        a: "Responses are sent instantly.",
+      },
+      fa: {
+        q: "مشتری‌ها منتظر پاسخ می‌مونن؟",
+        a: "پاسخ‌ها بدون معطلی ارسال میشن.",
+      },
+    },
+    calendar: {
+      en: {
+        q: "Forgetting meetings and tasks?",
+        a: "The system saves everything and reminds you automatically.",
+      },
+      fa: {
+        q: "قرارها و کارها یادت میره؟",
+        a: "سیستم خودش ذخیره میکنه و یادآوری می‌کنه.",
+      },
+    },
+    team: {
+      en: {
+        q: "Your team spending time on repetitive work?",
+        a: "They can focus on more important tasks.",
+      },
+      fa: {
+        q: "تیمت وقتش رو صرف کارهای تکراری می‌کنه؟",
+        a: "وقتشون آزاد میشه برای کارهای مهم‌تر.",
+      },
+    },
+  }
+  const CARDS_LOCAL = CARDS.map(c => ({
     ...c,
     question: CARD_CONTENT[c.key][locale].q,
     answer: CARD_CONTENT[c.key][locale].a,
-  }));
+  }))
 
   return (
     <section
       id="flow"
-      className="section-light relative px-4 py-24 sm:px-6 sm:py-32"
+      className="section-light relative px-4 py-24 sm:px-6 sm:pb-32 sm:py-0"
     >
       <div className="relative z-10 mx-auto w-full max-w-3xl">
         {/* Header */}
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center mb-28">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,12 +191,17 @@ export function ChallengeSolution() {
             className="mt-4 text-balance text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-[44px] lg:text-left"
           >
             {locale === "en" ? (
-              <>What <span className="text-brand">Challenges</span> Can Be Solved?</>
+              <>
+                What <span className="text-brand">Challenges</span> Can Be
+                Solved?
+              </>
             ) : (
-              <>چه <span className="text-brand">چالش</span>‌هایی قابل حل هستند؟</>
+              <>
+                چه <span className="text-brand">چالش</span>‌هایی قابل حل هستند؟
+              </>
             )}
           </motion.h2>
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -156,7 +209,7 @@ export function ChallengeSolution() {
             className="mt-3 max-w-md text-[14.5px] text-ink-muted"
           >
             {t("flow.subheading")}
-          </motion.p>
+          </motion.p> */}
         </div>
 
         {/* 2-column grid — narrow square-ish cards, generous gaps */}
@@ -185,16 +238,17 @@ export function ChallengeSolution() {
         >
           <span className="h-2.5 w-2.5 rounded-full bg-brand/40" />
           <span className="h-2.5 w-2.5 rounded-full bg-brand/40" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand/40" />
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
 
 /* ---------- Statement card with overlapping top icon ---------- */
 
 function StatementCard({ card }: { card: Card }) {
-  const Icon = card.icon;
+  const Icon = card.icon
   return (
     <div className="relative flex h-full flex-col rounded-2xl border border-border bg-white px-6 pb-7 pt-10 shadow-[0_10px_36px_-14px_rgba(17,24,39,0.14)] sm:px-7 sm:pb-8 sm:pt-11">
       {/* Large icon overlapping the top edge — right in EN (LTR), left in FA (RTL) */}
@@ -218,5 +272,5 @@ function StatementCard({ card }: { card: Card }) {
         {card.answer}
       </p>
     </div>
-  );
+  )
 }

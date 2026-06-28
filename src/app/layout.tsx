@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import { I18nProvider } from "@/lib/i18n";
+import type { Metadata } from "next"
+import { Geist, Geist_Mono, Vazirmatn } from "next/font/google"
+import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
+import { I18nProvider } from "@/lib/i18n"
+import { ContinuousCursorGlow } from "@/components/sections/continuous-cursor-glow"
+import { Header } from "@/components/sections/header"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
-});
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-});
+})
 
 // Persian / Arabic-script font. Loaded with ONLY the arabic subset so
 // Latin characters skip it and fall through to Geist.
@@ -22,10 +24,10 @@ const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
   subsets: ["arabic"],
   display: "swap",
-});
+})
 
 export const metadata: Metadata = {
-  title: "Aria Nova — AI Business Intelligence & Automation Consultant",
+  title: "Homayoun Kheiri — AI Business Intelligence & Automation Consultant",
   description:
     "Consultant and specialist in business automation and AI-driven optimization. Web developer crafting premium, high-performance digital products.",
   keywords: [
@@ -35,20 +37,24 @@ export const metadata: Metadata = {
     "web developer",
     "AI optimization",
   ],
-  authors: [{ name: "Aria Nova" }],
+  authors: [{ name: "Homayoun Kheiri" }],
   openGraph: {
-    title: "Aria Nova — AI Business Intelligence & Automation Consultant",
+    title: "Homayoun Kheiri — AI Business Intelligence & Automation Consultant",
     description:
       "Consultant and specialist in business automation and AI-driven optimization.",
     type: "website",
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: "auto" })
+  // }, [pathName])
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -56,11 +62,14 @@ export default function RootLayout({
       >
         <I18nProvider>
           <div className="relative flex min-h-screen flex-col">
-            {children}
+            {/* Blurred cursor glow — only in Hero + Why Automation sections */}
+            <ContinuousCursorGlow sectionIds={["hero", "flow"]} />
+            <Header />
+            <main className="flex-1">{children}</main>
           </div>
           <Toaster />
         </I18nProvider>
       </body>
     </html>
-  );
+  )
 }

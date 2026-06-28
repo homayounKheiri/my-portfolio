@@ -1,65 +1,68 @@
-"use client";
+"use client"
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-import { ArrowUpRight, Target, Lightbulb, X } from "lucide-react";
-import projectsData from "@/data/projects.json";
-import { useI18n, type Locale } from "@/lib/i18n";
+import { useState, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Pagination, Mousewheel, Keyboard } from "swiper/modules"
+import type { Swiper as SwiperType } from "swiper"
+import { ArrowUpRight, Target, Lightbulb, X, ArrowUpLeft } from "lucide-react"
+import projectsData from "@/data/projects.json"
+import { useI18n, type Locale } from "@/lib/i18n"
 
-import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css"
+import "swiper/css/pagination"
 
-type Lang = Locale;
+type Lang = Locale
 
 type LangContent = {
-  title: string;
-  category: string;
-  summary: string;
-  challenge: string;
-  solution: string;
-  metric: string;
-};
+  title: string
+  category: string
+  summary: string
+  challenge: string
+  solution: string
+  metric: string
+}
 
 type Project = {
-  id: string;
-  image: string;
-  images: string[];
-  tags: string[];
-  en: LangContent;
-  fa: LangContent;
-};
+  id: string
+  image: string
+  images: string[]
+  tags: string[]
+  en: LangContent
+  fa: LangContent
+}
 
 const TABS = [
   { id: "automation", labelKey: "projects.tabAutomation" },
   { id: "websites", labelKey: "projects.tabWebsites" },
-] as const;
+] as const
 
-type TabId = (typeof TABS)[number]["id"];
+type TabId = (typeof TABS)[number]["id"]
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+const EASE = [0.16, 1, 0.3, 1] as const
 
 export function Projects() {
-  const { t, locale } = useI18n();
-  const [tab, setTab] = useState<TabId>("automation");
-  const [selected, setSelected] = useState<Project | null>(null);
+  const { t, locale } = useI18n()
+  const [tab, setTab] = useState<TabId>("automation")
+  const [selected, setSelected] = useState<Project | null>(null)
 
-  const list = (projectsData as Record<TabId, Project[]>)[tab];
-  const lang: Lang = locale;
+  const list = (projectsData as Record<TabId, Project[]>)[tab]
+  const lang: Lang = locale
 
   return (
     <section
       id="projects"
       className="section-dark relative px-4 py-24 sm:px-6 sm:py-32"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]"
+      />
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Section header */}
         <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
           <div className="max-w-xl">
-            <motion.span
+            {/* <motion.span
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -68,7 +71,7 @@ export function Projects() {
             >
               <span className="h-px w-6 bg-brand/50" />
               {t("projects.eyebrow")}
-            </motion.span>
+            </motion.span> */}
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -89,8 +92,8 @@ export function Projects() {
               transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
               className="glass-dark relative flex rounded-2xl p-1"
             >
-              {TABS.map((tb) => {
-                const isActive = tab === tb.id;
+              {TABS.map(tb => {
+                const isActive = tab === tb.id
                 return (
                   <button
                     key={tb.id}
@@ -99,7 +102,9 @@ export function Projects() {
                   >
                     <span
                       className={`relative z-10 transition-colors duration-300 ${
-                        isActive ? "text-white" : "text-stone-400 hover:text-white"
+                        isActive
+                          ? "text-white"
+                          : "text-stone-400 hover:text-white"
                       }`}
                     >
                       {t(tb.labelKey)}
@@ -112,7 +117,7 @@ export function Projects() {
                       />
                     )}
                   </button>
-                );
+                )
               })}
             </motion.div>
           </div>
@@ -129,8 +134,19 @@ export function Projects() {
             className="mt-10"
           >
             {tab === "automation" && (
-              <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-left">
-                {t("projects.intro")}
+              <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-start">
+                {t("projects.intro", {
+                  challenge: (
+                    <span className="text-primary font-bold">
+                      {t("projects.intro_challenge")}
+                    </span>
+                  ),
+                  solution: (
+                    <span className="text-primary font-bold">
+                      {t("projects.intro_solution")}
+                    </span>
+                  ),
+                })}
               </p>
             )}
 
@@ -161,7 +177,7 @@ export function Projects() {
         )}
       </AnimatePresence>
     </section>
-  );
+  )
 }
 
 /* ---------- Card ---------- */
@@ -172,12 +188,14 @@ function ProjectCard({
   index,
   onSelect,
 }: {
-  project: Project;
-  lang: Lang;
-  index: number;
-  onSelect: (p: Project) => void;
+  project: Project
+  lang: Lang
+  index: number
+  onSelect: (p: Project) => void
 }) {
-  const c = project[lang];
+  const c = project[lang]
+  const { locale } = useI18n()
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -189,10 +207,10 @@ function ProjectCard({
         role="button"
         tabIndex={0}
         onClick={() => onSelect(project)}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onSelect(project);
+            e.preventDefault()
+            onSelect(project)
           }
         }}
         className="lift group block w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_4px_24px_-12px_rgba(0,0,0,0.4)] hover:border-white/20 hover:shadow-[0_24px_55px_-24px_rgba(0,0,0,0.7)] focus-brand"
@@ -204,31 +222,36 @@ function ProjectCard({
             <p className="truncate text-[12.5px] font-semibold tracking-tight text-white">
               {c.title}
             </p>
-            <p className="text-[9.5px] uppercase tracking-wider text-stone-500">
-              {c.category}
-            </p>
           </div>
-          <ArrowUpRight
-            className="h-4 w-4 shrink-0 text-stone-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
-            strokeWidth={2.2}
-          />
+
+          {locale === "en" ? (
+            <ArrowUpRight
+              className="h-4 w-4 shrink-0 text-stone-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
+              strokeWidth={2.2}
+            />
+          ) : (
+            <ArrowUpLeft
+              className="h-4 w-4 shrink-0 text-stone-500 transition-all duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
+              strokeWidth={2.2}
+            />
+          )}
         </div>
       </div>
     </motion.div>
-  );
+  )
 }
 
 /* ---------- Inner swiping slide ---------- */
 
 function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
-  const swiperRef = useRef<SwiperType | null>(null);
-  const c = project[lang];
-  const { t } = useI18n();
+  const swiperRef = useRef<SwiperType | null>(null)
+  const c = project[lang]
+  const { t } = useI18n()
 
   return (
     <div
       className="relative aspect-[4/3] w-full overflow-hidden"
-      onPointerDown={(e) => e.stopPropagation()}
+      onPointerDown={e => e.stopPropagation()}
     >
       <Swiper
         modules={[Pagination, Mousewheel, Keyboard]}
@@ -240,9 +263,9 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         pagination={{
           clickable: true,
           bulletActiveClass: "swiper-bullet-active",
-          bulletClass: "swiper-bullet",
+          bulletClass: "swiper-bullet mx-2",
         }}
-        onSwiper={(s) => (swiperRef.current = s)}
+        onSwiper={s => (swiperRef.current = s)}
         className="!h-full !w-full card-swiper"
       >
         {/* Slide 1 — image */}
@@ -256,9 +279,6 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
               draggable={false}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
-            <span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink backdrop-blur-sm">
-              {c.category}
-            </span>
           </div>
         </SwiperSlide>
 
@@ -297,7 +317,7 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         {t("projects.swipe")}
       </motion.span>
     </div>
-  );
+  )
 }
 
 /* ---------- Dialog ---------- */
@@ -307,12 +327,12 @@ function ProjectDialog({
   lang,
   onClose,
 }: {
-  project: Project;
-  lang: Lang;
-  onClose: () => void;
+  project: Project
+  lang: Lang
+  onClose: () => void
 }) {
-  const c = project[lang];
-  const { t } = useI18n();
+  const c = project[lang]
+  const { t } = useI18n()
 
   return (
     <AnimatePresence>
@@ -329,7 +349,7 @@ function ProjectDialog({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.98 }}
           transition={{ duration: 0.45, ease: EASE }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
           className="scroll-area relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-background sm:rounded-3xl"
         >
           <button
@@ -387,7 +407,7 @@ function ProjectDialog({
             </div>
 
             <div className="mt-6 flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
+              {project.tags.map(tag => (
                 <span
                   key={tag}
                   className="rounded-md bg-secondary px-2.5 py-1 text-[11.5px] font-medium text-ink-muted"
@@ -400,7 +420,7 @@ function ProjectDialog({
         </motion.div>
       </motion.div>
     </AnimatePresence>
-  );
+  )
 }
 
 /* ---------- Dialog image slider (Swiper, like the card) ---------- */
@@ -409,12 +429,12 @@ function DialogImageSwiper({
   project,
   title,
 }: {
-  project: Project;
-  title: string;
+  project: Project
+  title: string
 }) {
-  const { t } = useI18n();
+  const { t } = useI18n()
   // Build slide list: all images + outcome matt + stack matt
-  const images = project.images?.length ? project.images : [project.image];
+  const images = project.images?.length ? project.images : [project.image]
 
   return (
     <div className="relative aspect-[16/10] w-full overflow-hidden sm:rounded-t-3xl">
@@ -472,5 +492,5 @@ function DialogImageSwiper({
         </SwiperSlide>
       </Swiper>
     </div>
-  );
+  )
 }
