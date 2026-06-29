@@ -11,6 +11,7 @@ import { useI18n, type Locale } from "@/lib/i18n"
 
 import "swiper/css"
 import "swiper/css/pagination"
+import Image from "next/image"
 
 type Lang = Locale
 
@@ -60,8 +61,8 @@ export function Projects() {
       />
       <div className="relative mx-auto w-full max-w-6xl">
         {/* Section header */}
-        <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
-          <div className="max-w-xl">
+        <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-start lg:justify-between lg:text-left">
+          <div className="max-w-xl text-start">
             {/* <motion.span
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -80,6 +81,29 @@ export function Projects() {
               className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
             >
               {t("projects.heading")}
+            </motion.h2>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
+              className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[44px]"
+            >
+              <p className="mb-8 mt-4 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-start">
+                {t("projects.intro", {
+                  challenge: (
+                    <span className="text-primary font-bold">
+                      {t("projects.intro_challenge")}
+                    </span>
+                  ),
+                  solution: (
+                    <span className="text-primary font-bold">
+                      {t("projects.intro_solution")}
+                    </span>
+                  ),
+                })}
+              </p>
             </motion.h2>
           </div>
 
@@ -133,23 +157,6 @@ export function Projects() {
             transition={{ duration: 0.5, ease: EASE }}
             className="mt-10"
           >
-            {tab === "automation" && (
-              <p className="mb-8 max-w-2xl text-pretty text-[15px] leading-relaxed text-stone-400 lg:mx-0 mx-auto text-center lg:text-start">
-                {t("projects.intro", {
-                  challenge: (
-                    <span className="text-primary font-bold">
-                      {t("projects.intro_challenge")}
-                    </span>
-                  ),
-                  solution: (
-                    <span className="text-primary font-bold">
-                      {t("projects.intro_solution")}
-                    </span>
-                  ),
-                })}
-              </p>
-            )}
-
             {/* 3-column multi-row grid */}
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {list.map((p, i) => (
@@ -248,6 +255,8 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
   const c = project[lang]
   const { t } = useI18n()
 
+  const images = project.images?.length ? project.images : [project.image]
+
   return (
     <div
       className="relative aspect-[4/3] w-full overflow-hidden"
@@ -268,43 +277,22 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         onSwiper={s => (swiperRef.current = s)}
         className="!h-full !w-full card-swiper"
       >
-        {/* Slide 1 — image */}
-        <SwiperSlide className="!h-full">
-          <div className="relative h-full w-full">
-            <img
-              src={project.image}
-              alt={c.title}
-              className="h-full w-full object-cover"
-              loading="lazy"
-              draggable={false}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
-          </div>
-        </SwiperSlide>
-
-        {/* Slide 2 — charcoal matt with outcome */}
-        <SwiperSlide className="!h-full">
-          <div className="flex h-full w-full flex-col items-center justify-center bg-ink px-4 text-center">
-            <span className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-stone-500">
-              {t("projects.outcome")}
-            </span>
-            <span className="mt-2 text-xl font-semibold leading-tight tracking-tight text-white">
-              {c.metric}
-            </span>
-          </div>
-        </SwiperSlide>
-
-        {/* Slide 3 — orange matt with stack */}
-        <SwiperSlide className="!h-full">
-          <div className="flex h-full w-full flex-col items-center justify-center bg-brand px-4 text-center">
-            <span className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-white/70">
-              {t("projects.stack")}
-            </span>
-            <span className="mt-2 text-[13px] font-semibold leading-tight text-white">
-              {project.tags.slice(0, 2).join(" · ")}
-            </span>
-          </div>
-        </SwiperSlide>
+        {/* Slide — image */}
+        {images.map(item => (
+          <SwiperSlide className="!h-full" key={item}>
+            <div className="relative h-full w-full">
+              <Image
+                src={item}
+                alt={c.title}
+                className="h-full w-full object-cover"
+                loading="lazy"
+                
+                draggable={false}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       {/* Swipe hint */}
@@ -365,15 +353,15 @@ function ProjectDialog({
 
           <div className="p-6 sm:p-8">
             {/* Title header */}
-            <div className="flex flex-wrap items-center gap-2">
+            {/* <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
                 {c.category}
               </span>
               <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-ink-muted">
                 {c.metric}
               </span>
-            </div>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            </div> */}
+            <h3 className="mt text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               {c.title}
             </h3>
 
@@ -382,28 +370,32 @@ function ProjectDialog({
             </p>
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-brand-soft/50 p-5">
-                <div className="flex items-center gap-2 text-brand-foreground">
-                  <Target className="h-4 w-4" />
-                  <span className="text-[12px] font-semibold uppercase tracking-wider">
-                    {t("projects.challenge")}
-                  </span>
+              {!!c.challenge && (
+                <div className="rounded-2xl border border-border bg-brand-soft/50 p-5">
+                  <div className="flex items-center gap-2 text-brand-foreground">
+                    <Target className="h-4 w-4" />
+                    <span className="text-[12px] font-semibold uppercase tracking-wider">
+                      {t("projects.challenge")}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-ink">
+                    {c.challenge}
+                  </p>
                 </div>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink">
-                  {c.challenge}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-border bg-white p-5">
-                <div className="flex items-center gap-2 text-brand">
-                  <Lightbulb className="h-4 w-4" />
-                  <span className="text-[12px] font-semibold uppercase tracking-wider">
-                    {t("projects.solution")}
-                  </span>
+              )}
+              {!!c.solution && (
+                <div className="rounded-2xl border border-border bg-white p-5">
+                  <div className="flex items-center gap-2 text-brand">
+                    <Lightbulb className="h-4 w-4" />
+                    <span className="text-[12px] font-semibold uppercase tracking-wider">
+                      {t("projects.solution")}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-ink">
+                    {c.solution}
+                  </p>
                 </div>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink">
-                  {c.solution}
-                </p>
-              </div>
+              )}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-1.5">
@@ -437,7 +429,7 @@ function DialogImageSwiper({
   const images = project.images?.length ? project.images : [project.image]
 
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden sm:rounded-t-3xl">
+    <div className="relative aspect-[16/10] w-full overflow-hidden">
       <Swiper
         modules={[Pagination, Mousewheel, Keyboard]}
         slidesPerView={1}
@@ -466,30 +458,6 @@ function DialogImageSwiper({
             </div>
           </SwiperSlide>
         ))}
-
-        {/* Outcome matt (charcoal) */}
-        <SwiperSlide className="!h-full">
-          <div className="flex h-full w-full flex-col items-center justify-center bg-ink px-6 text-center">
-            <span className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-stone-500">
-              {t("projects.outcome")}
-            </span>
-            <span className="mt-2 text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl">
-              {project.en.metric}
-            </span>
-          </div>
-        </SwiperSlide>
-
-        {/* Stack matt (orange) */}
-        <SwiperSlide className="!h-full">
-          <div className="flex h-full w-full flex-col items-center justify-center bg-brand px-6 text-center">
-            <span className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-white/70">
-              {t("projects.stack")}
-            </span>
-            <span className="mt-2 text-[14px] font-semibold leading-tight text-white">
-              {project.tags.slice(0, 3).join(" · ")}
-            </span>
-          </div>
-        </SwiperSlide>
       </Swiper>
     </div>
   )

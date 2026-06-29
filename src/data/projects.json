@@ -8,18 +8,16 @@
       "en": {
         "title": "Intelligent Lead Routing Engine",
         "category": "Automation",
-        "summary": "An AI-driven pipeline that scores, enriches, and routes every inbound lead to the right sales rep in under 800ms.",
-        "challenge": "A fast-growing SaaS company was losing 38% of inbound leads because manual triage took hours and reps worked in different time zones.",
-        "solution": "Built a serverless orchestration layer that fuses behavioral signals with firmographic data, runs an LLM classifier for intent, and pushes prioritized leads into the CRM with a warm-handoff Slack message — all under one second.",
-        "metric": "4.2× faster response"
+        "summary": "A serverless lead-routing pipeline orchestrated with n8n that scores, enriches, and classifies every inbound lead. An LLM infers buyer intent while behavioral and firmographic signals are fused in real time, prioritized records sync to the CRM, and a warm-handoff Slack alert reaches the right rep in under 800ms.",
+        "challenge": "A fast-growing SaaS company was losing 38% of inbound leads because manual triage dragged on for hours and reps scattered across time zones couldn't reach prospects in time.",
+        "solution": "Automated enrichment and LLM intent scoring now route each lead to the best-matched rep instantly, delivering full context through Slack and recovering the revenue that slow, manual handoffs used to lose."
       },
       "fa": {
         "title": "موتور هوشمند مسیریابی سرنخ‌ها",
         "category": "اتوماسیون",
-        "summary": "خط لوله مبتنی بر هوش مصنوعی که هر سرنخ ورودی را امتیازدهی، غنی‌سازی و در کمتر از ۸۰۰ میلی‌ثانیه به نماینده فروش مناسب ارجاع می‌دهد.",
-        "challenge": "یک شرکت SaaS در حال رشد، ۳۸٪ از سرنخ‌های ورودی را از دست می‌داد زیرا دسته‌بندی دستی ساعت‌ها طول می‌کشید و نمایندگان در مناطق زمانی مختلف کار می‌کردند.",
-        "solution": "یک لایه ارکستراسیون بدون سرور ساخته شد که سیگنال‌های رفتاری را با داده‌های جمعیتی شرکت‌ها ترکیب می‌کند، یک طبقه‌بند LLM برای تشخیص نیت اجرا می‌کند و سرنخ‌های اولویت‌دار را با پیام دست‌به‌دست Slack در CRM ثبت می‌کند — همه در کمتر از یک ثانیه.",
-        "metric": "۴.۲× پاسخ سریع‌تر"
+        "summary": "یک خط لوله بدون سرور مسیریابی سرنخ که با n8n ارکستراسیون شده و هر سرنخ ورودی را امتیازدهی، غنی‌سازی و دسته‌بندی می‌کند. یک LLM نیت خریدار را تشخیص می‌دهد، سیگنال‌های رفتاری و جمعیتی شرکت‌ها به‌صورت لحظه‌ای ترکیب می‌شوند، رکوردهای اولویت‌دار با CRM همگام می‌شوند و یک هشدار دست‌به‌دست در Slack در کمتر از ۸۰۰ میلی‌ثانیه به نماینده مناسب می‌رسد.",
+        "challenge": "یک شرکت SaaS در حال رشد ۳۸٪ از سرنخ‌های ورودی را از دست می‌داد، زیرا دسته‌بندی دستی ساعت‌ها طول می‌کشید و نمایندگان پراکنده در مناطق زمانی مختلف نمی‌توانستند به‌موقع به مشتریان بالقوه برسند.",
+        "solution": "غنی‌سازی خودکار و امتیازدهی نیت با LLM اکنون هر سرنخ را فوراً به مناسب‌ترین نماینده ارجاع می‌دهد، زمینه کامل را از طریق Slack تحویل می‌دهد و درآمدی را که پیش‌تر به‌خاطر ارجاع دستی و کند از دست می‌رفت بازمی‌گرداند."
       }
     },
     {
@@ -30,18 +28,16 @@
       "en": {
         "title": "Revenue Intelligence Dashboard",
         "category": "Automation",
-        "summary": "A self-updating BI surface that turns fragmented data sources into a single, plain-language narrative for the leadership team.",
-        "challenge": "Executives were juggling six dashboards and still couldn't answer 'what changed this week and why' without a 30-minute analyst call.",
-        "solution": "Engineered an automated data pipeline that ingests product, billing, and marketing signals, then an LLM composes a weekly executive brief with anomalies, drivers, and recommended actions — delivered by 8am every Monday.",
-        "metric": "6 tools → 1 view"
+        "summary": "A self-updating BI layer driven by an automated ETL pipeline that ingests product, billing, and marketing data into a single source. Anomaly detection surfaces meaningful shifts, and an LLM composes a plain-language weekly executive brief covering what changed, the underlying drivers, and recommended next actions.",
+        "challenge": "Executives juggled six separate dashboards yet still couldn't answer what changed this week and why without scheduling a 30-minute call with an analyst.",
+        "solution": "Consolidated pipelines now feed one view, and an automated brief lands every Monday at 8am, giving leadership the narrative, anomalies, and recommended actions without waiting on manual analysis."
       },
       "fa": {
         "title": "داشبورد هوشمندی درآمد",
         "category": "اتوماسیون",
-        "summary": "یک سطح BI خودبه‌خود به‌روزرسانی‌شونده که منابع داده پراکنده را به یک روایت واحد و ساده برای تیم رهبری تبدیل می‌کند.",
-        "challenge": "مدیران شش داشبورد را مدیریت می‌کردند و همچنان نمی‌توانستند بدون یک تماس ۳۰ دقیقه‌ای با تحلیل‌گر، به این سؤال پاسخ دهند که «این هفته چه چیزی تغییر کرد و چرا».",
-        "solution": "یک خط لوله داده خودکار طراحی شد که سیگنال‌های محصول، صورت‌حساب و بازاریابی را دریافت می‌کند، سپس یک LLM خلاصه اجرایی هفتگی با ناهنجاری‌ها، عوامل مؤثر و اقدامات پیشنهادی تهیه می‌کند — هر دوشنبه ساعت ۸ صبح تحویل داده می‌شود.",
-        "metric": "۶ ابزار → ۱ نما"
+        "summary": "یک لایه BI خودبه‌روزرسانی‌شونده مبتنی بر یک خط لوله ETL خودکار که داده‌های محصول، صورت‌حساب و بازاریابی را در یک منبع واحد گرد می‌آورد. تشخیص ناهنجاری تغییرات معنادار را آشکار می‌کند و یک LLM خلاصه اجرایی هفتگی به زبان ساده تهیه می‌کند که آنچه تغییر کرده، عوامل زمینه‌ای و اقدامات پیشنهادی بعدی را پوشش می‌دهد.",
+        "challenge": "مدیران شش داشبورد جداگانه را مدیریت می‌کردند، اما همچنان بدون هماهنگی یک تماس ۳۰ دقیقه‌ای با تحلیل‌گر نمی‌توانستند پاسخ دهند که این هفته چه چیزی و چرا تغییر کرده است.",
+        "solution": "خطوط لوله یکپارچه اکنون همه‌چیز را در یک نما تغذیه می‌کنند و خلاصه‌ای خودکار هر دوشنبه ساعت ۸ صبح آماده می‌شود — روایت، ناهنجاری‌ها و اقدامات پیشنهادی را بدون انتظار برای تحلیل دستی در اختیار مدیران می‌گذارد."
       }
     },
     {
@@ -52,86 +48,324 @@
       "en": {
         "title": "Conversational Support Concierge",
         "category": "Automation",
-        "summary": "A 24/7 support agent that resolves 64% of tickets autonomously and escalates the rest with full context attached.",
-        "challenge": "A consumer brand's support team was drowning in repetitive tickets, and customers waited an average of 9 hours for a first response.",
-        "solution": "Deployed a retrieval-augmented assistant grounded in the brand's knowledge base and order system. It understands intent, takes actions (refunds, status checks), and hands off to humans with a one-paragraph context summary.",
-        "metric": "64% auto-resolved"
+        "summary": "A 24/7 conversational support agent built on a retrieval-augmented architecture with vector search over the brand's knowledge base and order system. It interprets customer intent, executes actions such as refunds and order-status checks through action agents, and escalates unresolved cases to humans with a concise context summary attached.",
+        "challenge": "A consumer brand's support team was buried in repetitive tickets, leaving customers waiting an average of nine hours just for a first response.",
+        "solution": "The assistant now resolves 64% of tickets on its own and acts directly on orders, so customers get instant answers while agents handle only the cases that truly need a person."
       },
       "fa": {
         "title": "مهماندار پشتیبانی مکالمه‌ای",
         "category": "اتوماسیون",
-        "summary": "یک نماینده پشتیبانی ۲۴/۷ که ۶۴٪ از تیکت‌ها را به‌صورت خودکار حل می‌کند و بقیه را با زمینه کامل ارجاع می‌دهد.",
-        "challenge": "تیم پشتیبانی یک برند مصرفی در تیکت‌های تکراری غرق شده بود و مشتریان به‌طور میانگین ۹ ساعت برای اولین پاسخ منتظر می‌ماندند.",
-        "solution": "یک دستیار تقویت‌شده با بازیابی مستقر شد که بر پایه دانش‌نامه برند و سیستم سفارش کار می‌کند. نیت را درک می‌کند، اقدامات انجام می‌دهد (بازپرداخت، بررسی وضعیت) و با یک خلاصه زمینه‌ای یک‌پاراگرافی به انسان‌ها ارجاع می‌دهد.",
-        "metric": "۶۴٪ حل خودکار"
+        "summary": "یک نماینده پشتیبانی مکالمه‌ای ۲۴/۷ بر پایه معماری تقویت‌شده با بازیابی و جستجوی برداری روی دانش‌نامه برند و سیستم سفارش. نیت مشتری را تفسیر می‌کند، اقداماتی مانند بازپرداخت و بررسی وضعیت سفارش را از طریق ایجنت‌های اقدام انجام می‌دهد و موارد حل‌نشده را همراه با یک خلاصه زمینه‌ای کوتاه به انسان ارجاع می‌دهد.",
+        "challenge": "تیم پشتیبانی یک برند مصرفی زیر انبوه تیکت‌های تکراری مدفون شده بود و مشتریان به‌طور میانگین نُه ساعت تنها برای دریافت اولین پاسخ منتظر می‌ماندند.",
+        "solution": "این دستیار اکنون ۶۴٪ از تیکت‌ها را خود حل می‌کند و مستقیماً روی سفارش‌ها اقدام می‌کند، بنابراین مشتریان پاسخ فوری می‌گیرند و نمایندگان تنها به مواردی می‌پردازند که واقعاً به انسان نیاز دارند."
       }
     }
   ],
   "websites": [
     {
       "id": "web-1",
-      "image": "/images/website-1.png",
-      "images": ["/images/website-1.png", "/images/website-1b.png"],
-      "tags": ["Next.js", "Headless", "Motion", "Edge"],
+      "image": "/images/websites/ParsUHM/01.jpg",
+      "images": [
+        "/images/websites/ParsUHM/01.jpg",
+        "/images/websites/ParsUHM/02.jpg",
+        "/images/websites/ParsUHM/03.jpg"
+      ],
+      "tags": ["ReactJs", "MUI", "Type Script", "XTerm"],
       "en": {
-        "title": "Maison — Premium Commerce",
+        "title": "ParsUHM",
         "category": "Website",
-        "summary": "A headless commerce experience for a luxury lifestyle brand, built for speed, storytelling, and conversion.",
-        "challenge": "A heritage brand needed an online presence that felt as crafted as their physical boutiques, without sacrificing performance.",
-        "solution": "Designed and built a headless storefront with cinematic product pages, motion-driven storytelling, and an edge-cached checkout. Lighthouse 99 across the board.",
-        "metric": "99 Lighthouse"
+        "summary": "ParsUHM is an intelligent system for comprehensive management and reinforcement of network and industrial infrastructures, improving network security and performance through automatic equipment identification, monitoring and automatic reinforcement, backup, change management, and status notifications. This system provides ease of use and economic savings for organizations with a graphical user interface and flexible access level definitions and is developed according to ISO/IEC 27033 standards and NIST CSF and RIT frameworks.",
+        "challenge": "Organizations relied on multiple disconnected tools to manage network infrastructure, making monitoring, security hardening, backup management, and change tracking inefficient and difficult to maintain.",
+        "solution": "Developed a centralized platform that automates infrastructure monitoring, security hardening, backup management, and change tracking, improving operational efficiency while reducing administrative complexity."
       },
       "fa": {
-        "title": "میزون — تجارتPremium",
+        "title": "ParsUHM",
         "category": "وب‌سایت",
-        "summary": "یک تجربه تجارت هدلس برای یک برند لوکس سبک زندگی، ساخته‌شده برای سرعت، داستان‌سرایی و تبدیل.",
-        "challenge": "یک برند اصیل به حضور آنلاینی نیاز داشت که به اندازه بوتیک‌های فیزیکی‌اش دقیق و crafted باشد، بدون اینکه عملکرد را فدا کند.",
-        "solution": "یک فروشگاه هدلس با صفحات محصول سینمایی، داستان‌سرایی مبتنی بر حرکت و پردازش کش‌شده در لبه طراحی و ساخته شد. امتیاز Lighthouse ۹۹ در همه بخش‌ها.",
-        "metric": "۹۹ Lighthouse"
+        "summary": "ParsUHM یک سیستم هوشمند برای مدیریت و تقویت جامع زیرساخت‌های شبکه و صنعتی است که امنیت و عملکرد شبکه را از طریق شناسایی خودکار تجهیزات، پایش، تقویت امنیت، پشتیبان‌گیری، مدیریت تغییرات و اعلان وضعیت بهبود می‌بخشد. این سیستم با رابط کاربری گرافیکی، سطوح دسترسی منعطف و بر اساس استانداردهای ISO/IEC 27033، NIST CSF و RIT توسعه یافته است.",
+        "challenge": "سازمان‌ها برای مدیریت زیرساخت‌های شبکه از ابزارهای پراکنده استفاده می‌کردند که پایش، تقویت امنیت، پشتیبان‌گیری و مدیریت تغییرات را دشوار و ناکارآمد کرده بود.",
+        "solution": "یک پلتفرم متمرکز توسعه داده شد که پایش زیرساخت، تقویت امنیت، پشتیبان‌گیری و مدیریت تغییرات را خودکار کرده و پیچیدگی عملیاتی را کاهش می‌دهد."
       }
     },
     {
       "id": "web-2",
-      "image": "/images/website-2.png",
-      "images": ["/images/website-2.png", "/images/website-2b.png"],
-      "tags": ["Next.js", "Design System", "Conversion"],
+      "image": "/images/websites/Otaghe Darman/01.jpg",
+      "images": [
+        "/images/websites/Otaghe Darman/01.jpg",
+        "/images/websites/Otaghe Darman/02.jpg"
+      ],
+      "tags": ["ReactJs", "MUI", "Type Script", "Zustand"],
       "en": {
-        "title": "Pulse — SaaS Platform",
+        "title": "Treatment Room",
         "category": "Website",
-        "summary": "A marketing site and onboarding flow for a B2B analytics startup, engineered to turn curiosity into activation.",
-        "challenge": "A technical startup had a powerful product but a website that confused visitors and buried the value proposition.",
-        "solution": "Rebuilt the narrative around outcomes, designed a modular component system, and crafted a frictionless sign-up flow with live interactive previews of the product.",
-        "metric": "+57% activation"
+        "summary": "\"Treatment Room\" is a platform for online patient consultation and visitation. The system uses AI to analyze conversations between doctors and patients, providing therapeutic recommendations. Additionally, by reviewing each session, it displays the patient's status and medical history throughout the treatment course for the doctor. The management panel provided to doctors enables them to manage patients, view the analysis results of each session, and access other features.",
+        "challenge": "Managing consultation sessions, reviewing patient history, and analyzing conversations manually made follow-up processes slower and reduced the efficiency of therapeutic recommendations.",
+        "solution": "Built an AI-powered consultation platform that analyzes conversations, organizes patient history, and provides doctors with centralized insights to support more effective consultations."
       },
       "fa": {
-        "title": "پالس — پلتفرم SaaS",
+        "title": "اتاق درمان",
         "category": "وب‌سایت",
-        "summary": "یک سایت بازاریابی و جریان آشناسازی برای یک استارتاپ تحلیلی B2B، مهندسی‌شده برای تبدیل کنجکاوی به فعال‌سازی.",
-        "challenge": "یک استارتاپ فنی محصول قدرتمندی داشت اما وب‌سایتی که بازدیدکنندگان را سردرگم می‌کرد و پیشنهاد ارزش را پنهان می‌کرد.",
-        "solution": "روایت حول نتایج بازسازی شد، یک سیستم کامپوننت ماژولار طراحی شد و یک جریان ثبت‌نام بدون اصطکاک با پیش‌نمایش‌های تعاملی زنده محصول ساخته شد.",
-        "metric": "۵۷٪+ فعال‌سازی"
+        "summary": "«اتاق درمان» پلتفرمی برای مشاوره و ویزیت آنلاین بیماران است. این سیستم با استفاده از هوش مصنوعی مکالمات پزشک و بیمار را تحلیل کرده و توصیه‌های درمانی ارائه می‌دهد. همچنین با بررسی هر جلسه، وضعیت بیمار و سوابق درمان را در اختیار پزشک قرار می‌دهد و از طریق پنل مدیریتی امکان مدیریت بیماران و مشاهده نتایج تحلیل هر جلسه را فراهم می‌کند.",
+        "challenge": "مدیریت جلسات مشاوره، بررسی سوابق بیماران و تحلیل مکالمات به‌صورت دستی، روند پیگیری درمان و ارائه پیشنهادهای درمانی را زمان‌بر کرده بود.",
+        "solution": "یک پلتفرم مبتنی بر هوش مصنوعی توسعه داده شد که مکالمات را تحلیل، سوابق بیماران را متمرکز و اطلاعات لازم را برای مشاوره مؤثرتر در اختیار پزشکان قرار می‌دهد."
       }
     },
     {
       "id": "web-3",
-      "image": "/images/website-3.png",
-      "images": ["/images/website-3.png"],
-      "tags": ["Next.js", "CMS", "Editorial", "GSAP"],
+      "image": "/images/websites/Otaghe Darman Ext/01.jpg",
+      "images": ["/images/websites/Otaghe Darman Ext/01.jpg"],
+      "tags": ["ReactJs", "MUI", "Type Script", "Web Socket"],
       "en": {
-        "title": "Atelier — Portfolio Studio",
+        "title": "Treatment Room Extension",
         "category": "Website",
-        "summary": "A portfolio for an independent design studio — a quiet, confident space that lets the work speak.",
-        "challenge": "A design studio wanted a portfolio that felt premium and intentional, not just another grid of images.",
-        "solution": "Built a scroll-choreographed experience with editorial typography, case-study deep dives, and a custom CMS so the team can publish without engineering.",
-        "metric": "Editorial craft"
+        "summary": "\"Treatment Room\" is a platform for online patient consultation and visitation. This system uses AI to analyze conversations between doctors and patients, providing therapeutic recommendations. The Treatment Room extension is responsible for extracting the text of conversations and sending it instantly to the server. The received text is analyzed by AI, and necessary solutions are provided.",
+        "challenge": "The platform required a reliable way to stream conversation content to the server in real time, enabling AI to analyze discussions and provide instant guidance during consultation sessions.",
+        "solution": "Developed a browser extension that captures and streams conversation text over WebSocket, enabling real-time AI analysis and providing consultants with immediate guidance and contextual recommendations throughout each session."
       },
       "fa": {
-        "title": "آتلیه — استودیو نمونه‌کار",
+        "title": "افزونه اتاق درمان",
         "category": "وب‌سایت",
-        "summary": "یک نمونه‌کار برای یک استودیوی طراحی مستقل — فضایی آرام و مطمئن که به کار اجازه صحبت می‌دهد.",
-        "challenge": "یک استودیوی طراحی می‌خواست نمونه‌کاری که Premium و هدفمند به‌نظر برسد، نه فقط یک شبکه دیگر از تصاویر.",
-        "solution": "یک تجربه هماهنگ‌شده با اسکرول با تایپوگرافی ویرایشی، بررسی عمیق مطالعات موردی و یک CMS سفارشی ساخته شد تا تیم بتواند بدون مهندسی منتشر کند.",
-        "metric": "مهارت ویرایشی"
+        "summary": "«اتاق درمان» پلتفرمی برای مشاوره و ویزیت آنلاین است که با کمک هوش مصنوعی مکالمات پزشک و بیمار را تحلیل کرده و توصیه‌های درمانی ارائه می‌دهد. افزونه اتاق درمان وظیفه استخراج متن مکالمات و ارسال لحظه‌ای آن به سرور را بر عهده دارد تا توسط هوش مصنوعی تحلیل شود.",
+        "challenge": "برای تحلیل مکالمات مشاور و بیمار، روشی نیاز بود تا متن گفتگوها به‌صورت لحظه‌ای به سرور ارسال شود و هوش مصنوعی بتواند هم‌زمان آن‌ها را تحلیل کند.",
+        "solution": "یک افزونه مرورگر توسعه داده شد که متن مکالمات را به‌صورت لحظه‌ای از طریق WebSocket به سرور ارسال می‌کند و علاوه بر تحلیل آنی، راهنمایی‌ها و پیشنهادهای لحظه‌ای را در اختیار مشاور قرار می‌دهد."
+      }
+    },
+    {
+      "id": "web-4",
+      "image": "/images/websites/Zaryazd/01.jpg",
+      "images": [
+        "/images/websites/Zaryazd/01.jpg",
+        "/images/websites/Zaryazd/02.jpg",
+        "/images/websites/Zaryazd/03.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Redux", "Type Script", "Web Socket", "SSR"],
+      "en": {
+        "title": "Zaryazd",
+        "category": "Website",
+        "summary": "A platform for the online buying and selling of gold with real-time updates on prices and products, secure payments, chat, and dedicated panels for customers and managers. This project is fully responsive and implemented with SSR architecture to provide better speed and user experience and is optimized for SEO.",
+        "challenge": "Continuously changing gold prices required a secure platform capable of delivering real-time updates, reliable transactions, and a seamless experience for different user roles.",
+        "solution": "Built a real-time trading platform with live price synchronization, secure payments, integrated messaging, and dedicated dashboards for customers and administrators."
+      },
+      "fa": {
+        "title": "زریزد",
+        "category": "وب‌سایت",
+        "summary": "پلتفرمی برای خرید و فروش آنلاین طلا با نمایش لحظه‌ای قیمت‌ها و محصولات، پرداخت امن، گفت‌وگوی آنلاین و پنل‌های اختصاصی مشتری و مدیر. این پروژه به‌صورت کاملاً واکنش‌گرا و با معماری SSR پیاده‌سازی شده تا سرعت، تجربه کاربری و سئوی بهتری ارائه دهد.",
+        "challenge": "تغییرات مداوم قیمت طلا نیازمند بستری امن برای نمایش لحظه‌ای قیمت‌ها، انجام تراکنش‌های مطمئن و ارائه تجربه‌ای روان به کاربران مختلف بود.",
+        "solution": "یک پلتفرم معاملاتی لحظه‌ای توسعه داده شد که قیمت‌ها را همگام‌سازی، پرداخت‌های امن را مدیریت و پنل‌های اختصاصی را برای مشتریان و مدیران فراهم می‌کند."
+      }
+    },
+    {
+      "id": "web-5",
+      "image": "/images/websites/AVL/01.jpg",
+      "images": [
+        "/images/websites/AVL/01.jpg",
+        "/images/websites/AVL/02.jpg",
+        "/images/websites/AVL/03.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Redux", "Type Script", "Web Socket"],
+      "en": {
+        "title": "AVL System",
+        "category": "Website",
+        "summary": "A real-time fleet and mobile asset management platform built with Next.js, TypeScript, Redux, MUI, and WebSocket. The system enables live tracking on interactive maps, route planning, geofencing, and asset monitoring, making it suitable for municipalities, fire departments, school transportation, and other fleet-based organizations.",
+        "challenge": "Organizations lacked a centralized platform to track mobile assets, define routes, and monitor fleet operations in real time across different locations.",
+        "solution": "Developed a live fleet management platform with interactive maps, route planning, geofencing, and real-time tracking, simplifying operational monitoring through a unified interface."
+      },
+      "fa": {
+        "title": "سیستم AVL",
+        "category": "وب‌سایت",
+        "summary": "سیستم AVL یک پلتفرم مدیریت و ردیابی لحظه‌ای ناوگان و موجودیت‌های متحرک است که با Next.js، TypeScript، Redux، MUI و WebSocket توسعه یافته است. این سیستم امکان ردیابی زنده روی نقشه، طراحی مسیر، تعیین محدوده جغرافیایی و پایش ناوگان را فراهم می‌کند و برای شهرداری‌ها، آتش‌نشانی، سرویس مدارس و سایر سازمان‌های ناوگان‌محور قابل استفاده است.",
+        "challenge": "سازمان‌ها به سامانه‌ای متمرکز برای ردیابی موجودیت‌های متحرک، طراحی مسیرها و مدیریت لحظه‌ای ناوگان در نقاط مختلف نیاز داشتند.",
+        "solution": "یک پلتفرم مدیریت ناوگان توسعه داده شد که ردیابی زنده، طراحی مسیر، تعیین محدوده جغرافیایی و پایش عملیات را در یک رابط کاربری واحد فراهم می‌کند."
+      }
+    },
+    {
+      "id": "web-6",
+      "image": "/images/websites/CrowdFunding/01.jpg",
+      "images": [
+        "/images/websites/CrowdFunding/01.jpg",
+        "/images/websites/CrowdFunding/02.jpg",
+        "/images/websites/CrowdFunding/03.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Type Script", "Redux"],
+      "en": {
+        "title": "Crowd Funding Platform",
+        "category": "Website",
+        "summary": "A modern crowdfunding platform built with Next.js, TypeScript, Redux, and MUI. The platform provides an intuitive experience for launching fundraising campaigns, discovering projects, and supporting ideas through a responsive and scalable web application.",
+        "challenge": "Project owners needed an accessible platform to present ideas, attract supporters, and manage fundraising campaigns through a simple digital experience.",
+        "solution": "Built a modern crowdfunding platform that streamlines campaign creation, fundraising, and supporter engagement with a responsive and user-friendly interface."
+      },
+      "fa": {
+        "title": "پلتفرم تأمین مالی جمعی",
+        "category": "وب‌سایت",
+        "summary": "یک پلتفرم مدرن تأمین مالی جمعی که با Next.js، TypeScript، Redux و MUI توسعه یافته است. این سیستم بستری ساده و مقیاس‌پذیر برای ایجاد کمپین‌های جذب سرمایه، معرفی پروژه‌ها و مشارکت حامیان فراهم می‌کند.",
+        "challenge": "صاحبان ایده و پروژه به بستری ساده برای معرفی کمپین‌ها، جذب سرمایه و مدیریت حامیان نیاز داشتند.",
+        "solution": "یک پلتفرم تأمین مالی جمعی توسعه داده شد که ایجاد کمپین، جذب سرمایه و تعامل با حامیان را در محیطی کاربرپسند ساده می‌کند."
+      }
+    },
+    {
+      "id": "web-7",
+      "image": "/images/websites/Delvin/01.jpg",
+      "images": [
+        "/images/websites/Delvin/01.jpg",
+        "/images/websites/Delvin/02.jpg"
+      ],
+      "tags": ["VueJs", "Quasar", "Pinia"],
+      "en": {
+        "title": "Delvin",
+        "category": "Website",
+        "summary": "Delvin is a beauty salon management platform built with Vue 3, Quasar, and Pinia. Customers can browse services, book appointments online, and access salon information, while salon owners manage appointments, services, customers, and financial reports through a dedicated dashboard.",
+        "challenge": "Beauty salons needed a centralized system to manage appointments, customers, and daily operations while providing a convenient online booking experience.",
+        "solution": "Developed an integrated platform that enables online booking and gives salon owners powerful tools for appointment scheduling, customer management, and business reporting."
+      },
+      "fa": {
+        "title": "دلوین",
+        "category": "وب‌سایت",
+        "summary": "دلوین یک سیستم مدیریت سالن زیبایی است که با Vue 3، Quasar و Pinia توسعه یافته است. مشتریان می‌توانند خدمات را مشاهده کرده و به‌صورت آنلاین نوبت رزرو کنند و مدیران سالن نیز نوبت‌ها، مشتریان، خدمات و گزارش‌های مالی را از طریق پنل اختصاصی مدیریت کنند.",
+        "challenge": "سالن‌های زیبایی به سامانه‌ای یکپارچه برای مدیریت نوبت‌ها، مشتریان و خدمات همراه با رزرو آنلاین نیاز داشتند.",
+        "solution": "یک پلتفرم یکپارچه توسعه داده شد که رزرو آنلاین را برای مشتریان و مدیریت نوبت‌ها، خدمات و گزارش‌ها را برای سالن‌ها فراهم می‌کند."
+      }
+    },
+    {
+      "id": "web-8",
+      "image": "/images/websites/Pay/01.jpg",
+      "images": [
+        "/images/websites/Pay/01.jpg",
+        "/images/websites/Pay/02.jpg",
+        "/images/websites/Pay/03.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Type Script", "Redux"],
+      "en": {
+        "title": "Pay",
+        "category": "Website",
+        "summary": "Pay is a comprehensive citizen payment platform built with Next.js, TypeScript, Redux, and MUI. It centralizes urban service payments, including public transportation, digital ticket purchasing, payment identifiers, registered bank cards, and other municipal services through a unified interface.",
+        "challenge": "Citizens had to use multiple systems to access urban services and complete payments, making everyday municipal transactions inconvenient and time-consuming.",
+        "solution": "Built a unified payment platform that centralizes urban services and digital payments, simplifying access to transportation and other municipal services."
+      },
+      "fa": {
+        "title": "Pay",
+        "category": "وب‌سایت",
+        "summary": "Pay یک سامانه جامع پرداخت خدمات شهری است که با Next.js، TypeScript، Redux و MUI توسعه یافته است. این سیستم پرداخت خدمات شهری، خرید بلیت، پرداخت با شناسه، مدیریت کارت‌های بانکی و سایر خدمات شهروندی را در یک بستر یکپارچه ارائه می‌دهد.",
+        "challenge": "شهروندان برای استفاده از خدمات شهری و انجام پرداخت‌ها مجبور به استفاده از سامانه‌های مختلف بودند که فرآیندها را زمان‌بر می‌کرد.",
+        "solution": "یک سامانه پرداخت یکپارچه توسعه داده شد که خدمات شهری و پرداخت‌های دیجیتال را در یک بستر واحد متمرکز می‌کند."
+      }
+    },
+    {
+      "id": "web-9",
+      "image": "/images/websites/Grandbitex/01.jpg",
+      "images": [
+        "/images/websites/Grandbitex/01.jpg",
+        "/images/websites/Grandbitex/02.jpg",
+        "/images/websites/Grandbitex/03.jpg"
+      ],
+      "tags": ["ReactJs", "Redux", "Web Socket"],
+      "en": {
+        "title": "Grandbitex",
+        "category": "Website",
+        "summary": "Grandbitex is a cryptocurrency exchange platform built with React, Redux, and WebSocket. It provides users with digital asset trading capabilities alongside dedicated user and administration panels for managing exchange operations.",
+        "challenge": "Cryptocurrency traders needed a secure platform to trade digital assets while administrators required efficient tools to manage exchange operations.",
+        "solution": "Developed a cryptocurrency exchange with dedicated user and management panels, providing secure trading capabilities and centralized platform administration."
+      },
+      "fa": {
+        "title": "گرندبیتکس",
+        "category": "وب‌سایت",
+        "summary": "گرندبیتکس یک صرافی ارز دیجیتال است که با React، Redux و WebSocket توسعه یافته است. این سیستم امکان خرید و فروش ارزهای دیجیتال را همراه با پنل‌های اختصاصی کاربران و مدیران برای مدیریت عملیات صرافی فراهم می‌کند.",
+        "challenge": "کاربران به بستری امن برای خریدوفروش ارزهای دیجیتال و مدیران به ابزارهایی متمرکز برای مدیریت صرافی نیاز داشتند.",
+        "solution": "یک صرافی ارز دیجیتال توسعه داده شد که معاملات امن و مدیریت یکپارچه سیستم را از طریق پنل‌های اختصاصی کاربران و مدیران فراهم می‌کند."
+      }
+    },
+    {
+      "id": "web-10",
+      "image": "/images/websites/Megatoken/01.jpg",
+      "images": [
+        "/images/websites/Megatoken/01.jpg",
+        "/images/websites/Megatoken/02.jpg",
+        "/images/websites/Megatoken/03.jpg"
+      ],
+      "tags": ["ReactJs", "Redux", "Web Socket"],
+      "en": {
+        "title": "Megatoken",
+        "category": "Website",
+        "summary": "Megatoken is a Bitcoin mining platform built with React, Redux, and WebSocket. Users can purchase HPW tokens on the Binance Smart Chain, deposit them into the platform, and earn Bitcoin. The project includes a landing page along with dedicated user and management panels.",
+        "challenge": "Users needed a simple and transparent way to participate in Bitcoin mining while managing token deposits and mining rewards through a single platform.",
+        "solution": "Developed a unified mining platform with dedicated user and management panels, simplifying token deposits, mining participation, and Bitcoin reward management."
+      },
+      "fa": {
+        "title": "مگاتوکن",
+        "category": "وب‌سایت",
+        "summary": "مگاتوکن یک پلتفرم استخراج بیت‌کوین است که با React، Redux و WebSocket توسعه یافته است. کاربران می‌توانند با خرید توکن HPW روی شبکه بایننس و واریز آن به پلتفرم، در استخراج بیت‌کوین مشارکت کنند. این پروژه شامل لندینگ، پنل کاربران و پنل مدیریت است.",
+        "challenge": "کاربران به بستری ساده و شفاف برای مشارکت در استخراج بیت‌کوین و مدیریت توکن‌ها و پاداش‌های خود نیاز داشتند.",
+        "solution": "یک پلتفرم یکپارچه توسعه داده شد که مدیریت توکن‌ها، مشارکت در استخراج و دریافت پاداش‌های بیت‌کوین را ساده و متمرکز می‌کند."
+      }
+    },
+    {
+      "id": "web-11",
+      "image": "/images/websites/My Yazd/01.jpg",
+      "images": [
+        "/images/websites/My Yazd/01.jpg",
+        "/images/websites/My Yazd/02.jpg",
+        "/images/websites/My Yazd/03.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Type Script", "Redux"],
+      "en": {
+        "title": "My Yazd",
+        "category": "Website",
+        "summary": "My Yazd is a comprehensive citizen services platform built with Next.js, TypeScript, Redux, and MUI under the supervision of Yazd Municipality. It brings together urban transportation, digital wallet, waste collection, and other municipal services within a unified application.",
+        "challenge": "Citizens had to access municipal services through separate systems, making everyday interactions with urban services fragmented and inconvenient.",
+        "solution": "Built a unified citizen platform that centralizes transportation, digital wallet, waste collection, and other municipal services in one seamless experience."
+      },
+      "fa": {
+        "title": "مای یزد",
+        "category": "وب‌سایت",
+        "summary": "مای یزد یک پلتفرم جامع خدمات شهروندی است که با Next.js، TypeScript، Redux و MUI و تحت نظارت شهرداری یزد توسعه یافته است. این سامانه خدماتی مانند حمل‌ونقل شهری، کیف پول الکترونیکی، جمع‌آوری پسماند و سایر خدمات شهری را در یک بستر یکپارچه ارائه می‌دهد.",
+        "challenge": "شهروندان برای استفاده از خدمات مختلف شهری مجبور به مراجعه به سامانه‌های جداگانه بودند که تجربه کاربری را پیچیده می‌کرد.",
+        "solution": "یک پلتفرم جامع توسعه داده شد که خدمات شهری، کیف پول الکترونیکی و سایر سرویس‌های شهروندی را در یک محیط یکپارچه ارائه می‌دهد."
+      }
+    },
+    {
+      "id": "web-12",
+      "image": "/images/websites/Otoman/01.jpg",
+      "images": [
+        "/images/websites/Otoman/01.jpg",
+        "/images/websites/Otoman/02.jpg",
+        "/images/websites/Otoman/03.jpg",
+        "/images/websites/Otoman/04.jpg"
+      ],
+      "tags": ["NextJs", "MUI", "Redux", "Type Script", "Web Socket"],
+      "en": {
+        "title": "Otoman System",
+        "category": "Website",
+        "summary": "Otoman is an urban transportation platform built with Next.js, TypeScript, Redux, MUI, and WebSocket as part of the My Yazd ecosystem. It consists of dedicated citizen and management portals, providing live bus tracking, station and route information, and centralized fleet management tools.",
+        "challenge": "Passengers and transportation operators needed real-time access to fleet information while managers required centralized tools to monitor and control daily operations.",
+        "solution": "Developed dedicated citizen and management platforms with live vehicle tracking, route information, and centralized fleet management for efficient transportation operations."
+      },
+      "fa": {
+        "title": "سیستم اتومن",
+        "category": "وب‌سایت",
+        "summary": "اتومن یک سامانه حمل‌ونقل شهری است که با Next.js، TypeScript، Redux، MUI و WebSocket به‌عنوان بخشی از اکوسیستم مای یزد توسعه یافته است. این سامانه شامل دو وب‌سایت مجزا برای شهروندان و مدیران بوده و امکان مشاهده موقعیت لحظه‌ای اتوبوس‌ها، ایستگاه‌ها، مسیرها و مدیریت ناوگان را فراهم می‌کند.",
+        "challenge": "شهروندان و مدیران حمل‌ونقل به اطلاعات لحظه‌ای ناوگان و ابزارهایی متمرکز برای مدیریت عملیات روزانه نیاز داشتند.",
+        "solution": "دو سامانه مجزا برای شهروندان و مدیران توسعه داده شد که ردیابی زنده ناوگان، اطلاعات مسیرها و مدیریت متمرکز حمل‌ونقل را فراهم می‌کند."
+      }
+    },
+    {
+      "id": "web-13",
+      "image": "/images/websites/Sitbuy/01.jpg",
+      "images": [
+        "/images/websites/Sitbuy/01.jpg",
+        "/images/websites/Sitbuy/02.jpg"
+      ],
+      "tags": ["VueJs", "Quasar", "VueX"],
+      "en": {
+        "title": "SitBuy",
+        "category": "Website",
+        "summary": "SitBuy is an e-commerce web application built with Vue 3, Quasar, and Vuex. It provides a responsive online shopping experience with modern storefront capabilities for browsing products and completing purchases.",
+        "challenge": "Businesses needed a modern online storefront that simplified product presentation and provided customers with a smooth shopping experience.",
+        "solution": "Built a responsive e-commerce platform that streamlines product browsing, purchasing, and online shopping through a fast and user-friendly interface."
+      },
+      "fa": {
+        "title": "سیت‌بای",
+        "category": "وب‌سایت",
+        "summary": "سیت‌بای یک فروشگاه اینترنتی است که با Vue 3، Quasar و Vuex توسعه یافته است. این پروژه تجربه‌ای سریع و واکنش‌گرا برای مشاهده محصولات و خرید آنلاین فراهم می‌کند.",
+        "challenge": "کسب‌وکارها به فروشگاهی آنلاین نیاز داشتند که معرفی محصولات و فرآیند خرید را برای مشتریان ساده و روان کند.",
+        "solution": "یک فروشگاه اینترنتی واکنش‌گرا توسعه داده شد که مشاهده محصولات و فرآیند خرید آنلاین را سریع، ساده و کاربرپسند می‌کند."
       }
     }
   ]
