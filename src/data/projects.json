@@ -1,63 +1,23 @@
 {
   "automation": [
     {
-      "id": "aut-1",
-      "image": "/images/automation-1.png",
-      "images": ["/images/automation-1.png", "/images/automation-1b.png"],
-      "tags": ["LLM Routing", "n8n", "CRM Sync", "Slack"],
-      "en": {
-        "title": "Intelligent Lead Routing Engine",
-        "category": "Automation",
-        "summary": "A serverless lead-routing pipeline orchestrated with n8n that scores, enriches, and classifies every inbound lead. An LLM infers buyer intent while behavioral and firmographic signals are fused in real time, prioritized records sync to the CRM, and a warm-handoff Slack alert reaches the right rep in under 800ms.",
-        "challenge": "A fast-growing SaaS company was losing 38% of inbound leads because manual triage dragged on for hours and reps scattered across time zones couldn't reach prospects in time.",
-        "solution": "Automated enrichment and LLM intent scoring now route each lead to the best-matched rep instantly, delivering full context through Slack and recovering the revenue that slow, manual handoffs used to lose."
-      },
-      "fa": {
-        "title": "موتور هوشمند مسیریابی سرنخ‌ها",
-        "category": "اتوماسیون",
-        "summary": "یک خط لوله بدون سرور مسیریابی سرنخ که با n8n ارکستراسیون شده و هر سرنخ ورودی را امتیازدهی، غنی‌سازی و دسته‌بندی می‌کند. یک LLM نیت خریدار را تشخیص می‌دهد، سیگنال‌های رفتاری و جمعیتی شرکت‌ها به‌صورت لحظه‌ای ترکیب می‌شوند، رکوردهای اولویت‌دار با CRM همگام می‌شوند و یک هشدار دست‌به‌دست در Slack در کمتر از ۸۰۰ میلی‌ثانیه به نماینده مناسب می‌رسد.",
-        "challenge": "یک شرکت SaaS در حال رشد ۳۸٪ از سرنخ‌های ورودی را از دست می‌داد، زیرا دسته‌بندی دستی ساعت‌ها طول می‌کشید و نمایندگان پراکنده در مناطق زمانی مختلف نمی‌توانستند به‌موقع به مشتریان بالقوه برسند.",
-        "solution": "غنی‌سازی خودکار و امتیازدهی نیت با LLM اکنون هر سرنخ را فوراً به مناسب‌ترین نماینده ارجاع می‌دهد، زمینه کامل را از طریق Slack تحویل می‌دهد و درآمدی را که پیش‌تر به‌خاطر ارجاع دستی و کند از دست می‌رفت بازمی‌گرداند."
-      }
-    },
-    {
       "id": "aut-2",
-      "image": "/images/automation-2.png",
-      "images": ["/images/automation-2.png", "/images/automation-2b.png"],
-      "tags": ["ETL", "LLM Briefs", "Anomaly Detection"],
+      "image": "",
+      "images": ["/images/automation/Resanak/01.png"],
+      "tags": ["Google Drive", "Bale Messenger", "Telegram"],
       "en": {
-        "title": "Revenue Intelligence Dashboard",
+        "title": "Resanak",
         "category": "Automation",
-        "summary": "A self-updating BI layer driven by an automated ETL pipeline that ingests product, billing, and marketing data into a single source. Anomaly detection surfaces meaningful shifts, and an LLM composes a plain-language weekly executive brief covering what changed, the underlying drivers, and recommended next actions.",
-        "challenge": "Executives juggled six separate dashboards yet still couldn't answer what changed this week and why without scheduling a 30-minute call with an analyst.",
-        "solution": "Consolidated pipelines now feed one view, and an automated brief lands every Monday at 8am, giving leadership the narrative, anomalies, and recommended actions without waiting on manual analysis."
+        "summary": "Resanak is an automated file distribution platform built for Bale Messenger. Files uploaded to predefined cloud storage folders are detected instantly, converted into direct download links, and delivered automatically to one or multiple Bale groups or channels. While Google Drive is the primary storage provider, the architecture is designed to support other cloud storage services with minimal changes. The event-driven workflow can also be extended to messaging platforms such as Telegram.",
+        "challenge": "Bale Messenger's file size limit forced users to upload large files to cloud storage and manually share download links across groups and channels.",
+        "solution": "Resanak detects newly uploaded files, creates direct download links automatically, and distributes them to multiple Bale groups while remaining extensible to Telegram and other cloud providers."
       },
       "fa": {
-        "title": "داشبورد هوشمندی درآمد",
+        "title": "رسانک",
         "category": "اتوماسیون",
-        "summary": "یک لایه BI خودبه‌روزرسانی‌شونده مبتنی بر یک خط لوله ETL خودکار که داده‌های محصول، صورت‌حساب و بازاریابی را در یک منبع واحد گرد می‌آورد. تشخیص ناهنجاری تغییرات معنادار را آشکار می‌کند و یک LLM خلاصه اجرایی هفتگی به زبان ساده تهیه می‌کند که آنچه تغییر کرده، عوامل زمینه‌ای و اقدامات پیشنهادی بعدی را پوشش می‌دهد.",
-        "challenge": "مدیران شش داشبورد جداگانه را مدیریت می‌کردند، اما همچنان بدون هماهنگی یک تماس ۳۰ دقیقه‌ای با تحلیل‌گر نمی‌توانستند پاسخ دهند که این هفته چه چیزی و چرا تغییر کرده است.",
-        "solution": "خطوط لوله یکپارچه اکنون همه‌چیز را در یک نما تغذیه می‌کنند و خلاصه‌ای خودکار هر دوشنبه ساعت ۸ صبح آماده می‌شود — روایت، ناهنجاری‌ها و اقدامات پیشنهادی را بدون انتظار برای تحلیل دستی در اختیار مدیران می‌گذارد."
-      }
-    },
-    {
-      "id": "aut-3",
-      "image": "/images/automation-3.png",
-      "images": ["/images/automation-3.png", "/images/automation-3b.png"],
-      "tags": ["RAG", "Vector Search", "Action Agents"],
-      "en": {
-        "title": "Conversational Support Concierge",
-        "category": "Automation",
-        "summary": "A 24/7 conversational support agent built on a retrieval-augmented architecture with vector search over the brand's knowledge base and order system. It interprets customer intent, executes actions such as refunds and order-status checks through action agents, and escalates unresolved cases to humans with a concise context summary attached.",
-        "challenge": "A consumer brand's support team was buried in repetitive tickets, leaving customers waiting an average of nine hours just for a first response.",
-        "solution": "The assistant now resolves 64% of tickets on its own and acts directly on orders, so customers get instant answers while agents handle only the cases that truly need a person."
-      },
-      "fa": {
-        "title": "مهماندار پشتیبانی مکالمه‌ای",
-        "category": "اتوماسیون",
-        "summary": "یک نماینده پشتیبانی مکالمه‌ای ۲۴/۷ بر پایه معماری تقویت‌شده با بازیابی و جستجوی برداری روی دانش‌نامه برند و سیستم سفارش. نیت مشتری را تفسیر می‌کند، اقداماتی مانند بازپرداخت و بررسی وضعیت سفارش را از طریق ایجنت‌های اقدام انجام می‌دهد و موارد حل‌نشده را همراه با یک خلاصه زمینه‌ای کوتاه به انسان ارجاع می‌دهد.",
-        "challenge": "تیم پشتیبانی یک برند مصرفی زیر انبوه تیکت‌های تکراری مدفون شده بود و مشتریان به‌طور میانگین نُه ساعت تنها برای دریافت اولین پاسخ منتظر می‌ماندند.",
-        "solution": "این دستیار اکنون ۶۴٪ از تیکت‌ها را خود حل می‌کند و مستقیماً روی سفارش‌ها اقدام می‌کند، بنابراین مشتریان پاسخ فوری می‌گیرند و نمایندگان تنها به مواردی می‌پردازند که واقعاً به انسان نیاز دارند."
+        "summary": "رسانک یک پلتفرم هوشمند برای توزیع خودکار فایل در پیام‌رسان بله است. با بارگذاری فایل در پوشه‌های از پیش تعریف‌شده در فضای ذخیره‌سازی ابری، برنامه به‌صورت خودکار فایل را شناسایی کرده، لینک دانلود مستقیم آن را ایجاد می‌کند و در یک یا چند گروه یا کانال بله منتشر می‌کند. اگرچه Google Drive به‌عنوان فضای ذخیره‌سازی اصلی استفاده شده است، اما معماری پروژه به‌گونه‌ای طراحی شده که به‌سادگی از سایر سرویس‌های ذخیره‌سازی ابری نیز پشتیبانی کند و برای تلگرام نیز قابل توسعه باشد.",
+        "challenge": "محدودیت حجم فایل در پیام‌رسان بله، کاربران را مجبور می‌کرد فایل‌های حجیم را در فضای ابری بارگذاری کرده و لینک آن‌ها را به‌صورت دستی در گروه‌ها یا کانال‌های بله منتشر کنند.",
+        "solution": "رسانک پس از بارگذاری فایل در فضای ابری، آن را به‌صورت خودکار شناسایی کرده، لینک دانلود مستقیم ایجاد می‌کند و در چندین گروه یا کانال منتشر می‌کند."
       }
     }
   ],

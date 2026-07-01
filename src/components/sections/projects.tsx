@@ -11,7 +11,6 @@ import { useI18n, type Locale } from "@/lib/i18n"
 
 import "swiper/css"
 import "swiper/css/pagination"
-import Image from "next/image"
 
 type Lang = Locale
 
@@ -281,12 +280,11 @@ function CardSwiper({ project, lang }: { project: Project; lang: Lang }) {
         {images.map(item => (
           <SwiperSlide className="!h-full" key={item}>
             <div className="relative h-full w-full">
-              <Image
+              <img
                 src={item}
                 alt={c.title}
                 className="h-full w-full object-cover"
                 loading="lazy"
-                
                 draggable={false}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
