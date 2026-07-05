@@ -19,6 +19,52 @@
         "challenge": "محدودیت حجم فایل در پیام‌رسان بله، کاربران را مجبور می‌کرد فایل‌های حجیم را در فضای ابری بارگذاری کرده و لینک آن‌ها را به‌صورت دستی در گروه‌ها یا کانال‌های بله منتشر کنند.",
         "solution": "رسانک پس از بارگذاری فایل در فضای ابری، آن را به‌صورت خودکار شناسایی کرده، لینک دانلود مستقیم ایجاد می‌کند و در چندین گروه یا کانال منتشر می‌کند."
       }
+    },
+    {
+      "id": "aut-2",
+      "image": "",
+      "images": ["/images/automation/PayamBan/01.png"],
+      "tags": ["AI", "Automation", "Telegram", "Bale Messenger", "Instagram"],
+      "en": {
+        "title": "PayamBan",
+        "category": "Automation",
+        "summary": "PayamBan is an intelligent system that connects to multiple messaging platforms and automatically handles incoming customer messages. When a user sends a message through apps like Telegram, Instagram, or Bale Messenger, the system uses business knowledge to respond appropriately, provide consultations, send proposals, manage bookings, remind users, and notify the business owner about reservations and important activities.",
+        "challenge": "Managing customer messages across multiple messaging platforms is difficult because responses are delayed, important requests get missed, and it is hard to keep communication consistent and organized based on business information.",
+        "solution": "The system receives messages from different platforms, understands the customer's intent using business knowledge, responds automatically with appropriate answers or consultations, manages bookings and reminders, and keeps the business owner informed about important activities such as reservations and customer requests."
+      },
+      "fa": {
+        "title": "پیام‌بان",
+        "category": "اتوماسیون",
+        "summary": "پیام‌بان یک سیستم هوشمند است که به پیام‌رسان‌های مختلف مثل تلگرام، اینستاگرام و بله متصل می‌شود و پیام‌های مشتری‌ها را به‌صورت خودکار مدیریت می‌کند. این سیستم بر اساس اطلاعات کسب‌وکار، پاسخ مناسب ارائه می‌دهد، مشاوره می‌دهد، پیشنهاد ارسال می‌کند، رزرو انجام می‌دهد، پیام‌های یادآوری می‌فرستد و مدیر را از رزروها و درخواست‌های مهم باخبر می‌کند.",
+        "challenge": "مدیریت پیام‌های مشتری در پیام‌رسان‌های مختلف باعث می‌شود پاسخ‌گویی کند شود، برخی درخواست‌های مهم از دست بروند و هماهنگی و یکپارچگی در ارتباطات سخت شود.",
+        "solution": "این سیستم پیام‌ها را از کانال‌های مختلف دریافت می‌کند، با استفاده از اطلاعات کسب‌وکار منظور کاربر را تشخیص می‌دهد، پاسخ مناسب یا مشاوره ارائه می‌دهد، رزرو و یادآوری‌ها را مدیریت می‌کند و مدیر را از تعاملات مهم مانند رزروها و درخواست‌های مشتری آگاه می‌سازد."
+      }
+    },
+    {
+      "id": "aut-3",
+      "image": "",
+      "images": ["/images/automation/Parastoo/01.png"],
+      "tags": [
+        "Order Management",
+        "Automation",
+        "Telegram",
+        "Website",
+        "Payment Tracking"
+      ],
+      "en": {
+        "title": "Parasto",
+        "category": "Automation",
+        "summary": "Parasto is a smart order management system that helps businesses organize orders, monitor payment status, and automate customer notifications. It connects to a website to receive new orders automatically, notifies managers through Telegram, tracks installment payments, sends payment reminders, and keeps all orders organized without the need for complex financial tools.",
+        "challenge": "As order volume increases, managing order status, tracking installment payments, and following up with customers becomes harder, leading to missed payments, delays, and disorganized operations.",
+        "solution": "The system manages orders from creation to completion, tracks payment status, sends automatic reminders, receives website orders instantly, and keeps managers informed about important events such as new orders and payment updates."
+      },
+      "fa": {
+        "title": "پرستو",
+        "category": "اتوماسیون",
+        "summary": "پرستو یک سیستم هوشمند برای مدیریت سفارش‌ها و پیگیری پرداخت‌ها است که به کسب‌وکارها کمک می‌کند همه سفارش‌ها را در یک محیط یکپارچه مدیریت کنند. این سیستم به وب‌سایت متصل می‌شود، سفارش‌های جدید را به‌صورت خودکار دریافت می‌کند، مدیر را از طریق تلگرام باخبر می‌کند، وضعیت پرداخت‌ها به‌ویژه پرداخت‌های اقساطی را پیگیری می‌کند، پیام‌های یادآوری ارسال می‌کند و بدون نیاز به ابزارهای مالی پیچیده، فرآیند مدیریت سفارش‌ها را ساده و منظم نگه می‌دارد.",
+        "challenge": "با افزایش تعداد سفارش‌ها، مدیریت وضعیت سفارش‌ها، پیگیری پرداخت‌ها و اطلاع‌رسانی به مشتری‌ها پیچیده و زمان‌بر می‌شود و احتمال خطا یا فراموشی در فرآیندها افزایش پیدا می‌کند.",
+        "solution": "این سیستم سفارش‌ها را از لحظه ثبت تا تسویه کامل مدیریت می‌کند، وضعیت پرداخت‌ها را پیگیری می‌کند، یادآوری‌های خودکار ارسال می‌کند، سفارش‌های ثبت‌شده در وب‌سایت را دریافت می‌کند و مدیر را از رویدادهای مهم مانند سفارش‌های جدید و پرداخت‌ها مطلع می‌سازد."
+      }
     }
   ],
   "websites": [

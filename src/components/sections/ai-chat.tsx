@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Send, Sparkles, RotateCcw, Zap } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
-type Msg = { role: "user" | "assistant"; content: string }
+type Msg = { role: "user" | "system"; content: string }
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
 export function AIChat() {
   const { t, locale } = useI18n()
-  const greeting: Msg = { role: "assistant", content: t("chat.greeting") }
+  const greeting: Msg = { role: "system", content: t("chat.greeting") }
   const QUICK = [t("chat.quick1"), t("chat.quick2"), t("chat.quick3")]
 
   const [messages, setMessages] = useState<Msg[]>([greeting])
@@ -26,7 +26,7 @@ export function AIChat() {
   // Reset conversation greeting when language changes
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMessages([{ role: "assistant", content: t("chat.greeting") }])
+    setMessages([{ role: "system", content: t("chat.greeting") }])
   }, [locale, t])
 
   const scrollToBottom = useCallback(() => {
@@ -51,16 +51,19 @@ export function AIChat() {
         body: JSON.stringify({ message: content, sessionId }),
       })
       const data = await res.json()
-      const reply =
-        data?.ok && data.reply
-          ? data.reply
-          : "I'm having trouble connecting right now. Mind leaving your number in the Contact section?"
-      setMessages(m => [...m, { role: "assistant", content: reply }])
+
+      if (data?.ok) {
+        const reply =
+          data?.ok && data.reply
+            ? data.reply
+            : "I'm having trouble connecting right now. Mind leaving your number in the Contact section?"
+        setMessages(m => [...m, { role: "system", content: reply }])
+      }
     } catch {
       setMessages(m => [
         ...m,
         {
-          role: "assistant",
+          role: "system",
           content:
             "Something went wrong on my end. Please try again in a moment.",
         },
@@ -72,7 +75,7 @@ export function AIChat() {
   }
 
   const reset = () => {
-    setMessages([{ role: "assistant", content: t("chat.greeting") }])
+    setMessages([{ role: "system", content: t("chat.greeting") }])
     setInput("")
     inputRef.current?.focus()
   }
@@ -153,38 +156,45 @@ export function AIChat() {
                 <p className="text-[14px] font-semibold text-white">
                   {t("chat.name")}
                 </p>
-                <p className="flex items-center gap-1.5 text-[11.5px] text-stone-400">
+                {/* <p className="flex items-center gap-1.5 text-[11.5px] text-stone-400">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
                   {t("chat.status")}
+                </p> */}
+                <p className="flex items-center gap-1.5 text-[11.5px] text-stone-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  {t("chat.status_offline")}
                 </p>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={reset}
               aria-label={t("chat.reset")}
               className="flex h-9 w-9 items-center justify-center rounded-xl text-stone-400 transition-all hover:scale-105 hover:bg-white/10 hover:text-white focus-brand"
             >
               <RotateCcw className="h-4 w-4" />
-            </button>
+            </button> */}
           </div>
 
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="scroll-area h-[240px] overflow-y-auto bg-black/20 px-4 py-5 sm:h-[300px]"
+            className="flex scroll-area h-[240px] overflow-y-auto bg-black/20 px-4 py-5 sm:h-[300px]"
           >
-            <div className="flex flex-col gap-3">
+            <span className="m-auto text-gray-500">
+              {t("chat.coming_soon")}
+            </span>
+            {/* <div className="flex flex-col gap-3">
               <AnimatePresence initial={false}>
                 {messages.map((m, i) => (
                   <Bubble key={i} msg={m} />
                 ))}
               </AnimatePresence>
               {loading && <Typing />}
-            </div>
+            </div> */}
           </div>
 
           {/* Quick replies (only when conversation is fresh) */}
-          {messages.length <= 1 && (
+          {/* {messages.length <= 1 && (
             <div className="flex gap-2 scroll-area border-t border-white/10 bg-white/[0.03] px-4 py-3 flex-nowrap overflow-x-auto">
               {QUICK.map(q => (
                 <button
@@ -196,7 +206,7 @@ export function AIChat() {
                 </button>
               ))}
             </div>
-          )}
+          )} */}
 
           {/* Input — modern pill */}
           <form
@@ -208,20 +218,21 @@ export function AIChat() {
           >
             <input
               ref={inputRef}
+              disabled
               value={input}
               onChange={e => setInput(e.target.value)}
               placeholder={t("chat.placeholder")}
               maxLength={1000}
               className="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-[14px] text-white outline-none transition-colors placeholder:text-stone-500 focus:border-brand/60 focus-brand"
             />
-            <button
+            {/* <button
               type="submit"
               disabled={!input.trim() || loading}
               aria-label="Send"
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink text-white shadow-[0_8px_22px_-8px_rgba(17,24,39,0.7)] transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 focus-brand"
             >
               <Send className="h-4 w-4" strokeWidth={2.4} />
-            </button>
+            </button> */}
           </form>
         </motion.div>
       </div>
@@ -239,7 +250,7 @@ function Bubble({ msg }: { msg: Msg }) {
       transition={{ duration: 0.35, ease: EASE }}
     >
       <div
-        className={`max-w-[82%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
+        className={`w-fit max-w-[82%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
           isUser
             ? "rounded-br-sm ml-auto bg-brand text-white shadow-[0_8px_20px_-10px_rgba(249,115,22,0.7)]"
             : "rounded-bl-sm mr-auto border border-white/12 bg-white/[0.06] text-stone-100"
