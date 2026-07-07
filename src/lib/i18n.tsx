@@ -22,13 +22,12 @@ const EN: Dict = {
   "nav.menu": "Toggle menu",
 
   // Hero
-  "hero.eyebrow": "AI Automation Consultancy",
-  "hero.headlineMid": "of repetitive your tasks can be",
-  "hero.headlineAuto": "automated",
-  "hero.headlineWith": "with",
-  "hero.headlineAI": "AI",
+  "hero.headlineStart": "Right now, parts of your business are ready to become",
+  "hero.headlineAuto": "Automated",
+  "hero.headlineAnd": "and",
+  "hero.headlineSmart": "AI-Powered",
   "hero.subtitle":
-    "Homayoun Kheiri, Web Developer and Consultant and Specialist in AI Business Intelligence and Automation",
+    "Homayoun Kheiri, Web Developer, Business Automation & AI Solutions Designer",
   "hero.ctaProjects": "View Projects",
   "hero.ctaChat": "Start a Conversation",
 
@@ -112,14 +111,13 @@ const FA: Dict = {
   "nav.menu": "باز کردن منو",
 
   // Hero
-  "hero.eyebrow": "مشاوره اتوماسیون هوش مصنوعی",
-  "hero.headlineMid": "از کارهای تکراری شما رو میشه",
+  "hero.headlineStart": "همین الان بخش‌هایی از کسب‌وکارتون منتظر",
   "hero.headlineAuto": "خودکار",
-  "hero.headlineWith": "کرد و به",
-  "hero.headlineAI": "هوش مصنوعی",
-  "hero.headlineDone": "سپرد",
+  "hero.headlineAnd": "شدن و",
+  "hero.headlineSmart": "هوشمند",
+  "hero.headlineEnd": "شدن هستند",
   "hero.subtitle":
-    "همایون خیری، توسعه‌دهنده وب، مشاور و متخصص در هوش مصنوعی و اتوماسیون کسب و کار",
+    "همایون خیری، توسعه‌دهنده وب، مشاور و طراح هوشمندسازی و اتوماسیون کسب و کار",
   "hero.ctaProjects": "مشاهده پروژه‌ها",
   "hero.ctaChat": "شروع گفت‌وگو",
 

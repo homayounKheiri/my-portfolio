@@ -84,33 +84,18 @@ export function Hero() {
               {t("hero.eyebrow")}
             </span>
           </motion.div> */}
-
           {/* Headline — simple, readable, with keyword emphasis */}
-          {locale === "en" ? (
-            <motion.h1
-              variants={item}
-              className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.15] tracking-tight text-ink lg:text-left lg:text-[44px] xl:text-[52px]"
-            >
-              <span className="text-brand">99%</span> {t("hero.headlineMid")}{" "}
-              <span className="text-brand">{t("hero.headlineAuto")}</span>{" "}
-              {t("hero.headlineWith")}{" "}
-              <span className="text-brand">{t("hero.headlineAI")}</span>
-              <span className="text-ink/30">.</span>
-            </motion.h1>
-          ) : (
-            <motion.h1
-              variants={item}
-              className="mt-7 max-w-xl text-balance text-center text-[34px] font-bold leading-[1.4]  tracking-widest text-ink lg:text-start lg:text-[40px] xl:text-[46px]"
-            >
-              <span className="text-brand">۹۹%</span> {t("hero.headlineMid")}{" "}
-              <span className="text-brand">{t("hero.headlineAuto")}</span>{" "}
-              {t("hero.headlineWith")}{" "}
-              <span className="text-brand">{t("hero.headlineAI")}</span>{" "}
-              {t("hero.headlineDone")}
-              <span className="text-ink/30">.</span>
-            </motion.h1>
-          )}
-
+          <motion.h1
+            variants={item}
+            className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.5] tracking-tight text-ink lg:text-start lg:text-[40px]"
+          >
+            {t("hero.headlineStart")}{" "}
+            <span className="text-brand">{t("hero.headlineAuto")}</span>{" "}
+            {t("hero.headlineAnd")}{" "}
+            <span className="text-brand">{t("hero.headlineSmart")}</span>{" "}
+            {locale === "fa" && t("hero.headlineEnd")}
+            <span className="text-ink/30">!</span>
+          </motion.h1>
           {/* Subtitle — smaller, lighter */}
           <motion.p
             variants={item}
@@ -118,20 +103,31 @@ export function Hero() {
           >
             {t("hero.subtitle")}
           </motion.p>
-
           {/* CTAs — center up to md, left on lg+ */}
           <motion.div
             variants={item}
             className="mt-8 flex w-full flex-col items-center gap-3 lg:w-auto lg:flex-row lg:items-start"
           >
             <button
-              onClick={() => router.push("projects")}
-              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-3.5 text-[14.5px] font-semibold text-white shadow-[0_12px_34px_-10px_rgba(249,115,22,0.75)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_16px_40px_-10px_rgba(249,115,22,0.9)] active:scale-95 focus-brand sm:w-auto"
+              onClick={() => scrollToId("contact")}
+              className="hidden items-center gap-1.5 rounded-xl bg-brand px-4 py-3.5 text-[13.5px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.7)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_-8px_rgba(249,115,22,0.85)] active:scale-95 focus-brand md:flex"
             >
-              <Sparkles className="h-4 w-4 transition-transform duration-500 group-hover:rotate-12" />
+              {t("nav.cta")}
+              {locale === "en" ? (
+                <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+              ) : (
+                <ArrowUpLeft className="h-4 w-4" strokeWidth={2.5} />
+              )}
+            </button>
+
+            <button
+              onClick={() => router.push("projects")}
+              className="group text-nowrap flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-[14.5px] font-semibold text-ink transition-all duration-300 hover:border-ink/30 active:scale-95 focus-brand sm:w-auto"
+            >
+              <Sparkles className="h-4 w-4 text-brand transition-transform duration-500 group-hover:-translate-y-0.5" />
               {t("hero.ctaProjects")}
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToId("chat")}
               className="group flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-[14.5px] font-semibold text-ink transition-all duration-300 hover:border-ink/30 active:scale-95 focus-brand sm:w-auto"
             >
@@ -149,7 +145,7 @@ export function Hero() {
                   strokeWidth={2.2}
                 />
               )}
-            </button>
+            </button> */}
           </motion.div>
         </motion.div>
 
