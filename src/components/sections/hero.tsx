@@ -87,7 +87,7 @@ export function Hero() {
           {/* Headline — simple, readable, with keyword emphasis */}
           <motion.h1
             variants={item}
-            className="mt-7 max-w-xl text-balance text-center text-[34px] font-semibold leading-[1.5] tracking-tight text-ink lg:text-start lg:text-[40px]"
+            className="sm:mt-7 max-w-xl text-balance text-center text-[24px] font-semibold leading-[1.5] tracking-tight text-ink lg:text-start sm:text-[36px] lg:text-[40px]"
           >
             {t("hero.headlineStart")}{" "}
             <span className="text-brand">{t("hero.headlineAuto")}</span>{" "}
@@ -110,7 +110,7 @@ export function Hero() {
           >
             <button
               onClick={() => scrollToId("contact")}
-              className="hidden items-center gap-1.5 rounded-xl bg-brand px-4 py-3.5 text-[13.5px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.7)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_-8px_rgba(249,115,22,0.85)] active:scale-95 focus-brand md:flex"
+              className="items-center w-full flex justify-center gap-1.5 rounded-xl bg-brand px-4 py-3.5 text-[13.5px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.7)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_-8px_rgba(249,115,22,0.85)] active:scale-95 focus-brand md:flex sm:w-auto"
             >
               {t("nav.cta")}
               {locale === "en" ? (

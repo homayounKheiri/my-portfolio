@@ -140,7 +140,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-4 right-4 top-[72px] z-50 md:hidden"
+            className="absolute backdrop-blur-sm left-4 right-4 top-[72px] z-50 md:hidden"
           >
             <div className="glass-strong rounded-2xl p-2 shadow-[0_20px_50px_-20px_rgba(17,24,39,0.35)]">
               {navItems.map((item, i) => (
