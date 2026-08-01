@@ -65,6 +65,32 @@
         "challenge": "با افزایش تعداد سفارش‌ها، مدیریت وضعیت سفارش‌ها، پیگیری پرداخت‌ها و اطلاع‌رسانی به مشتری‌ها پیچیده و زمان‌بر می‌شود و احتمال خطا یا فراموشی در فرآیندها افزایش پیدا می‌کند.",
         "solution": "این سیستم سفارش‌ها را از لحظه ثبت تا تسویه کامل مدیریت می‌کند، وضعیت پرداخت‌ها را پیگیری می‌کند، یادآوری‌های خودکار ارسال می‌کند، سفارش‌های ثبت‌شده در وب‌سایت را دریافت می‌کند و مدیر را از رویدادهای مهم مانند سفارش‌های جدید و پرداخت‌ها مطلع می‌سازد."
       }
+    },
+    {
+      "id": "aut-4",
+      "image": "",
+      "images": ["/images/automation/ZiniPoosh/01.png"],
+      "tags": [
+        "Product Automation",
+        "Telegram",
+        "WordPress",
+        "WooCommerce",
+        "Data Synchronization"
+      ],
+      "en": {
+        "title": "Zini Poosh",
+        "category": "Automation",
+        "summary": "Zini Poosh is an online fashion jewelry platform that receives products from the main seller through a Telegram channel and transfers product information and images to its website, providing an online shopping experience. The website is built using WordPress and WooCommerce.",
+        "challenge": "Products from the Telegram channel had to be manually added to the website, requiring separate entry of images, product information, and categories, which made the process time-consuming and repetitive.",
+        "solution": "A system was developed to receive products from the Telegram channel in real time and automatically handle product creation, updates, and removals in the WooCommerce website. Changes and deleted Telegram messages are also detected and applied to the related products on the website."
+      },
+      "fa": {
+        "title": "زینی پوش",
+        "category": "اتوماسیون",
+        "summary": "زینی پوش یک پلتفرم فروش بدلیجات است که محصولات فروشنده اصلی را از طریق کانال تلگرام دریافت کرده و با انتقال اطلاعات و تصاویر محصولات به وب‌سایت، امکان نمایش و فروش آنلاین آن‌ها را فراهم می‌کند. این وب‌سایت با استفاده از وردپرس و ووکامرس پیاده‌سازی شده است.",
+        "challenge": "ثبت محصولات از کانال تلگرام در وب‌سایت به‌صورت دستی انجام می‌شد که شامل وارد کردن تصاویر، اطلاعات محصول و دسته‌بندی‌ها بود و فرآیندی زمان‌بر و تکراری ایجاد می‌کرد.",
+        "solution": "سیستمی توسعه داده شد که محصولات را به‌صورت لحظه‌ای از کانال تلگرام دریافت کرده و ایجاد، بروزرسانی و حذف محصولات در وب‌سایت ووکامرسی را به‌صورت خودکار انجام می‌دهد. تغییرات و حذف پیام‌های تلگرام نیز شناسایی شده و در سایت اعمال می‌شوند."
+      }
     }
   ],
   "websites": [
