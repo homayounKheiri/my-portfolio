@@ -91,6 +91,34 @@
         "challenge": "ثبت محصولات از کانال تلگرام در وب‌سایت به‌صورت دستی انجام می‌شد که شامل وارد کردن تصاویر، اطلاعات محصول و دسته‌بندی‌ها بود و فرآیندی زمان‌بر و تکراری ایجاد می‌کرد.",
         "solution": "سیستمی توسعه داده شد که محصولات را به‌صورت لحظه‌ای از کانال تلگرام دریافت کرده و ایجاد، بروزرسانی و حذف محصولات در وب‌سایت ووکامرسی را به‌صورت خودکار انجام می‌دهد. تغییرات و حذف پیام‌های تلگرام نیز شناسایی شده و در سایت اعمال می‌شوند."
       }
+    },
+    {
+      "id": "aut-5",
+      "image": "",
+      "images": ["/images/automation/BeautySalon/01.jpg"],
+      "tags": [
+        "Product Automation",
+        "Telegram",
+        "Bale",
+        "Instagram",
+        "Appointment",
+        "Reminder",
+        "Scheduling"
+      ],
+      "en": {
+        "title": "Smart Beauty Salon Assistant",
+        "category": "Automation",
+        "summary": "A smart assistant designed for hairdressers and beauty salons. It interacts with customers on any messaging platform, suggests and books the best available time based on defined services, their durations, and stylist availability. It provides consultation when needed, sends portfolio samples, reminds appointments, and more. The assistant is customized specifically for each salon's or stylist's unique needs.",
+        "challenge": "Manual booking across multiple platforms caused double reservations, missed follow-ups, and forgotten reminders. Sending portfolios and updates required extra time.",
+        "solution": "An automated system integrates with all messaging apps, handles reservations, checks stylist availability, schedules services based on duration, sends reminders, and delivers portfolio samples—all without human intervention."
+      },
+      "fa": {
+        "title": "دستیار هوشمند سالن زیبایی",
+        "category": "اتوماسیون",
+        "summary": "یک دستیار هوشمند که برای آرایشگران و سالن‌های زیبایی طراحی شده است. این دستیار در هر پلتفرم پیام‌رسانی با مشتری تعامل داشته و بر اساس خدمات تعریف‌شده، مدت زمان هر خدمت و وقت خالی آرایشگر، بهترین زمان را پیشنهاد و رزرو می‌کند. در صورت نیاز مشتری به مشاوره، راهنمایی لازم را ارائه می‌دهد، نمونه کار ارسال می‌کند، نوبت‌ها را یادآوری می‌نماید و ... . این دستیار به‌صورت اختصاصی و بر اساس نیازهای خاص هر سالن یا آرایشگر پیاده‌سازی می‌شود.",
+        "challenge": "رزرو دستی در پیام‌رسان‌های مختلف باعث تداخل نوبت‌ها، فراموشی پیگیری و ارسال نشدن یادآوری می‌شد. ارسال نمونه کارها و اطلاع‌رسانی زمان زیادی می‌گرفت.",
+        "solution": "سیستم خودکار به همه پیام‌رسان‌ها متصل است و رزرو، بررسی زمان خالی، برنامه‌ریزی بر اساس مدت خدمت، ارسال یادآوری و نمونه کارها را بدون دخالت انسانی انجام می‌دهد."
+      }
     }
   ],
   "websites": [
