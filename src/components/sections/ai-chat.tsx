@@ -255,7 +255,7 @@ function Bubble({ msg }: { msg: Msg }) {
       transition={{ duration: 0.35, ease: EASE }}
     >
       <div
-        className={`w-fit max-w-[82%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
+        className={`w-fit max-w-[82%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed 10px_rgba whitespace-break-spaces ${
           isUser
             ? "rounded-br-sm ml-auto bg-brand text-white shadow-[0_8px_20px_-10px_rgba(249,115,22,0.7)]"
             : "rounded-bl-sm mr-auto border border-white/12 bg-white/[0.06] text-stone-100"
