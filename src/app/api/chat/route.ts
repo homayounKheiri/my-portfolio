@@ -65,26 +65,25 @@ export async function POST(req: NextRequest) {
     //   thinking: { type: "disabled" },
     // });
 
-    const result = await fetch(BASE_URL + "/webhook-test/chat", {
+    
+    const result = await fetch(BASE_URL + "/webhook/chat", {
       method: "post",
+      // signal: AbortSignal.timeout(1000),
       body: JSON.stringify({
-        messages: [
-          {
-            role: "user",
-            content: message,
-          },
-          ...history,
-        ],
+        message: {
+          role: "user",
+          content: message,
+          session: sessionId,
+        },
       }),
     })
-
     const json: {
-      response: string
+      message: string
     } = await result.json()
 
     if (result.ok && !!json) {
       history.push({ role: "user", content: message })
-      history.push({ role: "system", content: json.response })
+      history.push({ role: "system", content: json.message })
       while (history.length > MAX_MESSAGES) history.shift()
 
       return NextResponse.json({ ok: true, response: json, sessionId })

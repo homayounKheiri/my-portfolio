@@ -42,7 +42,7 @@ const EN: Dict = {
   "chat.subtitle": "Need a quick answer? Ask our AI assistant.",
   "chat.subtitle2":
     "If you'd prefer to talk with us, enter your phone number at the bottom of this page, and we'll give you a call.",
-  "chat.name": "Assistant",
+  "chat.name": "Intelligent Assistant",
   "chat.status": "Online · Replies in seconds",
   "chat.status_offline": "Offline",
   "chat.coming_soon": "Coming Soon ...",
@@ -71,6 +71,8 @@ const EN: Dict = {
   "contact.errorEmpty": "Please enter your phone number.",
   "contact.errorInvalid": "That doesn't look like a valid phone number.",
   "contact.errorGeneric": "Something went wrong. Please try again.",
+  "chat.hasProblem":
+    "I'm sorry. It seems there's an issue preventing me from communicating with you properly! Please enter your phone number at the bottom of this page so we can contact you.",
 
   // Projects
   "projects.eyebrow": "Selected Work",
@@ -132,18 +134,20 @@ const FA: Dict = {
   "chat.subtitle": "اگه نیاز به پاسخگویی سریع داری میتونی از دستیار بپرسی.",
   "chat.subtitle2":
     "اگر ترجیح میدی باهم صحبت کنیم، شماره‌ات رو در پایین همین صفحه ثبت کن تا باهات تماس بگیریم.",
-  "chat.name": "دستیار",
-  "chat.status": "آنلاین · پاسخ در چند ثانیه",
+  "chat.name": "دستیار هوشمند",
+  "chat.status": "آنلاین",
   "chat.status_offline": "آفلاین",
   "chat.coming_soon": "به زودی ...",
   "chat.placeholder": "سؤال خود را بنویسید…",
   "chat.reset": "بازنشانی گفت‌وگو",
   "chat.send": "ارسال",
   "chat.greeting":
-    "سلام، من دستیار هوشمند همایون هستم — هر سوالی درباره اتوماسیون کسب و کارت با هوش مصنوعی یا طراحی وبسایت داری بپرس.",
+    "سلام، من دستیار هوشمند همایون هستم، هر سوالی درباره اتوماسیون کسب و کارت با هوش مصنوعی یا طراحی وبسایت داری بپرس.",
   "chat.quick1": "آیا کار من میتونه اتوماسیون بشه؟",
   "chat.quick2": "میتونم سیستم اتوماسیون رو به وبسایت متصل کنم؟",
   "chat.quick3": "میخوام وقت مشاوره رزرو کنم",
+  "chat.hasProblem":
+    "متاسفم. به نظر میرسه یه مشکلی نمیذاره من به راحتی باهاتون صحبت کنم! لطفاً شماره تماستون رو در پایین همین صفحه وارد کنید تا باهاتون تماس بگیریم.",
 
   // Contact
   "contact.eyebrow": "تماس",
@@ -217,7 +221,7 @@ function readCookieLocale(): Locale {
     .split("; ")
     .find(row => row.startsWith(`${COOKIE_NAME}=`))
   const val = match?.split("=")[1]
-  return val === "fa" ? "fa" : "en"
+  return val === "en" ? "en" : "fa"
 }
 
 function writeCookieLocale(l: Locale) {
