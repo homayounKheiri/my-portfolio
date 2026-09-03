@@ -15,6 +15,7 @@ export function AIChat() {
   const QUICK = [t("chat.quick1"), t("chat.quick2"), t("chat.quick3")]
 
   const [messages, setMessages] = useState<Msg[]>([greeting])
+  const [isLastMessage, setIsLastMessage] = useState(false)
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -54,6 +55,8 @@ export function AIChat() {
 
       console.log()
 
+      setIsLastMessage(!!data.response.isLastMessage)
+
       const reply =
         data?.ok && !!data.response.message
           ? data.response.message
@@ -61,8 +64,7 @@ export function AIChat() {
           ? t("chat.hasProblem")
           : ""
 
-      if (!!reply)
-        setMessages(m => [...m, { role: "system", content: reply }])
+      if (!!reply) setMessages(m => [...m, { role: "system", content: reply }])
     } catch {
       setMessages(m => [
         ...m,
@@ -223,7 +225,7 @@ export function AIChat() {
             <input
               ref={inputRef}
               value={input}
-              disabled={messages.length >= 23}
+              disabled={isLastMessage}
               onChange={e => setInput(e.target.value)}
               placeholder={t("chat.placeholder")}
               maxLength={1000}

@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     // });
 
     
-    const result = await fetch(BASE_URL + "/webhook-test/chat", {
+    const result = await fetch(BASE_URL + "/webhook/chat", {
       method: "post",
       // signal: AbortSignal.timeout(1000),
       body: JSON.stringify({
@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
       }),
     })
     const json: {
-      message: string
+      message: string,
+      isLastMessage?: boolean 
     } = await result.json()
 
     if (result.ok && !!json) {
