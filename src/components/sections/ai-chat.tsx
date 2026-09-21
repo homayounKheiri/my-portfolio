@@ -278,7 +278,7 @@ function Typing() {
       exit={{ opacity: 0 }}
       className="flex justify-start"
     >
-      <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-white/12 bg-white/[0.06] px-4 py-3.5 ms-auto">
+      <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md border border-white/12 bg-white/[0.06] px-4 py-3.5 mr-auto">
         <span className="dot h-2 w-2 rounded-full bg-stone-400" />
         <span className="dot h-2 w-2 rounded-full bg-stone-400" />
         <span className="dot h-2 w-2 rounded-full bg-stone-400" />

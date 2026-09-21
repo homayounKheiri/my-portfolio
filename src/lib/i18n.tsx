@@ -88,6 +88,7 @@ const EN: Dict = {
   "projects.stack": "Stack",
   "projects.challenge": "The Challenge",
   "projects.solution": "The Solution",
+  "projects.show_video": "Show Video",
 
   // Infographic (AutomationFlow)
   "flow.liveWorkflow": "Live workflow",
@@ -181,6 +182,7 @@ const FA: Dict = {
   "projects.stack": "تکنولوژی",
   "projects.challenge": "چالش",
   "projects.solution": "راه‌حل",
+  "projects.show_video": "نمایش ویدئو",
 
   // Infographic (AutomationFlow)
   "flow.liveWorkflow": "گردشکار زنده",

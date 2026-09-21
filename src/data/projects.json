@@ -3,6 +3,7 @@
     {
       "id": "aut-1",
       "image": "",
+      "video": "https://upload.homayoundev.ir/upload/4466efdcee95c51a52a6e6472303fcf8.mp4",
       "images": ["/images/automation/Resanak/01.png"],
       "tags": ["Google Drive", "Bale Messenger", "Telegram"],
       "en": {
@@ -70,6 +71,7 @@
       "id": "aut-4",
       "image": "",
       "images": ["/images/automation/ZiniPoosh/01.png"],
+      "video": "https://upload.homayoundev.ir/upload/97aab10d6ba6ff8116147c46b79bf7ed.mp4",
       "tags": [
         "Product Automation",
         "Telegram",
@@ -96,6 +98,7 @@
       "id": "aut-5",
       "image": "",
       "images": ["/images/automation/BeautySalon/01.jpg"],
+      "video": "https://upload.homayoundev.ir/upload/d895d84c35d6c1bb6705d80812ee0a23.mp4",
       "tags": [
         "Product Automation",
         "Telegram",
@@ -118,6 +121,64 @@
         "summary": "یک دستیار هوشمند که برای آرایشگران و سالن‌های زیبایی طراحی شده است. این دستیار در هر پلتفرم پیام‌رسانی با مشتری تعامل داشته و بر اساس خدمات تعریف‌شده، مدت زمان هر خدمت و وقت خالی آرایشگر، بهترین زمان را پیشنهاد و رزرو می‌کند. در صورت نیاز مشتری به مشاوره، راهنمایی لازم را ارائه می‌دهد، نمونه کار ارسال می‌کند، نوبت‌ها را یادآوری می‌نماید و ... . این دستیار به‌صورت اختصاصی و بر اساس نیازهای خاص هر سالن یا آرایشگر پیاده‌سازی می‌شود.",
         "challenge": "رزرو دستی در پیام‌رسان‌های مختلف باعث تداخل نوبت‌ها، فراموشی پیگیری و ارسال نشدن یادآوری می‌شد. ارسال نمونه کارها و اطلاع‌رسانی زمان زیادی می‌گرفت.",
         "solution": "سیستم خودکار به همه پیام‌رسان‌ها متصل است و رزرو، بررسی زمان خالی، برنامه‌ریزی بر اساس مدت خدمت، ارسال یادآوری و نمونه کارها را بدون دخالت انسانی انجام می‌دهد."
+      }
+    },
+    {
+      "id": "aut-6",
+      "image": "",
+      "video": "https://upload.homayoundev.ir/upload/ce7cf2e33089658ade8aed56d584ea63.mp4",
+      "images": ["/images/automation/AyoobGold/01.jpg"],
+      "tags": [
+        "Product Automation",
+        "Telegram",
+        "Gold",
+        "Price Alert",
+        "News",
+        "AI",
+        "Web Scraping"
+      ],
+      "en": {
+        "title": "AyoobGold",
+        "category": "Automation",
+        "summary": "An automated system for publishing gold and currency market news and real-time gold and coin prices on a Telegram channel. The system collects important news from trusted sources, analyzes them using AI, and publishes the relevant updates. It also reads gold and coin prices directly from the jeweler's private panel and publishes the latest prices automatically.",
+        "challenge": "There was no automated system capable of logging into the jeweler's private panel, retrieving the latest prices, and publishing them to the Telegram channel at regular intervals. Access restrictions on the panel also made automated data retrieval more challenging.",
+        "solution": "An automated system was developed to log into the private panel, handle its access restrictions automatically, retrieve the latest gold and coin prices, and publish them to the Telegram channel in real time. The system also collects important market news from trusted sources, analyzes them using AI, and automatically publishes the relevant news."
+      },
+      "fa": {
+        "title": "AyoobGold",
+        "category": "اتوماسیون",
+        "summary": "سیستمی خودکار برای انتشار اخبار حوزه ارز و طلا و همچنین اعلام لحظه‌ای قیمت طلا و سکه در کانال تلگرام. این سیستم اخبار مهم را از منابع معتبر جمع‌آوری کرده، پس از تحلیل و بررسی توسط هوش مصنوعی، اخبار مرتبط را در کانال منتشر می‌کند. همچنین قیمت طلا و سکه را مستقیماً از پنل اختصاصی طلافروش دریافت کرده و به‌صورت خودکار در کانال اعلام می‌نماید.",
+        "challenge": "سیستمی برای ورود خودکار به پنل طلافروش، دریافت قیمت‌ها و ارسال آن‌ها به کانال تلگرام در بازه‌های زمانی مشخص وجود نداشت. همچنین محدودیت‌های دسترسی پنل، دریافت خودکار اطلاعات را با چالش مواجه می‌کرد.",
+        "solution": "سیستمی طراحی شد که به‌صورت خودکار وارد پنل اختصاصی طلافروش شده، محدودیت‌های دسترسی آن را مدیریت کرده و قیمت لحظه‌ای طلا و سکه را دریافت و در کانال تلگرام منتشر می‌کند."
+      }
+    },
+    {
+      "id": "aut-7",
+      "image": "",
+      "images": ["/images/automation/Melkchi/01.jpg"],
+      "video": "https://upload.homayoundev.ir/upload/d53620295ecc1b6790c5f49b6b5beae5.mp4",
+      "tags": [
+        "Product Automation",
+        "WhatsApp",
+        "Divar",
+        "AI Assistant",
+        "Real Estate",
+        "Property Search",
+        "Automation"
+      ],
+      "en": {
+        "title": "MelkChi",
+        "category": "Automation",
+        "summary": "An AI-powered assistant designed for real estate agents and their customers. The system automatically monitors property listings published on Divar and sends new listings through WhatsApp. Agents and customers can also describe their requirements for a property or land through natural conversation with the AI assistant, which automatically searches Divar based on their criteria and returns relevant listings.",
+        "challenge": "Keeping up with newly published property listings on Divar was time-consuming and required repeatedly checking the platform for new listings. Finding properties that matched specific customer requirements also required manual searching.",
+        "solution": "An automated system was developed to monitor new Divar listings and send them through WhatsApp. The AI assistant also understands property requirements expressed in natural language, automatically performs the search on Divar based on those requirements, and provides the relevant results to the user."
+      },
+      "fa": {
+        "title": "MelkChi",
+        "category": "اتوماسیون",
+        "summary": "یک دستیار هوشمند برای مشاوران املاک و مشتریان آن‌ها. این سیستم آگهی‌های جدید املاک منتشرشده در سایت دیوار را به‌صورت خودکار بررسی کرده و از طریق واتساپ ارسال می‌کند. همچنین بنگاه‌دار یا مشتری می‌تواند شرایط ملک یا زمینی که به دنبال آن است را به‌صورت طبیعی با دستیار هوشمند مطرح کند و سیستم بر اساس این شرایط، به‌صورت خودکار در دیوار جستجو کرده و نتایج مرتبط را اعلام می‌کند.",
+        "challenge": "اطلاع از آگهی‌های جدیدی که در دیوار منتشر می‌شد، فرایندی زمان‌بر بود و نیاز به بررسی و چک کردن مداوم سایت داشت. همچنین جستجوی ملک بر اساس شرایط خاص مشتری نیز به‌صورت دستی انجام می‌شد.",
+        "solution": "سیستمی طراحی شد که به‌صورت خودکار آگهی‌های جدید دیوار را بررسی کرده و از طریق واتساپ ارسال می‌کند. همچنین دستیار هوشمند می‌تواند شرایط موردنظر کاربر برای ملک یا زمین را از طریق گفت‌وگو دریافت کرده و آگهی‌های مرتبط را در اختیار کاربر قرار دهد."
       }
     }
   ],

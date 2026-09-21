@@ -67,7 +67,7 @@ export default function RootLayout({
         <I18nProvider>
           <div className="relative flex min-h-screen flex-col">
             {/* Blurred cursor glow — only in Hero + Why Automation sections */}
-            <ContinuousCursorGlow sectionIds={["hero", "flow"]} />
+            {/* <ContinuousCursorGlow sectionIds={["hero", "flow"]} /> */}
             <Header />
             <main className="flex-1">{children}</main>
           </div>

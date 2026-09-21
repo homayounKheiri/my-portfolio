@@ -5,12 +5,21 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination, Mousewheel, Keyboard } from "swiper/modules"
 import type { Swiper as SwiperType } from "swiper"
-import { ArrowUpRight, Target, Lightbulb, X, ArrowUpLeft } from "lucide-react"
+import {
+  ArrowUpRight,
+  Target,
+  Lightbulb,
+  X,
+  ArrowUpLeft,
+  CirclePlay,
+} from "lucide-react"
 import projectsData from "@/data/projects.json"
 import { useI18n, type Locale } from "@/lib/i18n"
 
 import "swiper/css"
 import "swiper/css/pagination"
+import VideoPlayer from "./video-player"
+import { Drawer } from "../CustomComponents/Drawer"
 
 type Lang = Locale
 
@@ -26,6 +35,7 @@ type LangContent = {
 type Project = {
   id: string
   image: string
+  video?: string
   images: string[]
   tags: string[]
   en: LangContent
@@ -45,6 +55,8 @@ export function Projects() {
   const { t, locale } = useI18n()
   const [tab, setTab] = useState<TabId>("automation")
   const [selected, setSelected] = useState<Project | null>(null)
+  const [openDialog, setOpenDialog] = useState<boolean>(false)
+  const [openVideoDialog, setOpenVideoDialog] = useState<boolean>(false)
 
   const list = (projectsData as Record<TabId, Project[]>)[tab]
   const lang: Lang = locale
@@ -164,7 +176,10 @@ export function Projects() {
                   project={p}
                   lang={lang}
                   index={i}
-                  onSelect={setSelected}
+                  onSelect={p => {
+                    setSelected(p)
+                    setOpenDialog(true)
+                  }}
                 />
               ))}
             </div>
@@ -174,14 +189,29 @@ export function Projects() {
 
       {/* Detail dialog */}
       <AnimatePresence>
-        {selected && (
+        {openDialog && selected && (
           <ProjectDialog
             project={selected}
             lang={lang}
-            onClose={() => setSelected(null)}
+            onClose={() => {
+              setSelected(null)
+              setOpenDialog(false)
+            }}
+            onShowVideo={() => {
+              setOpenVideoDialog(true)
+            }}
           />
         )}
       </AnimatePresence>
+
+      <VideoDialog
+        project={selected}
+        lang={lang}
+        isOpen={openVideoDialog}
+        onClose={() => {
+          setOpenVideoDialog(false)
+        }}
+      />
     </section>
   )
 }
@@ -312,10 +342,12 @@ function ProjectDialog({
   project,
   lang,
   onClose,
+  onShowVideo,
 }: {
   project: Project
   lang: Lang
   onClose: () => void
+  onShowVideo: () => void
 }) {
   const c = project[lang]
   const { t } = useI18n()
@@ -327,7 +359,7 @@ function ProjectDialog({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 p-0 backdrop-blur-md sm:items-center sm:p-6"
+        className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 backdrop-blur-md sm:items-center sm:p-6"
         onClick={onClose}
       >
         <motion.div
@@ -359,9 +391,21 @@ function ProjectDialog({
                 {c.metric}
               </span>
             </div> */}
-            <h3 className="mt text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              {c.title}
-            </h3>
+            <div className="flex flex-row w-full justify-between">
+              <h3 className="mt text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                {c.title}
+              </h3>
+
+              {!!project.video && (
+                <h4
+                  className="text-primary font-bold text-xs flex items-center gap-1 -mt-10 -me-4 cursor-pointer"
+                  onClick={() => onShowVideo()}
+                >
+                  {t("projects.show_video")}
+                  <CirclePlay size={16} />
+                </h4>
+              )}
+            </div>
 
             <p className="mt-4 text-pretty text-[15px] leading-relaxed text-ink-muted">
               {c.summary}
@@ -410,6 +454,37 @@ function ProjectDialog({
         </motion.div>
       </motion.div>
     </AnimatePresence>
+  )
+}
+
+/* --------------------------- Video Player Dialog -------------------------- */
+
+function VideoDialog({
+  project,
+  lang,
+  isOpen,
+  onClose,
+}: {
+  project: Project | null
+  lang: Lang
+  isOpen: boolean
+  onClose: () => void
+}) {
+  // const c = project[lang]
+  const { t } = useI18n()
+
+  return (
+    <Drawer
+      className="z-[70] flex items-center justify-center w-full"
+      open={isOpen}
+      onClose={() => onClose()}
+      type="fullscreen"
+    >
+      <VideoPlayer
+        className="rounded-4xl w-[min(90vw,1100px)]"
+        url="https://upload.homayoundev.ir/upload/97aab10d6ba6ff8116147c46b79bf7ed.mp4"
+      />
+    </Drawer>
   )
 }
 
