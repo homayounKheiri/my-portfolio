@@ -482,7 +482,7 @@ function VideoDialog({
     >
       <VideoPlayer
         className="rounded-4xl w-[min(90vw,1100px)]"
-        url={project.video || ""}
+        url={project?.video || ""}
       />
     </Drawer>
   )
