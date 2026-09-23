@@ -482,7 +482,7 @@ function VideoDialog({
     >
       <VideoPlayer
         className="rounded-4xl w-[min(90vw,1100px)]"
-        url="https://upload.homayoundev.ir/upload/97aab10d6ba6ff8116147c46b79bf7ed.mp4"
+        url={project.video || ""}
       />
     </Drawer>
   )
